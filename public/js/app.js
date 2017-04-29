@@ -1,10 +1,11 @@
-var app = angular.module('MousseApp', []);
+var app = angular.module('BBApp', []);
 
 app.controller('MainController', ['$http', function($http){
     var controller = this;
 
 
 }]);
+
 
 
 // *******HTTP EXAMPLES FOR AMANDA TO REFERENCE***********

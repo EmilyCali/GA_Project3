@@ -6,8 +6,8 @@ var userSchema = Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true}
     // img: String,//a url
-    // books: [Book.schema],
-    // beers: [Beer.schema]
+    // books: [Book.schema], //incase?
+    // beers: [Beer.schema] //incase?
 });
 
 var User = mongoose.model('User', userSchema);
