@@ -35,7 +35,7 @@ router.post('/login', function(req, res){
 
     User.findOne({username: req.body.username}, function(err, foundUser){
         foundUser.comparePassword(req.body.password, function(err, isMatch){
-            iff(err) throw err;
+            if(err) throw err;
             if(!isMatch){
                 res.status(401).send('Invalid Password');
             } else {

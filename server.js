@@ -2,7 +2,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var JWTexpress = require('jwt-express');
+var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
 var app = express();
@@ -15,7 +15,7 @@ var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/beerbooks
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(jwt.init('peanutbutterjellytime'));
+app.use(expressJWT({secret: 'peanutbutterjellytime'}).unless({path:['/login']}));
 
 //-------------------Controller Middleware
 var usersController = require('./controllers/users.js');

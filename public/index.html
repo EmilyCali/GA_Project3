@@ -10,13 +10,18 @@
     </head>
     <body ng-controller="MainController as main">
         <h1>BOOKS&amp;BEERS</h1>
-        {{2+2}}
-        {{main.test}}
+
         <form ng-submit="main.login(userInfo)">
             <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
             <input  ng-model="userInfo.password" type="password" placeholder="Password"><br>
             <input type="submit" value="Log In"><br>
         </form>
         <p>Logged in username: {{ main.user.username }} </p>
+        <h2>Create User</h2>
+        <form >
+            <input type="text" value="Create Username"><br>
+            <input type="text" value="Create Password"><br>
+            <input type="submit" name="" value="Create User"><br>
+        </form>
     </body>
 </html>
