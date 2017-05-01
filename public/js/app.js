@@ -7,7 +7,9 @@ var app = angular.module('BBApp', []);
 app.controller('baseCtrl', ['$http', function($http){
     var controller = this;
     this.searching = '';
-    this.arr = [];
+    this.nameArr = [];
+    this.infoArr = [];
+    this.descriptionArr = [];
     this.find = function(){
         $http(
             {
@@ -15,17 +17,20 @@ app.controller('baseCtrl', ['$http', function($http){
                 url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
             function(response) { //success callback
-                controller.arr = [];
+                controller.nameArr = [];
                 for(i=0; i< response.data.data.length; i++)
                 {
 
                     // controller.arr.push(response.data.data[i].name);
-                    controller.arr.push(response.data.data[i].name);
+                    controller.nameArr.push(response.data.data[i].name);
+                    controller.infoArr.push(response.data.data[i].id)
+                    controller.descriptionArr.push(response.data.data[i].style.description)
                 }
 
                 console.log('success');
-                console.log(controller.arr);
+                console.log(controller.nameArr);
                 console.log(response);
+                console.log(controller.infoArr);
             },
             function(error){ //fail callback
                 console.log('fail');
@@ -33,6 +38,11 @@ app.controller('baseCtrl', ['$http', function($http){
             }
         );
     };
+    this.showInfo = function(index){
+        console.log(index);
+        console.log(controller.infoArr[index]);
+        this.showBeerId = index;
+    }
 }]);
 
 //////////////////////////////////////////|
