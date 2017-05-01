@@ -53,8 +53,27 @@ app.controller('MainController', ['$http', function($http){
     this.url = 'http://locallhost:3000/';
     this.user = {};
 
-    this.login = function(userInfo){
+    this.signUp = function(userInfo){
         console.log(userInfo);
+        $http({
+            method:'POST',
+            url: "/api/signup",
+            data: {
+                // user: {
+                    username: userInfo.newUsername,
+                    password: userInfo.newPassword
+                // }
+            }
+        }).then(function(response){
+            console.log(response);
+            controller.user = response.data.username;
+            console.log(controller.user);
+            localStorage.setItem('token', JSON.stringify(response.data.token));
+        }.bind(this));
+    };
+
+    this.login = function(userInfo){
+        // console.log(userInfo);
         $http({
             method:'POST',
             url: "/api/authenticate",

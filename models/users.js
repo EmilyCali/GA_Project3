@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var userSchema = Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    admin: Boolean
+    admin: {type: Boolean, default: false}
     // img: String,//a url
     // books: [Book.schema], //incase?
     // beers: [Beer.schema] //incase?

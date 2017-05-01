@@ -39,7 +39,29 @@ app.use(morgan('dev'));//logs requests to the console
 //////////////////////////////////////////|
 var apiRoutes = express.Router();
 
+// create a new user account (POST http://localhost:3000/api/signup)
+apiRoutes.post('/signup', function(req, res) {
+    console.log(req.body);
+  if (!req.body.username || !req.body.password) {
+    res.json({success: false, msg: 'Please enter username and password.'});
+  } else {
+    var newUser = new User({
+      username: req.body.username,
+      password: req.body.password
+    });
+    console.log(newUser);
+    // save the user
+    newUser.save(function(err) {
+      if (err) {
+        return res.json({success: false, msg: 'Username already exists.'});
+      }
+      res.json({success: true, msg: 'Successful created new user.'});
+    });
+  }
+});
 
+// connect the api routes under /api/*
+app.use('/api', apiRoutes);
 
 //route to authenticate the user(POST: http://localhost:3000/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res){
