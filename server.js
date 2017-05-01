@@ -11,6 +11,8 @@ var jwt        = require('jsonwebtoken');//used to create, sign, and verify toke
 var config     = require('./config.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model
 
+var booksController = require("./controllers/books.js"); //require book controller
+
 //////////////////////////////////////////|
 //---------------------------Configuration|
 //////////////////////////////////////////|
@@ -26,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));//logs requests to the console
+app.use("/books", booksController); //use book controller
 
 //////////////////////////////////////////|
 //-------------------Controller Middleware|

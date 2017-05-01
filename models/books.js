@@ -5,10 +5,11 @@ var mongoose = require("mongoose");
 var bookSchema = mongoose.Schema({
   title: String,
   author: String,
-  genre: String, //this is actually subject and contains multiple items
+  subject: String, //this is actually subject and contains multiple items
   cover: String, //in books api, is a jpg
   isbn: String, //lets you access more info
-  key: String //lets you use book api to get mor info
+  liked: Number //lets you use book api to get mor info
+  //user: String need to attach to user schema somehow
 });
 
 //name it

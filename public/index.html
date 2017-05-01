@@ -3,9 +3,13 @@
 <html ng-app="BBApp">
     <head>
         <meta charset="utf-8">
+        <!-- stylesheet -->
         <link rel="stylesheet" href="/css/main.css">
+      <!-- angular -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <!-- app.js -->
         <script type="text/javascript" src="/js/app.js"></script>
+
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body ng-controller="MainController as main">
@@ -16,5 +20,12 @@
             <input  type="text" value="Password"><br>
             <input type="submit" name="" value="Sign In"><br>
         </form>
+
+
+<!-- need to put in an include for the book html -->
+<!-- but only show it when logged in, and  -->
+        <input id="input-box" />
+        <button id="submit-button">Enter Book</button>
+
     </body>
 </html>
