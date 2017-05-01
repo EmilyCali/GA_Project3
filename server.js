@@ -86,9 +86,11 @@ apiRoutes.use(function(req, res, next){
         //verifies secret and checks expiration
         jwt.verify(token, app.get('superSecret'), function(err, decoded){
             if (err) {
+                console.log(err);
                 return res.json({ success: false, message: "Failed to authenticate token."});
             } else {
                 //if everything is good, save to request for use in other routes
+                console.log("YOU DID IT");
                 req.decoded = decoded;
                 next();
             }

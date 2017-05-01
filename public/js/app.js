@@ -34,6 +34,7 @@ app.controller('MainController', ['$http', function($http){
                 Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){
+            console.log(response);
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
             } else {
