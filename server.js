@@ -7,8 +7,9 @@ var mongoose   = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 
+
 var jwt        = require('jsonwebtoken');//used to create, sign, and verify tokens
-var config     = require('./config.js');//get config.js
+var config     = require('./config/database.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model
 
 //////////////////////////////////////////|
@@ -36,6 +37,8 @@ app.use(morgan('dev'));//logs requests to the console
 //-------------------API Routes-----------|
 //////////////////////////////////////////|
 var apiRoutes = express.Router();
+
+
 
 //route to authenticate the user(POST: http://localhost:3000/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res){
@@ -72,8 +75,11 @@ apiRoutes.post('/authenticate', function(req, res){
 /////////////////////////////////////|
 //------Middleware to verify token---|
 /////////////////////////////////////|
+
 apiRoutes.use(function(req, res, next){
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    console.log('headers: ' + req.headers);
+    var token = req.body.token || req.query.token || req.headers.authorization;
+    // var token = localStorage.getItem('token');
     console.log(token);
     //decode token
     if(token){
@@ -89,6 +95,7 @@ apiRoutes.use(function(req, res, next){
         });
     } else {
         //if there is no token, return an Error
+        console.log(req.body.token);
         return res.status(403).send({
             success: false,
             message: 'No token provided.'
@@ -101,6 +108,7 @@ apiRoutes.get('/', function(req, res){
 });
 
 apiRoutes.get('/users', function(req, res){
+    console.log('inside get users');
     User.find({}, function(err, foundUsers){
         res.json(foundUsers);
     });

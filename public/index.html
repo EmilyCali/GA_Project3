@@ -14,11 +14,19 @@
         <h2>Log In</h2>
         <form ng-submit="main.login(userInfo)">
             <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
-            <input  ng-model="userInfo.password" type="text" placeholder="Password"><br>
+            <input  ng-model="userInfo.password" type="password" placeholder="Password"><br>
             <input type="submit" value="Log In"><br>
         </form>
         <p>Logged in username: {{main.user}} </p>
+        <div>
+            <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
+            {{ main.error }}
+        </div>
 
-        
+        <div ng-repeat="user in main.users">
+            <h1>{{ user.user}}</h1>
+        </div>
+        <a ng-click="main.logout()">Log Out</a>
+
     </body>
 </html>

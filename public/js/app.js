@@ -23,14 +23,28 @@ app.controller('MainController', ['$http', function($http){
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
     };
-//not ready yet
-    // this.getUsers = function(){
-    //     $http({
-    //         url: this.url + '/api/users',
-    //         method: 'GET'
-    //     }).then(function(response){
-    //         console.log(response);
-    //         this.error = "Unauthorized";
-    //     }.bind(this));
-    // };
+
+    this.getUsers = function(){
+        console.log("in get");
+        $http({
+            // url: this.url + 'api/users',
+            url: '/api/users',
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            if (response.data.status == 401) {
+                this.error = "Unauthorized";
+            } else {
+                this.users = response.data;
+            }
+        }.bind(this));
+
+    };
+
+    this.logout = function(){
+        localStorage.clear('token');
+        location.reload();
+    };
 }]);
