@@ -9,7 +9,7 @@ app.controller('MainController', ['$http', function($http){
         console.log(userInfo);
         $http({
             method:'POST',
-            url: this.url = "/api/authenticate",
+            url: "/api/authenticate",
             data: {
                 // user: {
                     username: userInfo.username,
@@ -18,7 +18,8 @@ app.controller('MainController', ['$http', function($http){
             }
         }).then(function(response){
             console.log(response);
-            this.user = response.data.user;
+            controller.user = response.data.username;
+            console.log(controller.user);
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
     };

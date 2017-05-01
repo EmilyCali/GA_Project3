@@ -59,6 +59,7 @@ apiRoutes.post('/authenticate', function(req, res){
                 // });
                 //return info
                 res.json({
+                    username: foundUser.username,
                     success: true,
                     message: 'Enjoy your token!',
                     token: token
