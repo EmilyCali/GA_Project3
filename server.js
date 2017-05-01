@@ -30,8 +30,7 @@ app.use(morgan('dev'));//logs requests to the console
 //////////////////////////////////////////|
 //-------------------Controller Middleware|
 //////////////////////////////////////////|
-// var apiRouterController = require('./controllers/apiRouter.js');
-// app.use('/api', apiRouterController);
+
 
 //////////////////////////////////////////|
 //-------------------API Routes-----------|
