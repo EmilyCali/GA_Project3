@@ -17,12 +17,8 @@
             <input  ng-model="userInfo.password" type="text" placeholder="Password"><br>
             <input type="submit" value="Log In"><br>
         </form>
-        <p>Logged in username: {{ main.user }} </p>
+        <p>Logged in username: {{main.user}} </p>
 
-        <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
-
-        <div ng-repeat="user in main.users">
-            <h1> {{ user.username }}</h1>
-        </div>
+        
     </body>
 </html>
