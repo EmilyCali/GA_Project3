@@ -1,5 +1,43 @@
 var app = angular.module('BBApp', []);
 
+//////////////////////////////////////////|
+//----------------Joe's controller--------|
+//////////////////////////////////////////|
+
+app.controller('baseCtrl', ['$http', function($http){
+    var controller = this;
+    this.searching = '';
+    this.arr = [];
+    this.find = function(){
+        $http(
+            {
+                method:'GET',
+                url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
+            }).then(
+            function(response) { //success callback
+                controller.arr = [];
+                for(i=0; i< response.data.data.length; i++)
+                {
+
+                    // controller.arr.push(response.data.data[i].name);
+                    controller.arr.push(response.data.data[i].name);
+                }
+
+                console.log('success');
+                console.log(controller.arr);
+                console.log(response);
+            },
+            function(error){ //fail callback
+                console.log('fail');
+                console.log(error);
+            }
+        );
+    };
+}]);
+
+//////////////////////////////////////////|
+//----------------Amanda's controller-----|
+//////////////////////////////////////////|
 app.controller('MainController', ['$http', function($http){
     var controller = this;
     this.url = 'http://locallhost:3000/';
@@ -48,4 +86,27 @@ app.controller('MainController', ['$http', function($http){
         localStorage.clear('token');
         location.reload();
     };
+}]);
+
+//////////////////////////////////////////|
+//-----------------Emily's controller-----|
+//////////////////////////////////////////|
+
+app.controller("BookController", ["$http", function($http) {
+  var controller = this;
+  this.getBook = function(searchedBook) {
+    $http({
+      method: "GET",
+      url: "http://openlibrary.org/search.json?q=" + searchedBook
+      // data: {
+      //
+      // }
+    }).then(function(response) {//success
+      console.log(response);
+      controller.foundBooks = response.data;
+    },
+    function(response) { //failure
+      console.log(response);
+    });
+  };
 }]);
