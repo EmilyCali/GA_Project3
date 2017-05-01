@@ -98,7 +98,7 @@ app.controller("BookController", ["$http", function($http) {
   this.searchedBook = "";
   this.foundBooks = [];
   //function to get the books when a query happens
-  this.getBook = function() {
+  this.findBook = function() {
     $http({
       method: "GET",
       //use the open library search api
@@ -108,9 +108,9 @@ app.controller("BookController", ["$http", function($http) {
     }).then(function(response) {//success
       //if you look at beer controller above it follows this structure and is working buuuut this doesn't work either way
       controller.foundBooks = [];
-      for(i=0; i< response.data.data.length; i++)
+      for(i=0; i< response.data.length; i++)
       {
-          controller.foundBooks.push(response.data.data[i].title);
+          controller.foundBooks.push(response.data[i].title);
       }
       console.log(response);
       //controller.foundBooks = response.data;
