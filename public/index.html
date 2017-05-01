@@ -9,27 +9,42 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
-    <section class="Amanda" ng-controller="MainController as main">
-        <h1>BOOKS&amp;BEERS</h1>
+        <header>
+            <h1>BOOKS&amp;BEERS</h1>
+        </header>
+        <section class="users" ng-controller="MainController as main">
+            <section class="login">
+                <h2>Log In</h2>
+                <form ng-submit="main.login(userInfo)">
+                    <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
+                    <input  ng-model="userInfo.password"    type="password" placeholder="Password"><br>
+                    <input type="submit" value="Log In"><br>
+                </form>
+                <p>Logged in username: {{main.user}} </p>
+                <div>
+                    <h4 ng-click="main.getUsers()">Click to see     secret stuff</h4>
+                    {{ main.error }}
+                </div>
 
-        <h2>Log In</h2>
-        <form ng-submit="main.login(userInfo)">
-            <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
-            <input  ng-model="userInfo.password" type="password" placeholder="Password"><br>
-            <input type="submit" value="Log In"><br>
-        </form>
-        <p>Logged in username: {{main.user}} </p>
-        <div>
-            <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
-            {{ main.error }}
-        </div>
-
-        <div ng-repeat="user in main.users">
-            <h1>{{ user.user}}</h1>
-        </div>
-        <a ng-click="main.logout()">Log Out</a>
+                <div ng-repeat="user in main.users">
+                    <h1>{{ user.user}}</h1>
+                </div>
+                <a ng-click="main.logout()">Log Out</a>
+            </section>
+            <section class="new-user">
+                <h2>Registration</h2>
+                <form ng-submit="main.signUp(newUserInfo)">
+                    <input  ng-model="userInfo.newUsername" type="text" placeholder="Username"><br>
+                    <input  ng-model="userInfo.newPassword"    type="password" placeholder="Password"><br>
+                    <input type="submit" value="Sign Up"><br>
+                </form>
+            </section>
     </section>
+
+
     <hr>
+
+
     <section ng-controller='baseCtrl as base'>
         <form ng-submit="base.find();">
             <input ng-model="base.searching">
@@ -40,8 +55,12 @@
             <li ng-repeat="name in base.arr track by $index">{{name}}</li>
         </ul>
     </section>
+
+
     <hr>
-    <section ng-controller='bookController as bookCtrl'>
+
+
+    <section ng-controller='BookController as bookCtrl'>
         <form ng-submit="bookCtrl.getBook();">
             <input type="text" placeholder="Find a book">
             <input type="submit" ng-click="bookCtrl.getBook();">Find this book</button>
