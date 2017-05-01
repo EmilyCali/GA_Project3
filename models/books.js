@@ -21,6 +21,3 @@ module.exports = Book;
 
 //from open libary subject is the same as genre and there may be more than one
 //there is also a thmbnail_url
-
-
-//use books api with key from search api to get more information about the book such as images etc

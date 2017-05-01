@@ -7,9 +7,11 @@ var mongoose   = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 
+
 var jwt        = require('jsonwebtoken');//used to create, sign, and verify tokens
-var config     = require('./config.js');//get config.js
+var config     = require('./config/database.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model
+var Book       = require('./models/books.js');
 
 var booksController = require("./controllers/books.js"); //require book controller
 
@@ -33,20 +35,21 @@ app.use("/books", booksController); //use book controller
 //////////////////////////////////////////|
 //-------------------Controller Middleware|
 //////////////////////////////////////////|
-// var apiRouterController = require('./controllers/apiRouter.js');
-// app.use('/api', apiRouterController);
+
 
 //////////////////////////////////////////|
 //-------------------API Routes-----------|
 //////////////////////////////////////////|
 var apiRoutes = express.Router();
 
+
+
 //route to authenticate the user(POST: http://localhost:3000/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res){
-    console.log(req.query.username);
+    console.log(req.body.username);
     //find the user
     User.findOne({
-        username:req.query.username
+        username:req.body.username
     }, function(err, foundUser){
         console.log(foundUser);
         if (err) throw err;
@@ -54,7 +57,7 @@ apiRoutes.post('/authenticate', function(req, res){
             res.json({success: false, message: 'Authenication failed. User not found.'});
         } else if(foundUser){
             //check if the password matches
-            if(foundUser.password != req.query.password){
+            if(foundUser.password != req.body.password){
                 res.json({ success: false, message: 'Authentication failed. Wrong password.'});
             } else {
                 //if user is found and password is right, create a token:
@@ -63,6 +66,7 @@ apiRoutes.post('/authenticate', function(req, res){
                 // });
                 //return info
                 res.json({
+                    username: foundUser.username,
                     success: true,
                     message: 'Enjoy your token!',
                     token: token
@@ -75,8 +79,11 @@ apiRoutes.post('/authenticate', function(req, res){
 /////////////////////////////////////|
 //------Middleware to verify token---|
 /////////////////////////////////////|
+
 apiRoutes.use(function(req, res, next){
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    console.log('headers: ' + req.headers);
+    var token = req.body.token || req.query.token || req.headers.authorization;
+    // var token = localStorage.getItem('token');
     console.log(token);
     //decode token
     if(token){
@@ -92,6 +99,7 @@ apiRoutes.use(function(req, res, next){
         });
     } else {
         //if there is no token, return an Error
+        console.log(req.body.token);
         return res.status(403).send({
             success: false,
             message: 'No token provided.'
@@ -104,6 +112,7 @@ apiRoutes.get('/', function(req, res){
 });
 
 apiRoutes.get('/users', function(req, res){
+    console.log('inside get users');
     User.find({}, function(err, foundUsers){
         res.json(foundUsers);
     });
