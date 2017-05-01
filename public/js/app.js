@@ -23,6 +23,7 @@ app.controller('baseCtrl', ['$http', function($http){
 
                 for(i=0; i< response.data.data.length; i++)
                 {
+                    console.log('hi');
 
                     // controller.arr.push(response.data.data[i].name);
                     controller.nameArr.push(response.data.data[i].name);
