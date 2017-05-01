@@ -17,6 +17,10 @@
             <input  ng-model="userInfo.password" type="text" placeholder="Password"><br>
             <input type="submit" value="Log In"><br>
         </form>
-        <p>Logged in username: {{ main.user.username }} </p>
+        <p>Logged in username: {{ main.username }} </p>
+
+        <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
+
+        <div> {{ main.error }}</div>
     </body>
 </html>

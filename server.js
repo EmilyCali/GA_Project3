@@ -39,10 +39,10 @@ var apiRoutes = express.Router();
 
 //route to authenticate the user(POST: http://localhost:3000/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res){
-    console.log(req.query.username);
+    console.log(req.body.username);
     //find the user
     User.findOne({
-        username:req.query.username
+        username:req.body.username
     }, function(err, foundUser){
         console.log(foundUser);
         if (err) throw err;
@@ -50,7 +50,7 @@ apiRoutes.post('/authenticate', function(req, res){
             res.json({success: false, message: 'Authenication failed. User not found.'});
         } else if(foundUser){
             //check if the password matches
-            if(foundUser.password != req.query.password){
+            if(foundUser.password != req.body.password){
                 res.json({ success: false, message: 'Authentication failed. Wrong password.'});
             } else {
                 //if user is found and password is right, create a token:

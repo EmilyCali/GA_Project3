@@ -9,7 +9,7 @@ app.controller('MainController', ['$http', function($http){
         console.log(userInfo);
         $http({
             method:'POST',
-            url: this.url = "/api",
+            url: this.url = "/api/authenticate",
             data: {
                 // user: {
                     username: userInfo.username,
@@ -20,6 +20,16 @@ app.controller('MainController', ['$http', function($http){
             console.log(response);
             this.user = response.data.user;
             localStorage.setItem('token', JSON.stringify(response.data.token));
+        }.bind(this));
+    };
+
+    this.getUsers = function(){
+        $http({
+            url: this.url + '/api/users',
+            method: 'GET'
+        }).then(function(response){
+            console.log(response);
+            this.error = "Unauthorized";
         }.bind(this));
     };
 }]);
