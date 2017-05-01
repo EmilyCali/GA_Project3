@@ -56,9 +56,14 @@
             <input type="submit" ng-click="base.find();" value="Find Beer"/>
         </form>
         <!-- show returned data for beers -->
-        <ul>
-            <li ng-repeat="name in base.arr track by $index">{{name}}</li>
-        </ul>
+        <ol>
+            <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
+                {{name}}
+                <ul ng-if="base.showBeerId === $index">
+                    {{base.descriptionArr[$index]}}
+                </ul>
+            </li>
+        </ol>
     </section>
 
 
