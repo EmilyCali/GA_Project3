@@ -2,7 +2,9 @@ var app = angular.module("BookDataApp", []);
 
 app.controller("BookController", ["$http", function($http) {
   var controller = this;
-  this.getBook = function(searchedBook) {
+  //this.searchedTitle = "";
+  //this.foundBooks = [];
+  this.findBook = function(searchedBook) {
     $http({
       method: "GET",
       url: "http://openlibrary.org/search.json?q=" + searchedBook

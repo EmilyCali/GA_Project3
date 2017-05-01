@@ -13,14 +13,16 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
+
+      <!-- login area -->
     <section class="Amanda" ng-controller="MainController as main">
         <h1>BOOKS&amp;BEERS</h1>
 
         <h2>Log In</h2>
         <form ng-submit="main.login(userInfo)">
-            <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
-            <input  ng-model="userInfo.password" type="password" placeholder="Password"><br>
-            <input type="submit" value="Log In"><br>
+            <input  ng-model="userInfo.username" type="text" placeholder="Username" /><br>
+            <input  ng-model="userInfo.password" type="password" placeholder="Password" /><br>
+            <input type="submit" value="Log In" /><br>
         </form>
         <p>Logged in username: {{main.user}} </p>
         <div>
@@ -34,26 +36,29 @@
         <a ng-click="main.logout()">Log Out</a>
     </section>
     <hr>
+
+    <!-- beer search -->
     <section ng-controller="baseCtrl as base">
         <form ng-submit="base.find();">
-            <input ng-model="base.searching">
+            <input ng-model="base.searching" />
             <input type="submit" ng-click="base.find();" value="Find Beer"/>
-
         </form>
+        <!-- show returned data for beers -->
         <ul>
             <li ng-repeat="name in base.arr track by $index">{{name}}</li>
         </ul>
     </section>
     <hr>
-    <section ng-controller="bookController as bookCtrl">
-        <form ng-submit="bookCtrl.getBook();">
-            <input type="text" placeholder="Find a book">
-            <input type="submit" ng-click="bookCtrl.getBook();" value="Find Book By Title"/>
-        </form>
 
+    <!-- book search -->
+    <section ng-controller="BookController as bookCtrl">
+        <form ng-submit="bookCtrl.findBook();">
+            <input type="text" placeholder="Find a book" ng-model="bookCtrl.searchedBook"/>
+            <input type="submit" ng-click="bookCtrl.findBook();" value="Find Book By Title"/>
+        </form>
+        <!-- show returned data below for books-->
         <ul>
-            <li>
-            </li>
+            <li ng-repeat="title in bookCtrl.foundBooks track by $index"> {{title}}</li>
         </ul>
     </section>
     </body>
