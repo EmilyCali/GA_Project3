@@ -122,13 +122,17 @@ app.controller("BookController", ["$http", function($http) {
       //may or may not need to specify data
       //data: this
     }).then(function(response) {//success
-      //if you look at beer controller above it follows this structure and is working buuuut this doesn't work either way
       controller.foundBooks = [];
       for(i=0; i< 10; i++)
       {
-          controller.foundBooks.push(response.data.data[i].title);
+          controller.foundBooks.push(response.data.docs[i].title);
       }
       console.log(response);
+      // let me see what this is
+      console.log(response.data);
+      //let me see what the data is
+      console.log(controller.foundBooks);
+      //what's in here this new array of things
       //controller.foundBooks = response.data;
       //console.log(response.data);
     },
