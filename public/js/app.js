@@ -20,9 +20,10 @@ app.controller('baseCtrl', ['$http', function($http){
                 controller.nameArr = [];
                 controller.infoArr = [];
                 controller.descriptionArr = [];
-                
+
                 for(i=0; i< response.data.data.length; i++)
                 {
+                    console.log('hi');
 
                     // controller.arr.push(response.data.data[i].name);
                     controller.nameArr.push(response.data.data[i].name);
@@ -122,21 +123,37 @@ app.controller('MainController', ['$http', function($http){
 }]);
 
 //////////////////////////////////////////|
-//-----------------Emily's controller-----|
+//-----------------Book controller-----|
 //////////////////////////////////////////|
 
 app.controller("BookController", ["$http", function($http) {
+  //have to name controller so it can be used in callbacks
   var controller = this;
-  this.getBook = function(searchedBook) {
+  //might need to make an empty string for search and an empty array for returned database
+  this.searchedBook = "";
+  this.foundBooks = [];
+  //function to get the books when a query happens
+  this.findBook = function() {
     $http({
       method: "GET",
-      url: "http://openlibrary.org/search.json?q=" + searchedBook
-      // data: {
-      //
-      // }
+      //use the open library search api
+      url: "http://openlibrary.org/search.json?q=" + this.searchedBook
+      //may or may not need to specify data
+      //data: this
     }).then(function(response) {//success
+      controller.foundBooks = [];
+      for(i=0; i< 10; i++)
+      {
+          controller.foundBooks.push(response.data.docs[i].title);
+      }
       console.log(response);
-      controller.foundBooks = response.data;
+      // let me see what this is
+      console.log(response.data);
+      //let me see what the data is
+      console.log(controller.foundBooks);
+      //what's in here this new array of things
+      //controller.foundBooks = response.data;
+      //console.log(response.data);
     },
     function(response) { //failure
       console.log(response);

@@ -13,6 +13,8 @@ var config     = require('./config/database.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model
 var Book       = require('./models/books.js');
 
+var booksController = require("./controllers/books.js"); //require book controller
+
 //////////////////////////////////////////|
 //---------------------------Configuration|
 //////////////////////////////////////////|
@@ -28,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));//logs requests to the console
+app.use("/books", booksController); //use book controller
 
 //////////////////////////////////////////|
 //-------------------Controller Middleware|
