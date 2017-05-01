@@ -18,6 +18,8 @@ app.controller('baseCtrl', ['$http', function($http){
             }).then(
             function(response) { //success callback
                 controller.nameArr = [];
+                controller.infoArr = [];
+                controller.descriptionArr = [];
                 for(i=0; i< response.data.data.length; i++)
                 {
 
