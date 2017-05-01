@@ -104,21 +104,33 @@ app.controller('MainController', ['$http', function($http){
 }]);
 
 //////////////////////////////////////////|
-//-----------------Emily's controller-----|
+//-----------------Book controller-----|
 //////////////////////////////////////////|
 
 app.controller("BookController", ["$http", function($http) {
+  //have to name controller so it can be used in callbacks
   var controller = this;
-  this.getBook = function(searchedBook) {
+  //might need to make an empty string for search and an empty array for returned database
+  this.searchedBook = "";
+  this.foundBooks = [];
+  //function to get the books when a query happens
+  this.findBook = function() {
     $http({
       method: "GET",
-      url: "http://openlibrary.org/search.json?q=" + searchedBook
-      // data: {
-      //
-      // }
+      //use the open library search api
+      url: "http://openlibrary.org/search.json?q=" + this.searchedBook
+      //may or may not need to specify data
+      //data: this
     }).then(function(response) {//success
+      //if you look at beer controller above it follows this structure and is working buuuut this doesn't work either way
+      controller.foundBooks = [];
+      for(i=0; i< 10; i++)
+      {
+          controller.foundBooks.push(response.data.data[i].title);
+      }
       console.log(response);
-      controller.foundBooks = response.data;
+      //controller.foundBooks = response.data;
+      //console.log(response.data);
     },
     function(response) { //failure
       console.log(response);
