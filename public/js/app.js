@@ -15,7 +15,7 @@ app.controller('baseCtrl', ['$http', function($http){
         $http(
             {
                 method:'GET',
-                url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=&format=json'
+                url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
             function(response) { //success callback
                 controller.nameArr = [];
@@ -73,8 +73,8 @@ app.controller('MainController', ['$http', function($http){
                     password: userInfo.newPassword
             }
         }).then(function(response){
-            console.log(response.data.token);
-            controller.user = response.data.username;
+
+            controller.username = response.data.user.username;
             // console.log(controller.user);
             localStorage.setItem('token', JSON.stringify(response.data.token));
 
@@ -88,9 +88,12 @@ app.controller('MainController', ['$http', function($http){
                     // }
                 }
             }).then(function(response){
-                controller.username = response.data.username;
+
+
                 controller.token = true;
-                console.log(response.data.token);
+
+
+
 
             });
 

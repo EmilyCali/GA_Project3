@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html ng-app="BBApp">
     <head>
@@ -17,6 +16,7 @@
             <h1>BOOKS&amp;BEERS</h1>
         </header>
         <section class="users" ng-controller="MainController as main">
+
             <section ng-if="!main.token" class="login">
                 <h2>Log In</h2>
                 <form ng-submit="main.login(userInfo)">
@@ -48,26 +48,23 @@
                 <a ng-click="main.logout()">Log Out</a>
             </div>
         </section>
+        <hr>
+        <section ng-controller='baseCtrl as base'>
+            <form ng-submit="base.find();">
+                <input ng-model="base.searching">
+                <input type="submit" ng-click="base.find();">Find this beer</button>
 
+            </form>
+            <ol>
+                <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
+                    {{name}}
+                    <ul ng-if="base.showBeerId === $index">
+                        {{base.descriptionArr[$index]}}
+                    </ul>
+                </li>
+            </ol>
+        </section>
 
-    <hr>
-
-
-    <section ng-controller='baseCtrl as base'>
-        <form ng-submit="base.find();">
-            <input ng-model="base.searching">
-            <input type="submit" ng-click="base.find();">Find this beer</button>
-
-        </form>
-        <ol>
-            <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
-                {{name}}
-                <ul ng-if="base.showBeerId === $index">
-                    {{base.descriptionArr[$index]}}
-                </ul>
-            </li>
-        </ol>
-    </section>
 
 
     <hr>
