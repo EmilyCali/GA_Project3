@@ -12,20 +12,23 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
+
+
         <header>
             <h1>BOOKS&amp;BEERS</h1>
         </header>
-
-
-
+<!-- user area -->
         <section ng-controller="MainController as main">
             <section class="users">
                 <section ng-if="!main.token" class="login">
                     <h2>Log In</h2>
                     <form ng-submit="main.login(userInfo)">
-                        <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
-                        <input  ng-model="userInfo.password"    type="password" placeholder="Password"><br>
-                        <input type="submit" value="Log In"><br>
+                        <input  ng-model="userInfo.username" type="text" placeholder="Username" />
+                        <br />
+                        <input  ng-model="userInfo.password"    type="password" placeholder="Password" />
+                        <br />
+                        <input type="submit" value="Log In" />
+                        <br />
                     </form>
                     <p>{{main.message}}</p>
 
@@ -33,9 +36,12 @@
                 <section ng-if="!main.token" class="new-user">
                     <h2>Registration</h2>
                     <form ng-submit="main.signUp(userInfo)">
-                        <input  ng-model="userInfo.newUsername" type="text" placeholder="Username"><br>
-                        <input  ng-model="userInfo.newPassword"    type="password" placeholder="Password"><br>
-                        <input type="submit" value="Sign Up"><br>
+                        <input  ng-model="userInfo.newUsername" type="text" placeholder="Username" />
+                        <br />
+                        <input  ng-model="userInfo.newPassword"    type="password" placeholder="Password" />
+                        <br />
+                        <input type="submit" value="Sign Up" />
+                        <br />
                     </form>
                 </section>
                 <div ng-if="main.token" class="logged-in">
@@ -53,15 +59,15 @@
             </section>
 
 
-
-            <section ng-controller='baseCtrl as base'>
+        <!-- beer search -->
+            <section ng-controller="baseCtrl as base">
                 <form ng-if="base.token" ng-submit="base.find();">
-                    <input ng-model="base.searching">
-                    <input type="submit" ng-click="base.find();">Find this beer</button>
-
+                  <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
+                  <input type="submit" value="Submit"/>
                 </form>
+                <!-- show beers -->
                 <ol>
-                    <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
+                    <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
                         {{name}}
                         <ul ng-if="base.showBeerId === $index">
                             {{base.descriptionArr[$index]}}
@@ -70,22 +76,23 @@
                 </ol>
             </section>
 
-            <section ng-controller="BookController as bookCtrl">
-                <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
-                    <input type="text" placeholder="Find a book">
-                    <input type="submit" />
-                </form>
-                <ul>
-                    <li ng-repeat=" title in bookCtrl.foundBooks track by $index">
-                      {{title}}
-                    </li>
-                </ul>
-            </section>
+            <!-- book search -->
+                <section ng-controller="BookController as bookCtrl">
+                    <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
+                        <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
+                        <input type="submit" value="submit"/>
+                    </form>
+                    <!-- show returned data for books -->
+                    <ul>
+                        <li ng-repeat=" book in bookCtrl.foundBooks track by $index">
+                          {{book.title}}
+                        </li>
+                    </ul>
+                </section>
 
         </section>
 
 
-<!-- book search function -->
 
     </body>
 </html>
