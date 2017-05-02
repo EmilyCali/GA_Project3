@@ -99,7 +99,7 @@ apiRoutes.post('/authenticate', function(req, res){
             } else {
                 //if user is found and password is right, create a token:
                 var token = jwt.sign(foundUser, app.get('superSecret'));
-                
+
                 res.json({
                     username: foundUser.username,
                     success: true,
@@ -186,8 +186,7 @@ mongoose.connection.once('open', function(){
 //////////////////////////////////////////|
 //----------------------Nodemon Connection|
 //////////////////////////////////////////|
-app.listen(3000, function(){
+app.listen(port);
     console.log("===================");
     console.log("Tell me all things:");
     console.log("===================");
-});
