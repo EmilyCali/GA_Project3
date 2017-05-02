@@ -8,9 +8,8 @@ app.controller('baseCtrl', ['$http', function($http){
     var controller = this;
     this.token = false;
     this.searching = '';
-    this.nameArr = [];
-    this.infoArr = [];
-    this.descriptionArr = [];
+    this.beers = [];
+
     this.find = function(){
         $http(
             {
@@ -18,22 +17,16 @@ app.controller('baseCtrl', ['$http', function($http){
                 url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
             function(response) { //success callback
-                controller.nameArr = [];
-                controller.infoArr = [];
-                controller.descriptionArr = [];
+                controller.beers = [];
 
                 for(i=0; i< response.data.data.length; i++)
                 {
-                    console.log('hi');
-
-                    // controller.arr.push(response.data.data[i].name);
-                    controller.nameArr.push(response.data.data[i].name);
-                    controller.infoArr.push(response.data.data[i].id)
-                    controller.descriptionArr.push(response.data.data[i].style.description)
+                    controller.beers.push(response.data.data[i]);
                 }
 
                 console.log('success');
                 console.log(controller.nameArr);
+                console.log(controller.beers);
                 console.log(response);
                 console.log(controller.infoArr);
             },
@@ -44,8 +37,6 @@ app.controller('baseCtrl', ['$http', function($http){
         );
     };
     this.showInfo = function(index){
-        console.log(index);
-        console.log(controller.infoArr[index]);
         this.showBeerId = index;
     }
 }]);
@@ -176,7 +167,7 @@ app.controller("BookController", ["$http", function($http) {
       controller.foundBooks = [];
       for(i=0; i< 10; i++)
       {
-          controller.foundBooks.push(response.data.docs[i].title);
+          controller.foundBooks.push(response.data.docs[i]);
       }
       console.log(response);
       // let me see what this is
