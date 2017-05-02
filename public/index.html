@@ -41,17 +41,17 @@
                             <input type="submit" value="Sign Up"><br>
                         </form>
                     </section>
+
                 </section>
-
-
-
-                <section ng-controller='baseCtrl as base'>
-                    <form ng-if="base.token" ng-submit="base.find();">
-                        <input ng-model="base.searching">
-                        <input type="submit" ng-click="base.find();">Find this beer</button>
-                    </form>
-                    <ol>
-                        <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
+        <!-- beer search -->
+            <section ng-controller="baseCtrl as base">
+                <form ng-if="base.token" ng-submit="base.find();">
+                  <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
+                  <input type="submit" value="Submit"/>
+                </form>
+                <!-- show beers -->
+                <ol>
+                    <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
                         {{name}}
                     <ul ng-if="base.showBeerId === $index">
                             {{base.descriptionArr[$index]}}
