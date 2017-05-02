@@ -1,6 +1,7 @@
 var app = angular.module('BBApp', []);
 //hello
 console.log("ach");
+console.log("need wine");
 //////////////////////////////////////////|
 //----------------Amanda's controller-----|
 //////////////////////////////////////////|
