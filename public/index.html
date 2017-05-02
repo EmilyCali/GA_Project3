@@ -12,82 +12,69 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
-        <header class= "header">
-            <h1>BOOKS&amp;BEERS</h1>
-        </header>
-
-
-
-
-
         <section ng-controller="MainController as main">
-            <section class="users">
-                <section ng-if="!main.token" class="login">
-                    <h2>Log In</h2>
-                    <form ng-submit="main.login(userInfo)">
-                        <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
-                        <input  ng-model="userInfo.password"    type="password" placeholder="Password"><br>
-                        <input type="submit" value="Log In"><br>
-                    </form>
-                    <p>{{main.message}}</p>
-
+            <section class="container">
+                <header class= "header">
+                    <h1>BOOKS&amp;BEERS</h1>
+                    <div ng-if="main.token" class="logged-in">
+                        <ul>
+                            <li></li>
+                        </ul>
+                        <p ng-if="main.token">Welcome, {{main.username}}! </p>
+                    </div>
+                </header>
+                <section class="users">
+                    <section ng-if="!main.token" class="login">
+                        <h2>Log In</h2>
+                        <form ng-submit="main.login(userInfo)">
+                            <input  ng-model="userInfo.username" type="text" placeholder="Username"><br>
+                            <input  ng-model="userInfo.password"    type="password" placeholder="Password"><br>
+                            <input type="submit" value="Log In"><br>
+                        </form>
+                        <p>{{main.message}}</p>
+                    </section>
+                    <section ng-if="!main.token" class="new-user">
+                        <h2>Registration</h2>
+                        <form ng-submit="main.signUp(userInfo)">
+                            <input  ng-model="userInfo.newUsername" type="text" placeholder="Username"><br>
+                            <input  ng-model="userInfo.newPassword"    type="password" placeholder="Password"><br>
+                            <input type="submit" value="Sign Up"><br>
+                        </form>
+                    </section>
                 </section>
-                <section ng-if="!main.token" class="new-user">
-                    <h2>Registration</h2>
-                    <form ng-submit="main.signUp(userInfo)">
-                        <input  ng-model="userInfo.newUsername" type="text" placeholder="Username"><br>
-                        <input  ng-model="userInfo.newPassword"    type="password" placeholder="Password"><br>
-                        <input type="submit" value="Sign Up"><br>
+
+
+
+                <section ng-controller='baseCtrl as base'>
+                    <form ng-if="base.token" ng-submit="base.find();">
+                        <input ng-model="base.searching">
+                        <input type="submit" ng-click="base.find();">Find this beer</button>
                     </form>
-                </section>
-                <div ng-if="main.token" class="logged-in">
-                    <p>Welcome, {{main.username}}! You're logged in:) </p>
-                <div ng-repeat="user in main.users">
-                    <h1>{{ user.username }}</h1>
-                </div>
-                <div>
-                    <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
-                    {{ main.error }}
-                </div>
-
-                <a ng-click="main.logout()">Log Out</a>
-                </div>
-            </section>
-
-
-
-            <section ng-controller='baseCtrl as base'>
-                <form ng-if="base.token" ng-submit="base.find();">
-                    <input ng-model="base.searching">
-                    <input type="submit" ng-click="base.find();">Find this beer</button>
-
-                </form>
-                <ol>
-                    <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
+                    <ol>
+                        <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
                         {{name}}
-                        <ul ng-if="base.showBeerId === $index">
+                    <ul ng-if="base.showBeerId === $index">
                             {{base.descriptionArr[$index]}}
                         </ul>
-                    </li>
-                </ol>
-            </section>
+                        </li>
+                    </ol>
+                </section>
 
-            <section ng-controller="BookController as bookCtrl">
-                <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
-                    <input type="text" placeholder="Find a book">
-                    <input type="submit" />
-                </form>
-                <ul>
-                    <li ng-repeat=" title in bookCtrl.foundBooks track by $index">
+                <section ng-controller="BookController as bookCtrl">
+                    <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
+                        <input type="text" placeholder="Find a book">
+                        <input type="submit" />
+                    </form>
+                    <ul>
+                        <li ng-repeat=" title in bookCtrl.foundBooks track by $index">
                       {{title}}
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </section>
+
             </section>
 
         </section>
-        <div class="background">
-            <img src="css/images/Chalkboard.jpg" alt="Chalkboard Background">
-        </div>
 
     </body>
 </html>
