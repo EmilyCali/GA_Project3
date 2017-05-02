@@ -5,8 +5,15 @@ var app = angular.module('BBApp', []);
 //////////////////////////////////////////|
 
 app.controller('baseCtrl', ['$http', function($http){
+
+
     var controller = this;
     this.token = false;
+
+    if(localStorage.getItem('token')){
+        this.token = true;
+        console.log('switched to true')
+    };
     this.searching = '';
     this.nameArr = [];
     this.infoArr = [];
