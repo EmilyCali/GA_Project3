@@ -65,7 +65,10 @@
             <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
                 {{beer.name}}
                 <ul ng-if="base.showBeerId === $index">
-                    {{base.beers[$index].style.description}}
+                    abv%: {{base.beers[$index].abv}} </br></br>
+                    Beer Style: {{base.beers[$index].style.description}} </br></br>
+                    Detailed Description: {{base.beers[$index].description}}
+
                 </ul>
             </li>
         </ol>
