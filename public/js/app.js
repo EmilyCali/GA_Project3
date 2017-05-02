@@ -156,7 +156,6 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     };
     this.showInfo = function(index){
         console.log(index);
-        console.log(controller.infoArr[index]);
         this.showBeerId = index;
     }
 }]);
