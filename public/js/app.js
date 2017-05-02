@@ -119,6 +119,7 @@ app.controller('MainController', ['$http', function($http){
             console.log(response.data.message);
             if(!response.data.success){
                 controller.message = response.data.message;
+                controller.token = false;
             };
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
