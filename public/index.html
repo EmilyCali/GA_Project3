@@ -78,7 +78,7 @@
 
         <!-- show returned data below for books-->
         <ul>
-            <li ng-repeat="title in bookCtrl.foundBooks track by $index"> {{title}}</li>
+            <li ng-repeat="book in bookCtrl.foundBooks track by $index"> {{book.title}}</li>
         </ul>
     </section>
 
