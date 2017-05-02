@@ -61,7 +61,6 @@ app.controller('MainController', ['$http', function($http){
 
     this.secretStuff = function(){
         console.log(localStorage);
-
     };
 
     this.signUp = function(userInfo){
@@ -70,13 +69,10 @@ app.controller('MainController', ['$http', function($http){
             method:'POST',
             url: "/api/signup",
             data: {
-                // user: {
                     username: userInfo.newUsername,
                     password: userInfo.newPassword
-                // }
             }
         }).then(function(response){
-
             console.log(response.data.token);
             controller.user = response.data.username;
             // console.log(controller.user);
@@ -93,6 +89,7 @@ app.controller('MainController', ['$http', function($http){
                 }
             }).then(function(response){
                 controller.username = response.data.username;
+                controller.token = true;
                 console.log(response.data.token);
 
             });
@@ -115,6 +112,7 @@ app.controller('MainController', ['$http', function($http){
         }).then(function(response){
             console.log(response);
             controller.username = response.data.username;
+            controller.token = true;
             console.log(response.data.message);
             if(!response.data.success){
                 controller.message = response.data.message;
