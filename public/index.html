@@ -13,7 +13,7 @@
     </head>
     <body>
 
-        
+
 
         <header class= "header">
             <h1>BOOKS&amp;BEERS</h1>
@@ -70,9 +70,9 @@
                 <!-- show beers -->
                 <ol>
                     <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
-                        {{name}}
+                        {{beer.name}}
                         <ul ng-if="base.showBeerId === $index">
-                            {{base.descriptionArr[$index]}}
+                            {{base.beer[$index].style.description}}
                         </ul>
                     </li>
                 </ol>
