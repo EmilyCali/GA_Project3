@@ -77,17 +77,20 @@
 
     <hr>
 
-<!-- book search function -->
+<!-- book search -->
     <section ng-controller="BookController as bookCtrl">
         <form ng-submit="bookCtrl.findBook();">
             <input type="text" placeholder="Find a book">
-            <input type="submit" />
+            <input type="submit" value="submit"/>
         </form>
+        <!-- show returned data for books -->
         <ul>
-            <li ng-repeat=" title in bookCtrl.foundBooks track by $index">
-              {{title}}
+            <li ng-repeat=" book in bookCtrl.foundBooks track by $index">
+              {{book.title}}
             </li>
         </ul>
     </section>
+
+    
     </body>
 </html>
