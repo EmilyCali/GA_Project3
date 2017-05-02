@@ -12,9 +12,12 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
+
+
         <header>
             <h1>BOOKS&amp;BEERS</h1>
         </header>
+    <!-- user area -->
         <section class="users" ng-controller="MainController as main">
 
             <section ng-if="!main.token" class="login">
@@ -54,21 +57,24 @@
 
     <hr>
 
-
-    <section ng-controller='baseCtrl as base'>
+<!-- beer area -->
+    <section ng-controller="baseCtrl as base">
         <form ng-submit="base.find();">
-            <input ng-model="base.searching">
-            <input type="submit" ng-click="base.find();">Find this beer</button>
-
+            <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
+            <input type="submit" value="Submit"/>
         </form>
+        <!-- show beer results -->
         <ol>
             <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
                 {{beer.name}}
                 <ul ng-if="base.showBeerId === $index">
-                    abv%: {{base.beers[$index].abv}} </br></br>
-                    Beer Style: {{base.beers[$index].style.description}} </br></br>
+                    abv%: {{base.beers[$index].abv}}
+                    <br />
+                    <br />
+                    Beer Style: {{base.beers[$index].style.description}}
+                    <br />
+                    <br />
                     Detailed Description: {{base.beers[$index].description}}
-
                 </ul>
             </li>
         </ol>
@@ -80,7 +86,7 @@
 <!-- book search -->
     <section ng-controller="BookController as bookCtrl">
         <form ng-submit="bookCtrl.findBook();">
-            <input type="text" placeholder="Find a book">
+            <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
             <input type="submit" value="submit"/>
         </form>
         <!-- show returned data for books -->
@@ -91,6 +97,6 @@
         </ul>
     </section>
 
-    
+
     </body>
 </html>
