@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html ng-app="BBApp">
     <head>
@@ -17,6 +16,7 @@
             <h1>BOOKS&amp;BEERS</h1>
         </header>
         <section class="users" ng-controller="MainController as main">
+
             <section ng-if="!main.token" class="login">
                 <h2>Log In</h2>
                 <form ng-submit="main.login(userInfo)">
@@ -50,6 +50,8 @@
         </section>
 
 
+
+
     <hr>
 
 
@@ -60,10 +62,13 @@
 
         </form>
         <ol>
-            <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
-                {{name}}
+            <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
+                {{beer.name}}
                 <ul ng-if="base.showBeerId === $index">
-                    {{base.descriptionArr[$index]}}
+                    abv%: {{base.beers[$index].abv}} </br></br>
+                    Beer Style: {{base.beers[$index].style.description}} </br></br>
+                    Detailed Description: {{base.beers[$index].description}}
+
                 </ul>
             </li>
         </ol>
@@ -72,17 +77,20 @@
 
     <hr>
 
-<!-- book search function -->
+<!-- book search -->
     <section ng-controller="BookController as bookCtrl">
         <form ng-submit="bookCtrl.findBook();">
             <input type="text" placeholder="Find a book">
-            <input type="submit" />
+            <input type="submit" value="submit"/>
         </form>
+        <!-- show returned data for books -->
         <ul>
-            <li ng-repeat=" title in bookCtrl.foundBooks track by $index">
-              {{title}}
+            <li ng-repeat=" book in bookCtrl.foundBooks track by $index">
+              {{book.title}}
             </li>
         </ul>
     </section>
+
+    
     </body>
 </html>
