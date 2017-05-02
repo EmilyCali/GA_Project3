@@ -9,9 +9,7 @@ app.controller('baseCtrl', ['$http', function($http){
     this.token = false;
     this.searching = '';
     this.beers = [];
-    this.nameArr = [];
-    this.infoArr = [];
-    this.descriptionArr = [];
+
     this.find = function(){
         $http(
             {
@@ -19,9 +17,7 @@ app.controller('baseCtrl', ['$http', function($http){
                 url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
             function(response) { //success callback
-                controller.nameArr = [];
-                controller.infoArr = [];
-                controller.descriptionArr = [];
+                controller.beers = [];
 
                 for(i=0; i< response.data.data.length; i++)
                 {
