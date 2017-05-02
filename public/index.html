@@ -69,9 +69,9 @@
                     </li>
                 </ol>
             </section>
-            <hr>
+        
             <section ng-controller="BookController as bookCtrl">
-                <form ng-submit="bookCtrl.findBook();">
+                <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
                     <input type="text" placeholder="Find a book">
                     <input type="submit" />
                 </form>

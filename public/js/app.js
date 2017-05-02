@@ -179,6 +179,16 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //might need to make an empty string for search and an empty array for returned database
   this.searchedBook = "";
   this.foundBooks = [];
+
+  $scope.$on('tokenChange', function(event, data){
+      if(!data.token){
+          controller.token = false;
+      } else if(data.token){
+          controller.token = true;
+      };
+      console.log(controller.token)
+  });
+
   //function to get the books when a query happens
   this.findBook = function() {
     $http({
