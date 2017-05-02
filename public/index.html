@@ -42,7 +42,6 @@
                             <input type="submit" value="Sign Up"><br>
                         </form>
                     </section>
-
                 </section>
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
@@ -55,11 +54,15 @@
                     <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
                         {{beer.name}}
                         <ul ng-if="base.showBeerId === $index">
-                            {{base.beer[$index].style.description}}
+
+                            ABV: {{beer.abv}}% </br></br>
+                            Beer Style: {{beer.style.description}} </br></br>
+                            Beer Description: {{beer.description}} </br></br>
+                            //blah
 
                         </ul>
-                        </li>
-                    </ol>
+                    </li>
+                </ol>
                 </section>
                 <!-- book search -->
                 <section ng-controller="BookController as bookCtrl">
