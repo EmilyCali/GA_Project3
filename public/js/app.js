@@ -15,7 +15,7 @@ app.controller('baseCtrl', ['$http', function($http){
         $http(
             {
                 method:'GET',
-                url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=&format=json'
+                url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
             function(response) { //success callback
                 controller.nameArr = [];
