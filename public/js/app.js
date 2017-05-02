@@ -194,7 +194,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       controller.foundBooks = [];
       for(i=0; i< 10; i++)
       {
-          controller.foundBooks.push(response.data.docs[i].title);
+          controller.foundBooks.push(response.data.docs[i]);
       }
       console.log(response);
       // let me see what this is
