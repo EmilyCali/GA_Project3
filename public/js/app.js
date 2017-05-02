@@ -8,6 +8,7 @@ app.controller('baseCtrl', ['$http', function($http){
     var controller = this;
     this.token = false;
     this.searching = '';
+    this.beers = [];
     this.nameArr = [];
     this.infoArr = [];
     this.descriptionArr = [];
@@ -24,16 +25,12 @@ app.controller('baseCtrl', ['$http', function($http){
 
                 for(i=0; i< response.data.data.length; i++)
                 {
-                    console.log('hi');
-
-                    // controller.arr.push(response.data.data[i].name);
-                    controller.nameArr.push(response.data.data[i].name);
-                    controller.infoArr.push(response.data.data[i].id)
-                    controller.descriptionArr.push(response.data.data[i].style.description)
+                    controller.beers.push(response.data.data[i]);
                 }
 
                 console.log('success');
                 console.log(controller.nameArr);
+                console.log(controller.beers);
                 console.log(response);
                 console.log(controller.infoArr);
             },
@@ -44,8 +41,6 @@ app.controller('baseCtrl', ['$http', function($http){
         );
     };
     this.showInfo = function(index){
-        console.log(index);
-        console.log(controller.infoArr[index]);
         this.showBeerId = index;
     }
 }]);

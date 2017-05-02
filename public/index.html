@@ -60,10 +60,10 @@
 
         </form>
         <ol>
-            <li ng-repeat="name in base.nameArr track by $index" ng-click="base.showInfo($index)">
-                {{name}}
+            <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
+                {{beer.name}}
                 <ul ng-if="base.showBeerId === $index">
-                    {{base.descriptionArr[$index]}}
+                    {{base.beers[$index].style.description}}
                 </ul>
             </li>
         </ol>
