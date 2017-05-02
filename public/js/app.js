@@ -8,12 +8,17 @@ app.controller('baseCtrl', ['$http', function($http){
 
 
     var controller = this;
-    this.token = false;
-
-    if(localStorage.getItem('token')){
-        this.token = true;
-        console.log('switched to true')
-    };
+    // this.token = false;
+    // $scope.$watch(localStorage.getItem('token'), function(){
+    //     if(localStorage.getItem('token')){
+    //         this.token = true;
+    //         console.log('switched to true');
+    //     };
+    // });
+    // // if(localStorage.getItem('token')){
+    // //     this.token = true;
+    // //     console.log('switched to true')
+    // };
     this.searching = '';
     this.nameArr = [];
     this.infoArr = [];
@@ -100,6 +105,7 @@ app.controller('MainController', ['$http', function($http){
                 }
             }).then(function(response){
                 controller.username = response.data.username;
+                this.token = true;
                 console.log(response.data.token);
 
             });
@@ -122,6 +128,7 @@ app.controller('MainController', ['$http', function($http){
         }).then(function(response){
             console.log(response);
             controller.username = response.data.username;
+            this.token = true;
             console.log(response.data.message);
             if(!response.data.success){
                 controller.message = response.data.message;
@@ -145,6 +152,7 @@ app.controller('MainController', ['$http', function($http){
                 this.error = "Unauthorized";
             } else {
                 controller.users = response.data;
+
                 console.log(controller.users);
             }
         }.bind(this));
