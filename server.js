@@ -57,7 +57,11 @@ apiRoutes.post('/signup', function(req, res) {
             username: req.body.username,
             password: req.body.password
         });
+
+        var token = jwt.sign(newUser, app.get('superSecret'));
+
         console.log(newUser);
+        console.log(token);
         // save the user
         newUser.save(function(err) {
             if (err) {
@@ -66,7 +70,9 @@ apiRoutes.post('/signup', function(req, res) {
             res.json({
                 success: true,
                 msg: 'Successful created new user.',
-                user: newUser}
+                user: newUser,
+                token: token
+                }
             );
         });
     }

@@ -3,9 +3,13 @@
 <html ng-app="BBApp">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="/css/main.css">
+
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
+
+        <link rel="stylesheet" href="/css/skeleton.css">
+        <link rel="stylesheet" href="/css/main.css">
+
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
@@ -21,16 +25,7 @@
                     <input type="submit" value="Log In"><br>
                 </form>
                 <p>{{main.message}}</p>
-                <p>Logged in username: {{main.username}} </p>
-                <div>
-                    <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
-                    {{ main.error }}
-                </div>
 
-                <div ng-repeat="user in main.users">
-                    <h1>{{ user.username }}</h1>
-                </div>
-                <a ng-click="main.logout()">Log Out</a>
             </section>
             <section class="new-user">
                 <h2>Registration</h2>
@@ -40,7 +35,19 @@
                     <input type="submit" value="Sign Up"><br>
                 </form>
             </section>
-    </section>
+            <div class="logged-in">
+                <p>Welcome, {{main.username}}! You're logged in:) </p>
+                <div ng-repeat="user in main.users">
+                    <h1>{{ user.username }}</h1>
+                </div>
+                <div>
+                    <h4 ng-click="main.getUsers()">Click to see secret stuff</h4>
+                    {{ main.error }}
+                </div>
+
+                <a ng-click="main.logout()">Log Out</a>
+            </div>
+        </section>
 
 
     <hr>

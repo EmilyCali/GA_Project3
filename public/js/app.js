@@ -6,6 +6,7 @@ var app = angular.module('BBApp', []);
 
 app.controller('baseCtrl', ['$http', function($http){
     var controller = this;
+    this.token = false;
     this.searching = '';
     this.nameArr = [];
     this.infoArr = [];
@@ -56,6 +57,12 @@ app.controller('MainController', ['$http', function($http){
     var controller = this;
     this.url = 'http://locallhost:3000/';
     this.user = {};
+    this.token = false;
+
+    this.secretStuff = function(){
+        console.log(localStorage);
+
+    };
 
     this.signUp = function(userInfo){
         console.log(userInfo);
@@ -69,11 +76,29 @@ app.controller('MainController', ['$http', function($http){
                 // }
             }
         }).then(function(response){
-            console.log(response);
+
+            console.log(response.data.token);
             controller.user = response.data.username;
-            console.log(controller.user);
+            // console.log(controller.user);
             localStorage.setItem('token', JSON.stringify(response.data.token));
+
+            $http({
+                method:'POST',
+                url: "/api/authenticate",
+                data: {
+                    // user: {
+                        username: response.data.username,
+                        password: response.data.password
+                    // }
+                }
+            }).then(function(response){
+                controller.username = response.data.username;
+                console.log(response.data.token);
+
+            });
+
         }.bind(this));
+        // controller.login(userInfo);
     };
 
     this.login = function(userInfo){
@@ -130,6 +155,8 @@ app.controller('MainController', ['$http', function($http){
 //////////////////////////////////////////|
 
 app.controller("BookController", ["$http", function($http) {
+    //added by Amanda to check if user is logged in or not
+    this.token = false;
   //have to name controller so it can be used in callbacks
   var controller = this;
   //might need to make an empty string for search and an empty array for returned database
