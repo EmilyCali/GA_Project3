@@ -53,15 +53,18 @@ app.controller('baseCtrl', ['$http', function($http){
 //////////////////////////////////////////|
 //----------------Amanda's controller-----|
 //////////////////////////////////////////|
-app.controller('MainController', ['$http', function($http){
+app.controller('MainController', ['$scope','$http', function($scope, $http){
     var controller = this;
     this.url = 'http://locallhost:3000/';
     this.user = {};
     this.token = false;
+    $scope.token = this.token;
 
-    this.secretStuff = function(){
-        console.log(localStorage);
-    };
+
+    console.log($scope.token);
+    $scope.$watch('token', function(newValue, oldValue){
+        console.log(newValue);
+    });
 
     this.signUp = function(userInfo){
         console.log(userInfo);
@@ -91,6 +94,7 @@ app.controller('MainController', ['$http', function($http){
 
 
                 controller.token = true;
+                $scope.token = controller.token;
 
 
 
@@ -113,10 +117,11 @@ app.controller('MainController', ['$http', function($http){
                 // }
             }
         }).then(function(response){
-            console.log(response);
+
             controller.username = response.data.username;
             controller.token = true;
-            console.log(response.data.message);
+            $scope.token = controller.token;
+
             if(!response.data.success){
                 controller.message = response.data.message;
             };
