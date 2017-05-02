@@ -113,6 +113,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     var controller = this;
     this.token = false;
+    this.showBeerId = '';
     this.searching = '';
     this.beers = [];
 
@@ -144,9 +145,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
                 }
 
                 console.log('success');
-                console.log(controller.nameArr);
-                console.log(response);
-                console.log(controller.infoArr);
+                console.log(controller.beers);
             },
             function(error){ //fail callback
                 console.log('fail');
