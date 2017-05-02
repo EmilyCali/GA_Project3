@@ -69,14 +69,15 @@
 
     <hr>
 
-
-    <section ng-controller='BookController as bookCtrl'>
-        <form ng-submit="bookCtrl.getBook();">
+<!-- book search function -->
+    <section ng-controller="BookController as bookCtrl">
+        <form ng-submit="bookCtrl.findBook();">
             <input type="text" placeholder="Find a book">
-            <input type="submit" ng-click="bookCtrl.getBook();">Find this book</button>
+            <input type="submit" />
         </form>
         <ul>
-            <li>
+            <li ng-repeat=" title in bookCtrl.foundBooks track by $index">
+              {{title}}
             </li>
         </ul>
     </section>
