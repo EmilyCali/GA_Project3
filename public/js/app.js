@@ -89,8 +89,11 @@ app.controller('MainController', ['$http', function($http){
             }
         }).then(function(response){
             console.log(response);
-            controller.user = response.data.username;
-            console.log(controller.user);
+            controller.username = response.data.username;
+            console.log(response.data.message);
+            if(!response.data.success){
+                controller.message = response.data.message;
+            };
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
     };

@@ -6,6 +6,7 @@ var app        = express();
 var mongoose   = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
+var bcrypt = require('bcrypt');
 
 
 var jwt        = require('jsonwebtoken');//used to create, sign, and verify tokens
@@ -44,23 +45,31 @@ var apiRoutes = express.Router();
 
 // create a new user account (POST http://localhost:3000/api/signup)
 apiRoutes.post('/signup', function(req, res) {
-    console.log(req.body);
-  if (!req.body.username || !req.body.password) {
-    res.json({success: false, msg: 'Please enter username and password.'});
-  } else {
-    var newUser = new User({
-      username: req.body.username,
-      password: req.body.password
-    });
-    console.log(newUser);
-    // save the user
-    newUser.save(function(err) {
-      if (err) {
-        return res.json({success: false, msg: 'Username already exists.'});
-      }
-      res.json({success: true, msg: 'Successful created new user.'});
-    });
-  }
+
+    console.log(req.body.password);
+    if (!req.body.username || !req.body.password) {
+        res.json({success: false, msg: 'Please enter username and password.'});
+    } else {
+        //BCRYPT//////////////
+        req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+        //////////////////////
+        var newUser = new User({
+            username: req.body.username,
+            password: req.body.password
+        });
+        console.log(newUser);
+        // save the user
+        newUser.save(function(err) {
+            if (err) {
+                return res.json({success: false, msg: 'Username already exists.'});
+            }
+            res.json({
+                success: true,
+                msg: 'Successful created new user.',
+                user: newUser}
+            );
+        });
+    }
 });
 
 // connect the api routes under /api/*
@@ -79,12 +88,12 @@ apiRoutes.post('/authenticate', function(req, res){
             res.json({success: false, message: 'Authenication failed. User not found.'});
         } else if(foundUser){
             //check if the password matches
-            if(foundUser.password != req.body.password){
+            if(!bcrypt.compareSync(req.body.password, foundUser.password)){
                 res.json({ success: false, message: 'Authentication failed. Wrong password.'});
             } else {
                 //if user is found and password is right, create a token:
                 var token = jwt.sign(foundUser, app.get('superSecret'));
-                    // expiresInMinutes: 1440 // expires in 24 hours
+                // expiresInMinutes: 1440 // expires in 24 hours
                 // });
                 //return info
                 res.json({

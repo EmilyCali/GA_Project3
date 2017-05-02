@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Ciampije/GA_Project3#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
+    "crypto": "0.0.3",
     "express": "^4.15.2",
     "jsonwebtoken": "^7.4.0",
     "mongoose": "^4.9.7",
