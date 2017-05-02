@@ -74,11 +74,7 @@ app.controller('MainController', ['$http', function($http){
             }
         }).then(function(response){
 
-
-
-
             controller.username = response.data.user.username;
-
             // console.log(controller.user);
             localStorage.setItem('token', JSON.stringify(response.data.token));
 
@@ -93,11 +89,8 @@ app.controller('MainController', ['$http', function($http){
                 }
             }).then(function(response){
 
-                controller.username = response.data.username;
+
                 controller.token = true;
-                console.log(response.data.token);
-
-
 
 
 
