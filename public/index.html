@@ -12,6 +12,17 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
+<<<<<<< HEAD
+=======
+
+
+
+        <header class= "header">
+            <h1>BOOKS&amp;BEERS</h1>
+        </header>
+
+
+>>>>>>> onearray
         <section ng-controller="MainController as main">
             <section class="container">
                 <header class= "header">
@@ -52,9 +63,10 @@
                 <!-- show beers -->
                 <ol>
                     <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
-                        {{name}}
-                    <ul ng-if="base.showBeerId === $index">
-                            {{base.descriptionArr[$index]}}
+                        {{beer.name}}
+                        <ul ng-if="base.showBeerId === $index">
+                            {{base.beer[$index].style.description}}
+
                         </ul>
                         </li>
                     </ol>

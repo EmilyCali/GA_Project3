@@ -114,9 +114,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     var controller = this;
     this.token = false;
     this.searching = '';
-    this.nameArr = [];
-    this.infoArr = [];
-    this.descriptionArr = [];
+    this.beers = [];
 
     $scope.$on('tokenChange', function(event, data){
 		if(!data.token){
@@ -135,18 +133,14 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
                 url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
             function(response) { //success callback
-                controller.nameArr = [];
-                controller.infoArr = [];
-                controller.descriptionArr = [];
+                controller.beers = [];
 
                 for(i=0; i< response.data.data.length; i++)
                 {
 
 
                     // controller.arr.push(response.data.data[i].name);
-                    controller.nameArr.push(response.data.data[i].name);
-                    controller.infoArr.push(response.data.data[i].id)
-                    controller.descriptionArr.push(response.data.data[i].style.description)
+                    controller.beers.push(response.data.data[i]);
                 }
 
                 console.log('success');
