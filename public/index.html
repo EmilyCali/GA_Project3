@@ -12,12 +12,6 @@
         <title>BOOKS&amp;BEERS</title>
     </head>
     <body>
-
-
-        <header class= "header">
-            <h1>BOOKS&amp;BEERS</h1>
-        </header>
-
         <section ng-controller="MainController as main">
             <section class="container">
                 <header class= "header">
@@ -47,7 +41,6 @@
                             <input type="submit" value="Sign Up"><br>
                         </form>
                     </section>
-
                 </section>
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
@@ -61,10 +54,9 @@
                         {{beer.name}}
                         <ul ng-if="base.showBeerId === $index">
                             {{base.beer[$index].style.description}}
-
                         </ul>
-                        </li>
-                    </ol>
+                    </li>
+                </ol>
                 </section>
 
                 <section ng-controller="BookController as bookCtrl">
