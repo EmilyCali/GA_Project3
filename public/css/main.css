@@ -3,7 +3,8 @@
 /*************************************************************/
 
 body {
-    background: wheat;
+    background-image: url('images/Chalkboard.jpg');
+    color: white;
 }
 
 ul {
