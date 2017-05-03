@@ -191,9 +191,9 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         this.showBeerId = index;
     };
     this.addBeer = function(index){
-    console.log(index);
-    this.selectedBeers.push(index);
-    console.log(this.selectedBeers);
+        console.log(index);
+        this.selectedBeers.push(index);
+        console.log(this.selectedBeers);
 
 };
 
