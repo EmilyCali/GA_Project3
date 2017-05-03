@@ -220,18 +220,19 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     }).then(function(response) {//success
       controller.foundBooks = [];
       // this limits the results to ten
-      for(i=0; i< 10; i++)
-      {
-          controller.foundBooks.push(response.data.docs[i]);
+      for(i=0; i< 10; i++) {
+      // if (response.data.docs.author_name) {
+      //   for (i=0; i<1; i++) {
+      //     console.log("this is the author name in response data" + response.data.docs.author_name);
+      //     controller.foundBooks.author = response.data.docs.author_name[0];
+      //     //controller.foundBooks.push(response.data.docs.author_name[0]);
+      //     console.log(controller.foundBooks.author);
+      // }
+      // }
+
+        controller.foundBooks.push(response.data.docs[i]);
       }
     //   console.log(response);
-      // let me see what this is
-      //console.log(response.data.docs);
-      //let me see what the data is
-      //console.log(controller.foundBooks);
-      //what's in here this new array of things
-      //controller.foundBooks = response.data;
-      //console.log(response.data);
     },
     function(response) { //failure
       console.log(response);
@@ -239,7 +240,9 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   };
   //call this on click to show more information about the books
   this.showBookInfo = function(index){
-    //   console.log(index);
+      console.log(index);
+      console.log(this.foundBooks);
       this.showBookId = index;
+      //return controller.foundBooks[index];
   };
 }]);

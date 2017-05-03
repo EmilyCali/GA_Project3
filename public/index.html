@@ -110,14 +110,14 @@
                           <ul ng-if="bookCtrl.showBookId === index">
                             Author:
                             <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
-                            {{book.author_name}}
+                            {{book.author_name[0]}}
                             <br/><br/>
-                            Published: {{book.first_publish_year}}
+                            Published: {{book.first_publish_year[0]}}
                             <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
                             <br/><br/>
                             Places:
                             <!-- this is an array or publish_place -->
-                            {{book.place}}
+                            {{book.publish_place[0]}}
                             <br/><br/>
                             Editions: {{book.edition_count}}
 
