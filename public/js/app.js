@@ -62,7 +62,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             controller.id = response.data.id,
-            console.log(controller.id);
+            //console.log(controller.id);
             controller.username = response.data.username;
             controller.token = true;
             $scope.token = controller.token;
@@ -207,7 +207,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
                 console.log(response);
 
             }
-        )
+        );
         // console.log(index);
         // this.selectedBeers.push(index);
         // console.log(this.selectedBeers);
@@ -224,8 +224,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
                 controller.id = response.data.id;
                 console.log(response.data.id);
             }
-        )
-    }
+        );
+    };
 
 
 }]);
@@ -235,8 +235,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
 //////////////////////////////////////////|
 
 app.controller("BookController", ["$scope","$http", function($scope, $http) {
-    //added by Amanda to check if user is logged in or not
-    this.token = false;
+  //added by Amanda to check if user is logged in or not
+  this.token = false;
   //have to name controller so it can be used in callbacks
   var controller = this;
   //this is the string that takes what is search in the input on html
@@ -249,11 +249,11 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
 
 
   $scope.$on('tokenChange', function(event, data){
-      if(!data.token){
-          controller.token = false;
-      } else if(data.token){
-          controller.token = true;
-      };
+    if(!data.token){
+      controller.token = false;
+    } else if(data.token){
+      controller.token = true;
+    }
     //   console.log(controller.token)
   });
 
@@ -272,26 +272,46 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
         // and pushes those found books into an array
         controller.foundBooks.push(response.data.docs[i]);
       }
-    //   console.log(response);
+      //   console.log(response);
     },
     function(response) { //failure
       console.log(response);
     });
   };
+
   //call this on click to show more information about the books
   this.showBookInfo = function(index){
-      console.log(index);
-      console.log(this.foundBooks);
-      this.showBookId = index;
-      //return controller.foundBooks[index];
+    //console.log(index);
+    //console.log(this.foundBooks);
+    this.getId();
+    this.showBookId = index;
+    //return controller.foundBooks[index];
   };
+
   //call this to add a book to a users collection
-  this.addBook = function(bookObject){
+  this.addBook = function(book, id){
+    this.title = "",
+    this.author_name = "",
+    this.publish_date = "",
+    this.publish_year = "",
+    this.first_publish_year = "",
+    this.edition_count = "",
     $http({
       method: "POST",
       url: "/api/books",
       data: {
-
+        book: {
+          this.title: book.title,
+          this.author_name: book.author_name,
+          this.publish_date: book.publish_date,
+          this.publish_year: book.publish_year,
+          this.first_publish_year: book.first_publish_year,
+          this.edition_count: book.edition_count,
+          userId: id
+        }
+      },
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) { //success
       console.log(response);
@@ -299,10 +319,26 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     function(response) { //failure
       console.log(response);
     });
-      console.log(index);
-      this.selectedBooks.push(index);
-      console.log(this.selectedBooks);
+    //console.log(index);
+    //this.selectedBooks.push(index);
+    //console.log(this.selectedBooks);
   };
 
+  //this gets us the user id so we can attach it to the book we want to give to the looged in user
+  this.getId = function(){
+      $http({
+          method:"POST",
+          url: "/api/userId",
+          headers: {
+              Authorization: JSON.parse(localStorage.getItem("token"))
+          }
+      }).then(function(response){//success
+              controller.id = response.data.id;
+              console.log(response.data.id);
+          },
+        function(response) {//failure
+          console.log(response);
+        });
+  };
 
 }]);
