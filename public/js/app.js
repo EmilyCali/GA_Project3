@@ -320,6 +320,8 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       for(i=0; i< 10; i++) {
         // and pushes those found books into an array
         controller.books.push(response.data.docs[i]);
+        //controller.books[i].userId = "test";
+        console.log(controller.books[i]);
       }
       //   console.log(response);
     },
@@ -340,7 +342,9 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //call this to add a book to a users collection
 
   this.addBook = function(bookObject, id){
+    bookObject.userId = id;
     console.log(bookObject);
+
     $http({
       method: "POST",
       url: "/api/books",
