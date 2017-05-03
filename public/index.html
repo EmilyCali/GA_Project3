@@ -121,34 +121,38 @@
 
               <!-- book search -->
                 <section ng-controller="BookController as bookCtrl">
-                    <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
-                        <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
-                        <input type="submit" value="SUBMIT" />
-                    </form>
-                <!-- show book results -->
-                    <ol>
-                        <li ng-repeat="book in bookCtrl.foundBooks track by $index" ng-click="bookCtrl.showBookInfo($index);">
-                      {{book.title}}
-                          <ul ng-if="bookCtrl.showBookId === $index">
-                            Author:
-                            <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
-                            {{book.author_name[0]}}
-                            <br/><br/>
-                            Published: {{book.first_publish_year || book.publish_year[0] || book.publish_date[0]}}
-                            <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
-                            <br/><br/>
-                            Places:
-                            <!-- this is an array or publish_place -->
-                            {{book.publish_place[0] || book.place}}
-                            <br/><br/>
-                            Editions: {{book.edition_count}}
-                            <br/><br/>
-                            <button type="button" value="add" ng-click="bookCtrl.addBook(book, bookCtrl.id)"></button>
+                    <section ng-if="bookCtrl.isSelected">
+                        {{bookCtrl.isSelected}}
+                        <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
+                            <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
+                            <input type="submit" value="SUBMIT" />
+                        </form>
+                    <!-- show book results -->
+                        <ol>
+                            <li ng-repeat="book in bookCtrl.foundBooks track by $index" ng-click="bookCtrl.showBookInfo($index);">
+                          {{book.title}}
+                              <ul ng-if="bookCtrl.showBookId === $index">
+                                Author:
+                                <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
+                                {{book.author_name[0]}}
+                                <br/><br/>
+                                Published: {{book.first_publish_year || book.publish_year[0] || book.publish_date[0]}}
+                                <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
+                                <br/><br/>
+                                Places:
+                                <!-- this is an array or publish_place -->
+                                {{book.publish_place[0] || book.place}}
+                                <br/><br/>
+                                Editions: {{book.edition_count}}
+                                <br/><br/>
+                                <button type="button" value="add" ng-click="bookCtrl.addBook(book, bookCtrl.id)"></button>
 
 
-                          </ul>
-                        </li>
-                    </ol>
+                              </ul>
+                            </li>
+                        </ol>
+                    </section>
+
                 </section>
                 <footer class="footer-distributed">
                     <div class="footer-left">
