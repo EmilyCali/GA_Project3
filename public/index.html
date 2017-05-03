@@ -127,11 +127,13 @@
                 </section>
 
               <!-- book search -->
+
                 <section ng-hide="main.hideStuff">
                     <section ng-if="!main.isSelected">
 
                         <form ng-if="main.token" ng-submit="main.findBook();">
                             <input type="text" ng-model="main.searchedBook" placeholder="Find a book" />
+
                             <input type="submit" value="SUBMIT" />
                         </form>
                     <!-- show book results -->
