@@ -1,7 +1,5 @@
 var app = angular.module('BBApp', []);
-//hello
-console.log("ach");
-console.log("need wine");
+
 //////////////////////////////////////////|
 //----------------Amanda's controller-----|
 //////////////////////////////////////////|
@@ -68,7 +66,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 // }
             }
         }).then(function(response){
-
+            console.log("response");
             controller.username = response.data.username;
             controller.token = true;
             $scope.token = controller.token;

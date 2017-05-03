@@ -43,6 +43,13 @@ app.use("/books", booksController); //use book controller
 //////////////////////////////////////////|
 var apiRoutes = express.Router();
 
+apiRoutes.get('/', function(req, res){
+    console.log('Hello! ');
+    console.log(req.user);
+    console.log(req.body.user);
+    res.send("yoyoyo");
+});
+
 // create a new user account (POST http://localhost:3000/api/signup)
 apiRoutes.post('/signup', function(req, res) {
 
@@ -128,6 +135,7 @@ apiRoutes.use(function(req, res, next){
                 return res.json({ success: false, message: "Failed to authenticate token."});
             } else {
                 //if everything is good, save to request for use in other routes
+
                 req.decoded = decoded;
                 next();
             }
@@ -144,10 +152,23 @@ apiRoutes.use(function(req, res, next){
 
 apiRoutes.get('/', function(req, res){
     console.log('Hello! ');
+    console.log(req.user);
+    console.log(req.body.user);
+    res.send("yoyoyo");
+});
+
+apiRoutes.get('/assignBeer', function(){
+    User.findOne({username: req.decode._doc.username}, function(){});
 });
 
 apiRoutes.get('/users', function(req, res){
     console.log('inside get users');
+    console.log(req);
+    console.log("================");
+    console.log("================");
+    console.log("================");
+    console.log("================");
+    console.log(req.decoded._doc.username);
     User.find({}, function(err, foundUsers){
         res.json(foundUsers);
     });
