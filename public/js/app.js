@@ -323,25 +323,27 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
 
   //call this to add a book to a users collection
   this.addBook = function(book, id){
-    this.title = "",
-    this.author_name = "",
-    this.publish_date = "",
-    this.publish_year = "",
-    this.first_publish_year = "",
-    this.edition_count = "",
+    // this.title = "",
+    // this.author_name = "",
+    // this.publish_date = "",
+    // this.publish_year = "",
+    // this.first_publish_year = "",
+    // this.edition_count = "",
     $http({
       method: "POST",
       url: "/api/books",
       data: {
-        book: {
-          this.title: book.title,
-          this.author_name: book.author_name[0],
-          this.publish_date: book.publish_date[0],
-          this.publish_year: book.publish_year[0],
-          this.first_publish_year: book.first_publish_year,
-          this.edition_count: book.edition_count,
-          userId: id
-        }
+        // book: {
+        //   this.title: book.title,
+        //   this.author_name: book.author_name[0],
+        //   this.publish_date: book.publish_date[0],
+        //   this.publish_year: book.publish_year[0],
+        //   this.first_publish_year: book.first_publish_year,
+        //   this.edition_count: book.edition_count,
+        //   userId: id
+        // }
+        book: book,
+        userId: id
       },
       headers: {
         Authorization: JSON.parse(localStorage.getItem('token'))
