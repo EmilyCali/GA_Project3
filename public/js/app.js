@@ -189,9 +189,12 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     this.token = false;
   //have to name controller so it can be used in callbacks
   var controller = this;
-  //might need to make an empty string for search and an empty array for returned database
+  //this is the string that takes what is search in the input on html
   this.searchedBook = "";
+  //these are the books you get
   this.foundBooks = [];
+  //call this to get id when showing more info
+  this.showBookId = "";
 
   $scope.$on('tokenChange', function(event, data){
       if(!data.token){
@@ -212,15 +215,16 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       //data: this
     }).then(function(response) {//success
       controller.foundBooks = [];
+      // this limits the results to ten
       for(i=0; i< 10; i++)
       {
           controller.foundBooks.push(response.data.docs[i]);
       }
       console.log(response);
       // let me see what this is
-      console.log(response.data);
+      //console.log(response.data.docs);
       //let me see what the data is
-      console.log(controller.foundBooks);
+      //console.log(controller.foundBooks);
       //what's in here this new array of things
       //controller.foundBooks = response.data;
       //console.log(response.data);
@@ -228,5 +232,10 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     function(response) { //failure
       console.log(response);
     });
+  };
+  //call this on click to show more information about the books
+  this.showBookInfo = function(index){
+      console.log(index);
+      this.showBookId = index;
   };
 }]);
