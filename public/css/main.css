@@ -59,7 +59,7 @@ body {
     background-size: cover;
     position: relative;
     min-width: 600px;
-    max-width: 1024px;
+    max-width: 900px;
     margin: 0 auto;
     min-height: 100%;
     color: white;
@@ -144,7 +144,9 @@ ul {
     width:250px;
 }
 
-/*----------------------------FOOTER------------------------*/
+/*************************************************************/
+/*/--------------------------Footer-------------------------/*/
+/*************************************************************/
 /*Used and modified From http://tutorialzine.com/2015/01/freebie-5-responsive-footer-templates/*/
 .footer-distributed{
     display: flex;

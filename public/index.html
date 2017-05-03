@@ -55,10 +55,10 @@
                     <ul>
                         <li>
                             <ul>
-                                <li ng-model="main.user.username">{{main.user.username}}</li>
+                                <li ng-model="main.user.username">Username: {{main.user.username}}</li>
                                 <li ng-model="main.user.image"><img class="user-img" src="{{main.user.image}}" alt="profile image"></li>
-                                <li ng-model="main.user.favoriteBook">{{main.user.favoriteBook}}</li>
-                                <li ng-model="main.user.favoriteBeer">{{main.user.favoriteBeer}}</li>
+                                <li ng-model="main.user.favoriteBook">Favorite Book: {{main.user.favoriteBook}}</li>
+                                <li ng-model="main.user.favoriteBeer">Favorite Beer: {{main.user.favoriteBeer}}</li>
                             </ul>
                             <button ng-click="main.showEdit()"></button>
                         </li>
@@ -67,11 +67,16 @@
                 <section ng-show="main.showEditForm">
                     <form ng-submit="main.update(user, main.id)" class="update-user">
                         <h3>Edit my Account</h3>
-                        <input ng-model="user.username" placeholder={{main.user.username}}></br>
-                        <input ng-model="user.image" placeholder={{main.user.image}}></br>
+                        Username:<br>
+                        <input ng-model="user.username" placeholder={{main.user.username}} value="{{main.user.username}}"></br>
+                        Image URL:</br>
+                        <input ng-model="user.image" placeholder={{main.user.image}} value="{{main.user.username}}"></br>
+                        Favorite Book:</br>
                         <input ng-model="user.favoriteBook" placeholder={{main.user.favoriteBook}}></br>
+                        Favorite Beer:</br>
                         <input ng-model="user.favoriteBeer" placeholder={{main.user.favoriteBeer}}></br>
                         <input type="submit" value="Edit Account">
+                        <button ng-click="main.deleteUser(main.id)">Delete Account</button>
                     </form>
 
                 </section>
