@@ -16,22 +16,17 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 
     $scope.$on('isSelectedChange', function(event, data){
-        console.log(data);
-        if(!data.isSelected){
+		if(!data.isSelected){
             controller.isSelected = false;
-            $scope.isSelected = controller.isSelected;
-            console.log($scope.isSelected + "if false");
         } else if(data.isSelected){
             controller.isSelected = true;
-            $scope.isSelected = controller.isSelected;
-            console.log($scope.isSelected + "if true");
-        }
-    });
+        };
+        console.log(controller.isSelected);
+	});
 
     $scope.$watch('isSelected', function(newValue, oldValue){
         console.log(newValue, oldValue)
         this.sendIsSelected = function(){
-            console.log("inside sendIsSelected");
             $scope.$broadcast('isSelectedChange', {
                 isSelected: controller.isSelected
             });
@@ -186,27 +181,11 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
 
     $scope.$watch('isSelected', function(newValue, oldValue){
         console.log(newValue, oldValue);
-        this.sendIsSelected = function(){
-            console.log("sendIsSelected");
-            $scope.$emit('isSelected', {
-                isSelected: controller.isSelected
-            });
+        this.sendisSelected = function(){
+            $scope.$emit('isSelected', { isSelected: controller.isSelected});
         };
-        sendIsSelected();
+        sendisSelected();
     });
-
-    // $scope.$on('isSelectedChange', function(event, data){
-    //     console.log(data);
-    //     if(!data.isSelected){
-    //         controller.isSelected = false;
-    //         $scope.isSelected = controller.isSelected;
-    //         console.log($scope.isSelected "if false");
-    //     } else if(data.isSelected){
-    //         controller.isSelected = true;
-    //         $scope.isSelected = controller.isSelected;
-    //         console.log($scope.isSelected "if true");
-    //     }
-    // });
 
 
     $scope.$on('tokenChange', function(event, data){
@@ -245,7 +224,6 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         this.getId();
     };
     this.addBeer = function(beerObject, id){
-
         $http({
             method:"POST",
             url: '/api/beers',
@@ -305,9 +283,6 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   this.isSelected = false;
   $scope.isSelected = this.isSelected;
 
-  this.isSelected = true;
-  $scope.isSelected = this.isSelected;
-
 
   $scope.$on('tokenChange', function(event, data){
     if(!data.token){
@@ -319,27 +294,17 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   });
 
   $scope.$on('isSelectedChange', function(event, data){
-      console.log(data);
       if(!data.isSelected){
           controller.isSelected = false;
-          $scope.isSelected = controller.isSelected;
-          console.log($scope.isSelected + "if false");
+          console.log('controller.isSelected');
       } else if(data.isSelected){
           controller.isSelected = true;
-          $scope.isSelected = controller.isSelected;
-          console.log($scope.isSelected + "if true");
-
       }
   });
 
   $scope.$watch('isSelected', function(newValue, oldValue){
-
-      console.log(newValue, oldValue)
-      this.please = function(){
-          console.log("in the please");
-      };
-      sendIsSelected();
-  });
+      console.log(newValue, oldValue);
+  })
 
   //function to get the books when a query happens
   this.findBook = function() {
@@ -355,6 +320,8 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       for(i=0; i< 10; i++) {
         // and pushes those found books into an array
         controller.books.push(response.data.docs[i]);
+        //controller.books[i].userId = "test";
+        console.log(controller.books[i]);
       }
       //   console.log(response);
     },
@@ -373,9 +340,11 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   };
 
   //call this to add a book to a users collection
-<<<<<<< HEAD
+
 
   this.addBook = function(bookObject, id){
+    //adds userid key to book object prior to create and sets it to the user id
+    bookObject.userId = id;
     console.log(bookObject);
     $http({
       method: "POST",
@@ -396,45 +365,6 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     //this.selectedBooks.push(index);
     //console.log(this.selectedBooks);
   };
-=======
-  // this.addBook = function(book, id){
-
-  //   this.title = "",
-  //   this.author_name = "",
-  //   this.publish_date = "",
-  //   this.publish_year = "",
-  //   this.first_publish_year = "",
-  //   this.edition_count = "",
-  //   $http({
-  //     method: "POST",
-  //     url: "/api/books",
-  //     data: {
-  //       book: {
-  //         this.title: book.title,
-  //         this.author_name: book.author_name[0],
-  //         this.publish_date: book.publish_date[0],
-  //         this.publish_year: book.publish_year[0],
-  //         this.first_publish_year: book.first_publish_year,
-  //         this.edition_count: book.edition_count,
-  //         userId: id
-  //       }
-  //     },
-  //     headers: {
-  //       Authorization: JSON.parse(localStorage.getItem('token'))
-  //     }
-  //   }).then(function(response) { //success
-  //     console.log(response);
-  //   },
-  //   function(response) { //failure
-  //     console.log(response);
-  //   });
-  //   //console.log(index);
-  //   //this.selectedBooks.push(index);
-  //   //console.log(this.selectedBooks);
-  // };
-
->>>>>>> 156e1a3a92e5b8028764578f3216dff4ca255dad
-
   //this gets us the user id so we can attach it to the book we want to give to the looged in user
   this.getId = function(){
       $http({
