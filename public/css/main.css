@@ -2,8 +2,51 @@
 /*/------------------All the things-------------------------/*/
 /*************************************************************/
 
+/*require fonts*/
+
+/*song for jennifer which is a serif*/
+@font-face {
+  font-family: "ASongForJennifer";
+  src: url("../fonts/asongforjennifer.ttf");
+}
+
+/*chalk dust which is a sans serif and looks like handwriting like a bubbly*/
+@font-face {
+  font-family: "ChalkDust";
+  src: url("../fonts/ChalkDust.ttf");
+}
+
+/*grutch which is a outlined block letter looking text, three d looking with scribble shading a little hard to read so only use it in small amounts*/
+@font-face {
+  font-family: "GrutchShaded";
+  src: url("../fonts/GrutchShaded.ttf");
+}
+
+/*return to sender kinda tall and thin, all caps */
+@font-face {
+  font-family: "Return to Sender";
+  src: url("../fonts/Return_To_Sender.ttf");
+}
+
+/*shaded chalk hand lettering, a cursive and a bit difficult to read*/
+@font-face {
+  font-family: "Chalk-hand-lettering-shaded";
+  src: url("../fonts/Chalk-hand-lettering-shaded_demo.ttf");
+}
+
+/*to use the above fonts/typefaces just call font family and name them, please try to also give the call a second option like cursive or sans-serif etc*/
+
 body {
-    background-image: url('https://images.template.net/wp-content/uploads/2016/04/23093543/Black-Shaded-Chalkboard-Background.jpg');
+
+  /*this is a blackboard with scrolling illustrations on the sides*/
+    /*background-image: url('https://images.template.net/wp-content/uploads/2016/04/23093543/Black-Shaded-Chalkboard-Background.jpg');*/
+
+    /*this is a really dark blackboard*/
+    /*background-image: url("https://s-media-cache-ak0.pinimg.com/736x/26/cf/3c/26cf3c80b7b5923f89fba8fe140dd660.jpg");*/
+
+    /*this is a green blackboard and it makes me think of green bottles and green secretary lamps I kinda dig it*/
+    background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");
+
     background-size: cover;
 
     color: white;
@@ -28,11 +71,24 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
+
+h1 {
+  /*font-family: "ASongForJennifer" ;*/
+  /*font-family: "ChalkDust";*/
+  font-family: "GrutchShaded";
+  /*font-family: "Return to Sender";*/
+  /*font-family: "Chalk-hand-lettering-shaded";*/
+}
+
 /*************************************************************/
 /*/------------------USER SIGN-IN SIGN-UP-------------------/*/
 /*************************************************************/
+
+h2 {
+  font-family: "ChalkDust";
+}
 
 .users {
     width: 80%;
