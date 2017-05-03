@@ -229,7 +229,7 @@ apiRoutes.post('/userId', function(req, res){
 apiRoutes.post('/books', function(req, res){
   // we are calling the book create
     Book.create(req.body, function(error, createdBook){
-      console.log("this is the reqbody for the book create" + req.body);
+      //console.log("this is the reqbody for the book create" + req.body);
         if (error) {
             res.json(error);
         }

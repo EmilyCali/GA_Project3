@@ -342,9 +342,9 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //call this to add a book to a users collection
 
   this.addBook = function(bookObject, id){
+    //adds userid key to book object prior to create and sets it to the user id
     bookObject.userId = id;
     console.log(bookObject);
-
     $http({
       method: "POST",
       url: "/api/books",
