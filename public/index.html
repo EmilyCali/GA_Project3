@@ -84,26 +84,28 @@
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
                 {{base.id}}
+                <section ng-if="base.isSelected">
+                    <form ng-if="base.token" ng-submit="base.find();">
+                      <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
+                      <input type="submit" value="Submit"/>
+                    </form>
+                    <!-- show beers -->
+                    <ol>
+                        <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
+                            {{beer.name}}
+                            <ul ng-if="base.showBeerId === $index">
 
-                <form ng-if="base.token" ng-submit="base.find();">
-                  <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
-                  <input type="submit" value="Submit"/>
-                </form>
-                <!-- show beers -->
-                <ol>
-                    <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
-                        {{beer.name}}
-                        <ul ng-if="base.showBeerId === $index">
-
-                            ABV: {{beer.abv}}% <br/><br/>
-                            Beer Style: {{beer.style.description}} <br/><br/>
-                            Beer Description: {{beer.description}} <br/><br/>
-                            <button type="button" value="add" ng-click="base.addBeer(beer, base.id)"></button>
+                                ABV: {{beer.abv}}% <br/><br/>
+                                Beer Style: {{beer.style.description}} <br/><br/>
+                                Beer Description: {{beer.description}} <br/><br/>
+                                <button type="button" value="add" ng-click="base.addBeer(beer, base.id)"></button>
 
 
-                        </ul>
-                    </li>
-                </ol>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
                 </section>
                 <!-- book search -->
                 <section ng-controller="BookController as bookCtrl">

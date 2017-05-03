@@ -154,6 +154,16 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.searching = '';
     this.beers = [];
     this.selectedBeers = [];
+    this.isSelected = true;
+    $scope.isSelected = this.isSelected;
+
+    $scope.$watch('isSelected', function(newValue, oldValue){
+        console.log(newValue, oldValue);
+        this.sendisSelected = function(){
+            $scope.$emit('isSelected', { isSelected: controller.isSelected});
+        };
+        sendisSelected();
+    });
 
 
     $scope.$on('tokenChange', function(event, data){
@@ -192,6 +202,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         this.getId();
     };
     this.addBeer = function(beerObject, id){
+        this.isSelected = false;
         $http({
             method:"POST",
             url: '/api/beers',
