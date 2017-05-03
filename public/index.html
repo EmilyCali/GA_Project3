@@ -65,7 +65,7 @@
                             ABV: {{beer.abv}}% <br/><br/>
                             Beer Style: {{beer.style.description}} <br/><br/>
                             Beer Description: {{beer.description}} <br/><br/>
-                            //blah
+                            <button type="button" value="add" ng-click="base.addBeer(beer)"></button>
 
                         </ul>
                     </li>
@@ -81,7 +81,7 @@
                     <ol>
                         <li ng-repeat="book in bookCtrl.foundBooks track by $index" ng-click="bookCtrl.showBookInfo($index);">
                       {{book.title}}
-                          <ul ng-if="bookCtrl.showBookId === index">
+                          <ul ng-if="bookCtrl.showBookId === $index">
                             Author:
                             <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
                             {{book.author_name}}
@@ -94,6 +94,7 @@
                             {{book.place}}
                             <br/><br/>
                             Editions: {{book.edition_count}}
+                            <button type="button" value="add" ng-click="bookCtrl.addBook(book)"></button>
 
                           </ul>
                         </li>
