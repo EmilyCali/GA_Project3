@@ -13,6 +13,7 @@ var jwt        = require('jsonwebtoken');//used to create, sign, and verify toke
 var config     = require('./config/database.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model
 var Book       = require('./models/books.js');
+var Beer       = require('./models/beers.js');
 
 var booksController = require("./controllers/books.js"); //require book controller
 
@@ -184,6 +185,69 @@ apiRoutes.delete('/users/:id', function(req, res){
         console.log("deleted user" + deletedUser);
     });
 });
+//////////////////////////////////////////|
+//----------------joes beer routes--|
+//////////////////////////////////////////|
+
+apiRoutes.post('/beers', function(req, res){
+    Beer.create(req.body, function(error, createdBeer){
+        if (error) {
+            res.json(error);
+        }
+        res.json({
+            createdBeer: createdBeer,
+
+            id: req.decoded._doc._id
+        });
+        console.log(createdBeer);
+    });
+});
+
+apiRoutes.get('/beers', function(req, res){
+    Beer.findById(req.params.id, function(err, foundId){
+        res.json(foundId);
+    });
+});
+
+apiRoutes.post('/userId', function(req, res){
+    console.log('==========================================================');
+    console.log(req);
+    console.log('==========================================================');
+
+    User.findById(req.decoded._doc._id, function(err, createdUser){
+        res.json({
+            id: createdUser._id
+        });
+    });
+});
+
+//////////////////////////////////////////|
+//----------------Emily book routes--|
+//////////////////////////////////////////|
+
+apiRoutes.post('/books', function(req, res){
+    Book.create(req.body, function(error, createdBook){
+        if (error) {
+            res.json(error);
+        }
+        res.json({
+            createdBook: createdBook,
+
+            id: req.decoded._doc._id
+        });
+        console.log(createdBook);
+    });
+});
+
+apiRoutes.get('/books', function(req, res){
+    Beer.findById(req.params.id, function(err, foundId){
+        res.json(foundId);
+    });
+});
+
+
+
+
 
 app.use('/api', apiRoutes);
 

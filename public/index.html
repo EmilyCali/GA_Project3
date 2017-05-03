@@ -51,6 +51,7 @@
                     </section>
                 </section>
 
+              <!-- user profile -->
                 <section ng-show="main.showAccount" class="account">
                     <ul>
                         <li>
@@ -65,17 +66,27 @@
                     </ul>
                     <button ng-click="main.deleteUser(main.id)">Delete Account</button>
                 </section>
+
+                <!-- edit user info -->
                 <section ng-show="main.showEditForm">
                     <form ng-submit="main.update(user, main.id)" class="update-user">
                         <h3>Edit my Account</h3>
-                        Username:<br>
-                        <input ng-model="user.username" placeholder={{main.user.username}} value="{{main.user.username}}"></br>
-                        Image URL:</br>
-                        <input ng-model="user.image" placeholder={{main.user.image}} value="{{main.user.username}}"></br>
-                        Favorite Book:</br>
-                        <input ng-model="user.favoriteBook" placeholder={{main.user.favoriteBook}}></br>
-                        Favorite Beer:</br>
-                        <input ng-model="user.favoriteBeer" placeholder={{main.user.favoriteBeer}}></br>
+                        Username:
+                        <br/>
+                        <input ng-model="user.username" placeholder="{{main.user.username}}" value="{{main.user.username}}">
+                        <br/>
+                        Image URL:
+                        <br/>
+                        <input ng-model="user.image" placeholder="{{main.user.image}}" value="{{main.user.username}}">
+                        <br/>
+                        Favorite Book:
+                        <br/>
+                        <input ng-model="user.favoriteBook" placeholder="{{main.user.favoriteBook}}">
+                        <br/>
+                        Favorite Beer:
+                        <br/>
+                        <input ng-model="user.favoriteBeer" placeholder="{{main.user.favoriteBeer}}">
+                        <br/>
                         <input type="submit" value="Edit Account">
                     </form>
 
@@ -83,6 +94,8 @@
 
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
+                {{base.id}}
+
                 <form ng-if="base.token" ng-submit="base.find();">
                   <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
                   <input type="submit" value="Submit"/>
@@ -96,14 +109,15 @@
                             ABV: {{beer.abv}}% <br/><br/>
                             Beer Style: {{beer.style.description}} <br/><br/>
                             Beer Description: {{beer.description}} <br/><br/>
-                            <button type="button" value="add" ng-click="base.addBeer(beer)"></button>
+                            <button type="button" value="add" ng-click="base.addBeer(beer, base.id)"></button>
 
 
                         </ul>
                     </li>
                 </ol>
                 </section>
-                <!-- book search -->
+
+              <!-- book search -->
                 <section ng-controller="BookController as bookCtrl">
                     <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
                         <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
@@ -116,17 +130,18 @@
                           <ul ng-if="bookCtrl.showBookId === $index">
                             Author:
                             <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
-                            {{book.author_name}}
+                            {{book.author_name[0]}}
                             <br/><br/>
-                            Published: {{book.first_publish_year}}
+                            Published: {{book.first_publish_year || book.publish_year[0] || book.publish_date[0]}}
                             <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
                             <br/><br/>
                             Places:
                             <!-- this is an array or publish_place -->
-                            {{book.place}}
+                            {{book.publish_place[0] || book.place}}
                             <br/><br/>
                             Editions: {{book.edition_count}}
-                            <button type="button" value="add" ng-click="bookCtrl.addBook(book)"></button>
+                            <br/><br/>
+                            <button type="button" value="add" ng-click="bookCtrl.addBook(book, bookCtrl.id)"></button>
 
 
                           </ul>

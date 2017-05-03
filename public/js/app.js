@@ -84,6 +84,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             controller.id = response.data.id,
+            //console.log(controller.id);
             controller.username = response.data.username;
             controller.token = true;
             $scope.token = controller.token;
@@ -157,23 +158,10 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }.bind(this));
 
     };
-//***************************logs user out
+//logs user out
     this.logout = function(){
         localStorage.clear('token');
         location.reload();
-    };
-//***************************deletes user
-    this.deleteUser = function(id){
-        console.log("deleting user!?");
-        $http({
-            method: 'DELETE',
-            url: '/api/users/' + id,
-            headers: {
-                Authorization: JSON.parse(localStorage.getItem('token'))
-            }
-        }).then(function(response){
-            console.log(response);
-        });
     };
 }]);
 
@@ -223,13 +211,43 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.showInfo = function(index){
         // console.log(index);
         this.showBeerId = index;
+        this.getId();
     };
-    this.addBeer = function(index){
-    console.log(index);
-    this.selectedBeers.push(index);
-    console.log(this.selectedBeers);
+    this.addBeer = function(beerObject, id){
+        $http({
+            method:"POST",
+            url: '/api/beers',
+            data: {
+                beerObject: beerObject,
+                userId: id
+            },
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(
+            function(response) {
+                console.log(response);
 
-};
+            }
+        );
+        // console.log(index);
+        // this.selectedBeers.push(index);
+        // console.log(this.selectedBeers);
+    };
+    this.getId = function(){
+        $http({
+            method:"POST",
+            url: '/api/userId',
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(
+            function(response){
+                controller.id = response.data.id;
+                console.log(response.data.id);
+            }
+        );
+    };
 
 
 }]);
@@ -239,8 +257,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
 //////////////////////////////////////////|
 
 app.controller("BookController", ["$scope","$http", function($scope, $http) {
-    //added by Amanda to check if user is logged in or not
-    this.token = false;
+  //added by Amanda to check if user is logged in or not
+  this.token = false;
   //have to name controller so it can be used in callbacks
   var controller = this;
   //this is the string that takes what is search in the input on html
@@ -253,11 +271,11 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
 
 
   $scope.$on('tokenChange', function(event, data){
-      if(!data.token){
-          controller.token = false;
-      } else if(data.token){
-          controller.token = true;
-      };
+    if(!data.token){
+      controller.token = false;
+    } else if(data.token){
+      controller.token = true;
+    }
     //   console.log(controller.token)
   });
 
@@ -272,33 +290,77 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     }).then(function(response) {//success
       controller.foundBooks = [];
       // this limits the results to ten
-      for(i=0; i< 10; i++)
-      {
-          controller.foundBooks.push(response.data.docs[i]);
+      for(i=0; i< 10; i++) {
+        // and pushes those found books into an array
+        controller.foundBooks.push(response.data.docs[i]);
       }
-    //   console.log(response);
-      // let me see what this is
-      //console.log(response.data.docs);
-      //let me see what the data is
-      //console.log(controller.foundBooks);
-      //what's in here this new array of things
-      //controller.foundBooks = response.data;
-      //console.log(response.data);
+      //   console.log(response);
     },
     function(response) { //failure
       console.log(response);
     });
   };
+
   //call this on click to show more information about the books
   this.showBookInfo = function(index){
-    //   console.log(index);
-      this.showBookId = index;
-  };
-  this.addBook = function(index){
-      console.log(index);
-      this.selectedBooks.push(index);
-      console.log(this.selectedBooks);
+    //console.log(index);
+    //console.log(this.foundBooks);
+    this.getId();
+    this.showBookId = index;
+    //return controller.foundBooks[index];
   };
 
+  //call this to add a book to a users collection
+  this.addBook = function(book, id){
+    this.title = "",
+    this.author_name = "",
+    this.publish_date = "",
+    this.publish_year = "",
+    this.first_publish_year = "",
+    this.edition_count = "",
+    $http({
+      method: "POST",
+      url: "/api/books",
+      data: {
+        book: {
+          this.title: book.title,
+          this.author_name: book.author_name[0],
+          this.publish_date: book.publish_date[0],
+          this.publish_year: book.publish_year[0],
+          this.first_publish_year: book.first_publish_year,
+          this.edition_count: book.edition_count,
+          userId: id
+        }
+      },
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response) { //success
+      console.log(response);
+    },
+    function(response) { //failure
+      console.log(response);
+    });
+    //console.log(index);
+    //this.selectedBooks.push(index);
+    //console.log(this.selectedBooks);
+  };
+
+  //this gets us the user id so we can attach it to the book we want to give to the looged in user
+  this.getId = function(){
+      $http({
+          method:"POST",
+          url: "/api/userId",
+          headers: {
+              Authorization: JSON.parse(localStorage.getItem("token"))
+          }
+      }).then(function(response){//success
+              controller.id = response.data.id;
+              console.log(response.data.id);
+          },
+        function(response) {//failure
+          console.log(response);
+        });
+  };
 
 }]);
