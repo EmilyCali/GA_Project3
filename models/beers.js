@@ -3,12 +3,12 @@ var mongoose = require("mongoose");
 
 //model
 var beerSchema = mongoose.Schema({
-  name: String,
   abv: Number,
+  name: String,
   description: String,
-  style: String,
-  liked: Number
- 
+  liked: Number,
+  userId: String
+
 });
 
 //name it

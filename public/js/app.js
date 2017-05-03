@@ -62,6 +62,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             controller.id = response.data.id,
+            console.log(controller.id);
             controller.username = response.data.username;
             controller.token = true;
             $scope.token = controller.token;
@@ -135,23 +136,10 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }.bind(this));
 
     };
-//***************************logs user out
+//logs user out
     this.logout = function(){
         localStorage.clear('token');
         location.reload();
-    };
-//***************************deletes user
-    this.deleteUser = function(id){
-        console.log("deleting user!?");
-        $http({
-            method: 'DELETE',
-            url: '/api/users/' + id,
-            headers: {
-                Authorization: JSON.parse(localStorage.getItem('token'))
-            }
-        }).then(function(response){
-            console.log(response);
-        });
     };
 }]);
 
@@ -201,13 +189,43 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.showInfo = function(index){
         // console.log(index);
         this.showBeerId = index;
+        this.getId();
     };
-    this.addBeer = function(index){
-    console.log(index);
-    this.selectedBeers.push(index);
-    console.log(this.selectedBeers);
+    this.addBeer = function(beerObject, id){
+        $http({
+            method:"POST",
+            url: '/api/beers',
+            data: {
+                beerObject: beerObject,
+                userId: id
+            },
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(
+            function(response) {
+                console.log(response);
 
-};
+            }
+        )
+        // console.log(index);
+        // this.selectedBeers.push(index);
+        // console.log(this.selectedBeers);
+    };
+    this.getId = function(){
+        $http({
+            method:"POST",
+            url: '/api/userId',
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(
+            function(response){
+                controller.id = response.data.id;
+                console.log(response.data.id);
+            }
+        )
+    }
 
 
 }]);
