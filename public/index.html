@@ -83,6 +83,8 @@
 
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
+                {{base.id}}
+
                 <form ng-if="base.token" ng-submit="base.find();">
                   <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
                   <input type="submit" value="Submit"/>
@@ -96,7 +98,7 @@
                             ABV: {{beer.abv}}% <br/><br/>
                             Beer Style: {{beer.style.description}} <br/><br/>
                             Beer Description: {{beer.description}} <br/><br/>
-                            <button type="button" value="add" ng-click="base.addBeer(beer)"></button>
+                            <button type="button" value="add" ng-click="base.addBeer(beer, base.id)"></button>
 
 
                         </ul>
