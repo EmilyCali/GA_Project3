@@ -302,9 +302,9 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       data: {
         book: {
           this.title: book.title,
-          this.author_name: book.author_name,
-          this.publish_date: book.publish_date,
-          this.publish_year: book.publish_year,
+          this.author_name: book.author_name[0],
+          this.publish_date: book.publish_date[0],
+          this.publish_year: book.publish_year[0],
           this.first_publish_year: book.first_publish_year,
           this.edition_count: book.edition_count,
           userId: id
