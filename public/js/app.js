@@ -280,6 +280,8 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //call this to get id when showing more info
   this.showBookId = "";
   this.selectedBooks = [];
+  this.isSelected = false;
+  $scope.isSelected = this.isSelected;
 
 
   $scope.$on('tokenChange', function(event, data){
@@ -290,6 +292,19 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     }
     //   console.log(controller.token)
   });
+
+  $scope.$on('isSelectedChange', function(event, data){
+      if(!data.isSelected){
+          controller.isSelected = false;
+          console.log('controller.isSelected');
+      } else if(data.isSelected){
+          controller.isSelected = true;
+      }
+  });
+
+  $scope.$watch('isSelected', function(newValue, oldValue){
+      console.log(newValue, oldValue);
+  })
 
   //function to get the books when a query happens
   this.findBook = function() {
