@@ -221,6 +221,33 @@ apiRoutes.post('/userId', function(req, res){
     });
 });
 
+//////////////////////////////////////////|
+//----------------Emily book routes--|
+//////////////////////////////////////////|
+
+apiRoutes.post('/books', function(req, res){
+    Book.create(req.body, function(error, createdBook){
+        if (error) {
+            res.json(error);
+        }
+        res.json({
+            createdBook: createdBook,
+
+            id: req.decoded._doc._id
+        });
+        console.log(createdBook);
+    });
+});
+
+apiRoutes.get('/books', function(req, res){
+    Beer.findById(req.params.id, function(err, foundId){
+        res.json(foundId);
+    });
+});
+
+
+
+
 
 app.use('/api', apiRoutes);
 
