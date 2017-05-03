@@ -11,6 +11,28 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     $scope.token = this.token;
     this.showAccount = false;
 
+    this.isSelected = true;
+    $scope.isSelected = this.isSelected;
+
+
+    $scope.$on('isSelectedChange', function(event, data){
+		if(!data.isSelected){
+            controller.isSelected = false;
+        } else if(data.isSelected){
+            controller.isSelected = true;
+        };
+        console.log(controller.isSelected);
+	});
+
+    $scope.$watch('isSelected', function(newValue, oldValue){
+        console.log(newValue, oldValue)
+        this.sendIsSelected = function(){
+            $scope.$broadcast('isSelectedChange', {
+                isSelected: controller.isSelected
+            });
+        };
+        sendIsSelected();
+    });
 
     $scope.$watch('token', function(newValue, oldValue){
         this.sendToken = function(){
