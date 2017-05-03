@@ -4,11 +4,15 @@ var mongoose = require("mongoose");
 //model
 var bookSchema = mongoose.Schema({
   title: String,
-  author: String,
-  subject: String, //this is actually subject and contains multiple items
+  author_name: [String],
+  subject: [String], //this is actually subject and contains multiple items
   cover: String, //in books api, is a jpg
-  isbn: String, //lets you access more info
-  liked: Number //lets you use book api to get mor info
+  isbn: [String], //lets you access more info
+  first_publish_year: String,
+  publish_year: [String],
+  publish_date:[String],
+  edition_count: String,
+  //liked: Number //lets you use book api to get mor info
   //user: String need to attach to user schema somehow
 });
 

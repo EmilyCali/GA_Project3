@@ -239,15 +239,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       controller.foundBooks = [];
       // this limits the results to ten
       for(i=0; i< 10; i++) {
-      // if (response.data.docs.author_name) {
-      //   for (i=0; i<1; i++) {
-      //     console.log("this is the author name in response data" + response.data.docs.author_name);
-      //     controller.foundBooks.author = response.data.docs.author_name[0];
-      //     //controller.foundBooks.push(response.data.docs.author_name[0]);
-      //     console.log(controller.foundBooks.author);
-      // }
-      // }
-
+        // and pushes those found books into an array
         controller.foundBooks.push(response.data.docs[i]);
       }
     //   console.log(response);
@@ -263,7 +255,20 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       this.showBookId = index;
       //return controller.foundBooks[index];
   };
-  this.addBook = function(index){
+  //call this to add a book to a users collection
+  this.addBook = function(bookObject){
+    $http({
+      method: "POST",
+      url: "/api/books",
+      data: {
+
+      }
+    }).then(function(response) { //success
+      console.log(response);
+    },
+    function(response) { //failure
+      console.log(response);
+    });
       console.log(index);
       this.selectedBooks.push(index);
       console.log(this.selectedBooks);
