@@ -91,25 +91,33 @@
                     </form>
 
                 </section>
+                <section ng-hide="!main.hideStuff">
+                    <div ng-repeat="pair in main.selectedBooksBeers">
+                        <ul ng-model="pair.name">
+                            <li>{{pair.name}}
+                                {{pair.title}}
+                            </li>
+                        </ul>
+                    </div>
+                </section>
 
         <!-- beer search -->
-            <section ng-controller="baseCtrl as base">
-                {{base.id}}
-                <section ng-if="base.isSelected">
-                    <form ng-if="base.token" ng-submit="base.find();">
-                      <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
+            <section ng-hide="main.hideStuff">
+                <section ng-if="main.isSelected">
+                    <form ng-if="main.token" ng-submit="main.find();">
+                      <input ng-model="main.searching" type="text" placeholder="Find a Beer" />
                       <input type="submit" value="Submit"/>
                     </form>
                     <!-- show beers -->
                     <ol>
-                        <li ng-repeat="beer in base.beers track by $index" ng-click="base.showInfo($index)">
+                        <li ng-repeat="beer in main.beers track by $index" ng-click="main.showInfo($index)">
                             {{beer.name}}
-                            <ul ng-if="base.showBeerId === $index">
+                            <ul ng-if="main.showBeerId === $index">
 
                                 ABV: {{beer.abv}}% <br/><br/>
                                 Beer Style: {{beer.style.description}} <br/><br/>
                                 Beer Description: {{beer.description}} <br/><br/>
-                                <button type="button" value="add" ng-click="base.addBeer(beer, base.id)"></button>
+                                <button type="button" value="add" ng-click="main.addBeer(beer, main.id)"></button>
 
 
                             </ul>
@@ -120,32 +128,34 @@
                 </section>
 
               <!-- book search -->
-                <section ng-controller="BookController as bookCtrl">
-                    <section ng-if="bookCtrl.isSelected">
-                        {{bookCtrl.isSelected}}
-                        <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
-                            <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
+
+                <section ng-hide="main.hideStuff">
+                    <section ng-if="!main.isSelected">
+
+                        <form ng-if="main.token" ng-submit="main.findBook();">
+                            <input type="text" ng-model="main.searchedBook" placeholder="Find a book" />
+
                             <input type="submit" value="SUBMIT" />
                         </form>
                     <!-- show book results -->
                         <ol>
-                            <li ng-repeat="book in bookCtrl.foundBooks track by $index" ng-click="bookCtrl.showBookInfo($index);">
+                            <li ng-repeat="book in main.foundBooks track by $index" ng-click="main.showBookInfo($index);">
                           {{book.title}}
-                              <ul ng-if="bookCtrl.showBookId === $index">
+                              <ul ng-if="main.showBookId === $index">
                                 Author:
                                 <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
                                 {{book.author_name[0]}}
                                 <br/><br/>
-                                Published: {{book.first_publish_year || book.publish_year[0] || book.publish_date[0]}}
+                                Published: {{book.first_publish_year}} {{book.publish_year[0]}} {{book.publish_date[0]}}
                                 <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
                                 <br/><br/>
                                 Places:
                                 <!-- this is an array or publish_place -->
-                                {{book.publish_place[0] || book.place}}
+                                {{book.publish_place[0]}} {{book.place[0]}} {{book.place[1]}} {{book.place[2]}} {{book.place[3]}}
                                 <br/><br/>
                                 Editions: {{book.edition_count}}
                                 <br/><br/>
-                                <button type="button" value="add" ng-click="bookCtrl.addBook(book, bookCtrl.id)"></button>
+                                <button type="button" value="add" ng-click="main.addBook(book, main.id)"></button>
 
 
                               </ul>

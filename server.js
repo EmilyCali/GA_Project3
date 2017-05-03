@@ -155,6 +155,12 @@ apiRoutes.use(function(req, res, next){
 //Routes that need token verification|
 /////////////////////////////////////|
 
+apiRoutes.put('/pair', function(req, res){
+    User.findByIdandUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
+        res.json(updatedUser);
+    });
+});
+
 apiRoutes.get('/users', function(req, res){
     User.find({}, function(err, foundUsers){
         res.json(foundUsers);
