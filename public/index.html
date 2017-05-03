@@ -121,7 +121,6 @@
               <!-- book search -->
                 <section ng-controller="BookController as bookCtrl">
                     <section ng-if="bookCtrl.isSelected">
-                        {{bookCtrl.isSelected}}
                         <form ng-if="bookCtrl.token" ng-submit="bookCtrl.findBook();">
                             <input type="text" ng-model="bookCtrl.searchedBook" placeholder="Find a book" />
                             <input type="submit" value="SUBMIT" />
