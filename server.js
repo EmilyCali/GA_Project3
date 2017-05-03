@@ -225,17 +225,20 @@ apiRoutes.post('/userId', function(req, res){
 //----------------Emily book routes--|
 //////////////////////////////////////////|
 
+//this is a create route
 apiRoutes.post('/books', function(req, res){
+  // we are calling the book create
     Book.create(req.body, function(error, createdBook){
+      console.log("this is the reqbody for the book create" + req.body);
         if (error) {
             res.json(error);
         }
         res.json({
+          // json response and saying the created book is itself and the id is going to be the user id
             createdBook: createdBook,
-
             id: req.decoded._doc._id
         });
-        console.log(createdBook);
+        //console.log(createdBook);
     });
 });
 

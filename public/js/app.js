@@ -276,7 +276,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //this is the string that takes what is search in the input on html
   this.searchedBook = "";
   //these are the books you get
-  this.foundBooks = [];
+  this.books = [];
   //call this to get id when showing more info
   this.showBookId = "";
   this.selectedBooks = [];
@@ -315,11 +315,11 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       //may or may not need to specify data
       //data: this
     }).then(function(response) {//success
-      controller.foundBooks = [];
+      controller.books = [];
       // this limits the results to ten
       for(i=0; i< 10; i++) {
         // and pushes those found books into an array
-        controller.foundBooks.push(response.data.docs[i]);
+        controller.books.push(response.data.docs[i]);
       }
       //   console.log(response);
     },
@@ -339,29 +339,14 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
 
   //call this to add a book to a users collection
 
-  this.addBook = function(book, id){
-    // this.title = "",
-    // this.author_name = "",
-    // this.publish_date = "",
-    // this.publish_year = "",
-    // this.first_publish_year = "",
-    // this.edition_count = "",
+  this.addBook = function(bookObject, id){
+    console.log(bookObject);
     $http({
       method: "POST",
       url: "/api/books",
-      data: {
-        // book: {
-        //   this.title: book.title,
-        //   this.author_name: book.author_name[0],
-        //   this.publish_date: book.publish_date[0],
-        //   this.publish_year: book.publish_year[0],
-        //   this.first_publish_year: book.first_publish_year,
-        //   this.edition_count: book.edition_count,
-        //   userId: id
-        // }
-        book: book,
-        userId: id
-      },
+      data:
+        bookObject,
+        //userId: id
       headers: {
         Authorization: JSON.parse(localStorage.getItem('token'))
       }

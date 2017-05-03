@@ -129,25 +129,23 @@
                         </form>
                     <!-- show book results -->
                         <ol>
-                            <li ng-repeat="book in bookCtrl.foundBooks track by $index" ng-click="bookCtrl.showBookInfo($index);">
+                            <li ng-repeat="book in bookCtrl.books track by $index" ng-click="bookCtrl.showBookInfo($index);">
                           {{book.title}}
                               <ul ng-if="bookCtrl.showBookId === $index">
+                                <!-- all of the below but for edition is for some reason in an array even if one value, extracted via index calls to avoid the problem of nested ng repeats -->
                                 Author:
-                                <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
                                 {{book.author_name[0]}}
                                 <br/><br/>
-                                Published: {{book.first_publish_year || book.publish_year[0] || book.publish_date[0]}}
-                                <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
+                                Published: {{book.first_publish_year}} {{book.publish_year[0]}} {{book.publish_date[0]}}
                                 <br/><br/>
                                 Places:
-                                <!-- this is an array or publish_place -->
-                                {{book.publish_place[0] || book.place}}
+                                {{book.publish_place[0]}}
+                                {{book.place[0]}} {{book.place[1]}} {{book.place[2]}} {{book.place[3]}}
                                 <br/><br/>
                                 Editions: {{book.edition_count}}
                                 <br/><br/>
+                                <!-- this uses a create route to make a new book in our books collection -->
                                 <button type="button" value="add" ng-click="bookCtrl.addBook(book, bookCtrl.id)"></button>
-
-
                               </ul>
                             </li>
                         </ol>

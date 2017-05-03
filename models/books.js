@@ -4,16 +4,14 @@ var mongoose = require("mongoose");
 //model
 var bookSchema = mongoose.Schema({
   title: String,
-  author_name: String,
-  first_publish_year: String,
-  publish_year: String,
-  publish_date: String,
-  edition_count: String,
+  author_name: [String],
+  publish_place: [String],
+  place: String,
+  first_publish_year: Number,
+  publish_year: [Number],
+  publish_date: [String],
+  edition_count: Number,
   userId: String
-
-//HAD THE ABOVE AS ARRAYS LIKE IN API FORMAT BUUUUT IT WAS NOT FILLING THEM UPON CREATE
-
-
 
   //liked: Number //lets you use book api to get mor info
   //user: String need to attach to user schema somehow
