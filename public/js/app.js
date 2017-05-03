@@ -224,7 +224,6 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         this.getId();
     };
     this.addBeer = function(beerObject, id){
-        this.isSelected = false;
         $http({
             method:"POST",
             url: '/api/beers',
@@ -238,6 +237,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         }).then(
             function(response) {
                 console.log(response);
+                controller.isSelected = false;
+                $scope.isSelected = controller.isSelected;
 
             }
         );
@@ -322,6 +323,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   };
 
   //call this to add a book to a users collection
+
   this.addBook = function(book, id){
     // this.title = "",
     // this.author_name = "",
