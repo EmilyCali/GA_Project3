@@ -11,6 +11,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     $scope.token = this.token;
     this.showAccount = false;
 
+
     $scope.$watch('token', function(newValue, oldValue){
         this.sendToken = function(){
             $scope.$broadcast('tokenChange', { token: controller.token});
@@ -127,8 +128,13 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             controller.editableUserId = null;
+            this.showEditForm = false;
+            this.showAccount = true;
+            controller.editableUserId = null;
+            this.showMyAccount(response.data._id);
             console.log(response);
         }.bind(this));
+
     };
 //logs user out
     this.logout = function(){
@@ -147,6 +153,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.showBeerId = '';
     this.searching = '';
     this.beers = [];
+    this.selectedBeers = [];
+
 
     $scope.$on('tokenChange', function(event, data){
 		if(!data.token){
@@ -181,7 +189,15 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.showInfo = function(index){
         // console.log(index);
         this.showBeerId = index;
-    }
+    };
+    this.addBeer = function(index){
+    console.log(index);
+    this.selectedBeers.push(index);
+    console.log(this.selectedBeers);
+
+};
+
+
 }]);
 
 //////////////////////////////////////////|
@@ -199,6 +215,8 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   this.foundBooks = [];
   //call this to get id when showing more info
   this.showBookId = "";
+  this.selectedBooks = [];
+
 
   $scope.$on('tokenChange', function(event, data){
       if(!data.token){
@@ -245,4 +263,11 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       this.showBookId = index;
       //return controller.foundBooks[index];
   };
+  this.addBook = function(index){
+      console.log(index);
+      this.selectedBooks.push(index);
+      console.log(this.selectedBooks);
+  };
+
+
 }]);
