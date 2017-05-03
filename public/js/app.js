@@ -302,6 +302,8 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //call this to get id when showing more info
   this.showBookId = "";
   this.selectedBooks = [];
+  this.isSelected = false;
+  $scope.isSelected = this.isSelected;
 
   this.isSelected = true;
   $scope.isSelected = this.isSelected;
@@ -326,16 +328,19 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
           controller.isSelected = true;
           $scope.isSelected = controller.isSelected;
           console.log($scope.isSelected + "if true");
+
       }
   });
 
   $scope.$watch('isSelected', function(newValue, oldValue){
+
       console.log(newValue, oldValue)
       this.please = function(){
           console.log("in the please");
       };
       sendIsSelected();
   });
+
   //function to get the books when a query happens
   this.findBook = function() {
     $http({
@@ -369,6 +374,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
 
   //call this to add a book to a users collection
   // this.addBook = function(book, id){
+
   //   this.title = "",
   //   this.author_name = "",
   //   this.publish_date = "",
@@ -402,6 +408,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   //   //this.selectedBooks.push(index);
   //   //console.log(this.selectedBooks);
   // };
+
 
   //this gets us the user id so we can attach it to the book we want to give to the looged in user
   this.getId = function(){
