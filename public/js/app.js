@@ -15,7 +15,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.showBeerId = '';
     this.searching = '';
     this.beers = [];
-    this.selectedBeers = [];
+
+    this.selectedBooksBeers = [];
 
     this.isSelected = true;
     // $scope.isSelected = this.isSelected;
@@ -28,6 +29,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     //call this to get id when showing more info
     this.showBookId = "";
     this.selectedBooks = [];
+    this.hideStuff = false;
 
 
 //*************************sign up
@@ -153,7 +155,24 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         localStorage.clear('token');
         location.reload();
     };
-
+//time to make a pair
+    this.pair = function(beerName, bookName){
+        $http({
+            method:'PUT',
+            url: '/api/pair',
+            data: {
+                pair: {
+                    beer: beerName,
+                    book: bookName,
+                }
+            },
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log(response);
+        });
+    };
 
 //////////////////////////////////////////|
 //----------------Joe's code--------------|
@@ -201,13 +220,13 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(
             function(response) {
-                console.log(response);
+                controller.beerName = response.config.data.beerObject.name;
                 controller.isSelected = false;
 
             }
         );
 
-        this.selectedBeers.push(beerObject);
+        this.selectedBooksBeers.push(beerObject);
         console.log(this.selectedBeers);
     };
 
@@ -255,41 +274,44 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
   };
 
   //call this to add a book to a users collection
-  // this.addBook = function(book, id){
+  this.addBook = function(book, id){
 
-  //   this.title = "",
-  //   this.author_name = "",
-  //   this.publish_date = "",
-  //   this.publish_year = "",
-  //   this.first_publish_year = "",
-  //   this.edition_count = "",
-  //   $http({
-  //     method: "POST",
-  //     url: "/api/books",
-  //     data: {
-  //       book: {
-  //         this.title: book.title,
-  //         this.author_name: book.author_name[0],
-  //         this.publish_date: book.publish_date[0],
-  //         this.publish_year: book.publish_year[0],
-  //         this.first_publish_year: book.first_publish_year,
-  //         this.edition_count: book.edition_count,
-  //         userId: id
-  //       }
-  //     },
-  //     headers: {
-  //       Authorization: JSON.parse(localStorage.getItem('token'))
-  //     }
-  //   }).then(function(response) { //success
-  //     console.log(response);
-  //   },
-  //   function(response) { //failure
-  //     console.log(response);
-  //   });
-  //   //console.log(index);
-  //   //this.selectedBooks.push(index);
-  //   //console.log(this.selectedBooks);
-  // };
+    // this.title = "",
+    // this.author_name = "",
+    // this.publish_date = "",
+    // this.publish_year = "",
+    // this.first_publish_year = "",
+    // this.edition_count = "",
+    $http({
+      method: "POST",
+      url: "/api/books",
+      data: {
+          book: book,
+        // book: {
+        //   this.title: book.title,
+        //   this.author_name: book.author_name[0],
+        //   this.publish_date: book.publish_date[0],
+        //   this.publish_year: book.publish_year[0],
+        //   this.first_publish_year: book.first_publish_year,
+        //   this.edition_count: book.edition_count,
+          userId: id
+
+      },
+      headers: {
+        Authorization: JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response) { //success
+      console.log(response);
+      controller.hideStuff = true;
+      this.selectedBooksBeers.push(book);
+    },
+    function(response) { //failure
+      console.log(response);
+    });
+    //console.log(index);
+    //this.selectedBooks.push(index);
+    //console.log(this.selectedBooks);
+  };
 
 
 

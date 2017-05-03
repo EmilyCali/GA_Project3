@@ -91,9 +91,17 @@
                     </form>
 
                 </section>
+                <section ng-hide="!main.hideStuff">
+                    <div ng-repeat="pair in main.selectedBooksBeers">
+                        <ul ng-model="pair.name">
+                            <li>{{pair.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </section>
 
         <!-- beer search -->
-            <section >
+            <section ng-hide="main.hideStuff">
                 <section ng-if="main.isSelected">
                     <form ng-if="main.token" ng-submit="main.find();">
                       <input ng-model="main.searching" type="text" placeholder="Find a Beer" />
@@ -119,9 +127,9 @@
                 </section>
 
               <!-- book search -->
-                <section>
-                    <section ng-if="main.isSelected">
-                        {{main.isSelected}}
+                <section ng-hide="main.hideStuff">
+                    <section ng-if="!main.isSelected">
+
                         <form ng-if="main.token" ng-submit="main.findBook();">
                             <input type="text" ng-model="main.searchedBook" placeholder="Find a book" />
                             <input type="submit" value="SUBMIT" />
