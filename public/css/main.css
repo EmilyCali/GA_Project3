@@ -3,7 +3,8 @@
 /*************************************************************/
 
 body {
-    background: transparent url('images/Chalkboard.jpg') no-repeat center center;
+    background-image: url('https://images.template.net/wp-content/uploads/2016/04/23093543/Black-Shaded-Chalkboard-Background.jpg');
+    background-size: cover;
 
     color: white;
     margin: 0;
@@ -17,8 +18,7 @@ ul {
 /*/-----------------------BACKGROUND------------------------/*/
 /*************************************************************/
 .container {
-    background-image: url('/images/Chalkboard.jpg');
-    background-size: 100%;
+
 }
 
 /*************************************************************/
@@ -28,6 +28,7 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 /*************************************************************/
 /*/------------------USER SIGN-IN SIGN-UP-------------------/*/
@@ -38,7 +39,7 @@ ul {
     margin: 0 auto;
 
     background-color: rgba(11,11,11, 0.3);
-
+    border-style: ridge;
 
     padding: 5%;
     display: flex;

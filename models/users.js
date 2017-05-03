@@ -11,7 +11,10 @@ var userSchema = Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     admin: {type: Boolean, default: false},
-
+    pair: {
+        beer: String,
+        book: String
+    }
     // img: String,//a url
     // books: [Book.schema], //incase?
     // beers: [Beer.schema] //incase?

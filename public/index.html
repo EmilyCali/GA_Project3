@@ -14,6 +14,13 @@
     <body>
 
         <section ng-controller="MainController as main">
+            <p ng-click="main.getUsers()">click here for the secret stuff</p>
+                <ul>
+                    <li ng-repeat=" user in main.users">
+                        {{ user.username}}
+                    </li>
+                </ul>
+            </div>
             <section class="container">
                 <header class= "header">
                     <h1>BOOKS&amp;BEERS</h1>
