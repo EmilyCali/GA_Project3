@@ -101,7 +101,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             console.log(response);
-            
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
             } else {
@@ -110,16 +109,20 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }.bind(this));
     };
 //********************************* Updates User
-    this.showEdit = function(id){
-        this.editableUserId = id;
+    this.showEdit = function(){
+        console.log('clicked');
+        this.showEditForm = true;
+        this.showAccount = false;
     };
-    this.update = function(user){
+
+    this.update = function(user, id){
         console.log(user);
+        console.log(id);
         $http({
             method:"PUT",
-            url: '/api/' + user._id,
+            url: '/api/' + id,
             data: user,
-            header: {
+            headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){
@@ -127,7 +130,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             console.log(response);
         }.bind(this));
     };
-
 //logs user out
     this.logout = function(){
         localStorage.clear('token');
@@ -154,8 +156,6 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         };
         // console.log(controller.token)
 	});
-
-
     this.find = function(){
         $http(
             {
@@ -164,13 +164,11 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
             }).then(
             function(response) { //success callback
                 controller.beers = [];
-
                 for(i=0; i< response.data.data.length; i++)
                 {
                 // controller.arr.push(response.data.data[i].name);
                     controller.beers.push(response.data.data[i]);
                 }
-
                 console.log('success');
                 console.log(controller.beers);
             },

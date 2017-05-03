@@ -27,8 +27,8 @@
 
                     <ul ng-if="main.token" class="logged-in">
                         <li>Welcome, {{main.username}}! </li>
-                        <li><a ng-click="main.logout()">Log Out</a></li>
                         <li><a ng-click="main.showMyAccount(main.id)">My Account</a></li>
+                        <li><a ng-click="main.logout()">Log Out</a></li>
                     </ul>
                 </header>
                 <section ng-if="!main.token" class="users">
@@ -53,23 +53,27 @@
 
                 <section ng-show="main.showAccount" class="account">
                     <ul>
-                        <li ng-click='main.showEdit(user._id)'>
-                            <ul >
+                        <li>
+                            <ul>
                                 <li ng-model="main.user.username">{{main.user.username}}</li>
-                                <li ng-model="main.user.image"><img class="user-img" src="{{main.user.image}}" alt="{{main.user.username}}'s profile image'"></li>
+                                <li ng-model="main.user.image"><img class="user-img" src="{{main.user.image}}" alt="profile image"></li>
                                 <li ng-model="main.user.favoriteBook">{{main.user.favoriteBook}}</li>
                                 <li ng-model="main.user.favoriteBeer">{{main.user.favoriteBeer}}</li>
                             </ul>
+                            <button ng-click="main.showEdit()"></button>
                         </li>
                     </ul>
-                    <form ng-submit="main.update(user)" class="update-user">
+                </section>
+                <section ng-show="main.showEditForm">
+                    <form ng-submit="main.update(user, main.id)" class="update-user">
                         <h3>Edit my Account</h3>
-                        <input ng-model="user.username" placeholder="Username"></br>
-                        <input ng-model="user.image" placeholder="Image"></br>
-                        <input ng-model="user.favortieBook" placeholder="Favorite Book"></br>
-                        <input ng-model="user.favoriteBeer" placeholder="Favorite Beer"></br>
+                        <input ng-model="user.username" placeholder={{main.user.username}}></br>
+                        <input ng-model="user.image" placeholder={{main.user.image}}></br>
+                        <input ng-model="user.favoriteBook" placeholder={{main.user.favoriteBook}}></br>
+                        <input ng-model="user.favoriteBeer" placeholder={{main.user.favoriteBeer}}></br>
                         <input type="submit" value="Edit Account">
                     </form>
+
                 </section>
 
         <!-- beer search -->

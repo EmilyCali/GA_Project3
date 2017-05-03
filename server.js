@@ -128,6 +128,8 @@ apiRoutes.use(function(req, res, next){
     console.log('headers: ' + req.headers);
     var token = req.body.token || req.query.token || req.headers.authorization;
     console.log(req.body.token);
+    console.log(req.headers.authorization);
+    console.log(token);
     //decode token
     if(token){
         //verifies secret and checks expiration
