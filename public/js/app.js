@@ -165,6 +165,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.showBeerId = '';
     this.searching = '';
     this.beers = [];
+    this.selectedBeers = [];
+
 
     $scope.$on('tokenChange', function(event, data){
 		if(!data.token){
@@ -199,7 +201,15 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
     this.showInfo = function(index){
         // console.log(index);
         this.showBeerId = index;
-    }
+    };
+    this.addBeer = function(index){
+    console.log(index);
+    this.selectedBeers.push(index);
+    console.log(this.selectedBeers);
+
+};
+
+
 }]);
 
 //////////////////////////////////////////|
@@ -217,6 +227,8 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   this.foundBooks = [];
   //call this to get id when showing more info
   this.showBookId = "";
+  this.selectedBooks = [];
+
 
   $scope.$on('tokenChange', function(event, data){
       if(!data.token){
@@ -260,4 +272,11 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     //   console.log(index);
       this.showBookId = index;
   };
+  this.addBook = function(index){
+      console.log(index);
+      this.selectedBooks.push(index);
+      console.log(this.selectedBooks);
+  };
+
+
 }]);
