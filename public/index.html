@@ -63,6 +63,7 @@
                             <button ng-click="main.showEdit()"></button>
                         </li>
                     </ul>
+                    <button ng-click="main.deleteUser(main.id)">Delete Account</button>
                 </section>
                 <section ng-show="main.showEditForm">
                     <form ng-submit="main.update(user, main.id)" class="update-user">
@@ -76,7 +77,6 @@
                         Favorite Beer:</br>
                         <input ng-model="user.favoriteBeer" placeholder={{main.user.favoriteBeer}}></br>
                         <input type="submit" value="Edit Account">
-                        <button ng-click="main.deleteUser(main.id)">Delete Account</button>
                     </form>
 
                 </section>

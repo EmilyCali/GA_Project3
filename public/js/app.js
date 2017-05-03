@@ -62,7 +62,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             controller.id = response.data.id,
-            console.log(controller.id);
             controller.username = response.data.username;
             controller.token = true;
             $scope.token = controller.token;
@@ -136,10 +135,23 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }.bind(this));
 
     };
-//logs user out
+//***************************logs user out
     this.logout = function(){
         localStorage.clear('token');
         location.reload();
+    };
+//***************************deletes user
+    this.deleteUser = function(id){
+        console.log("deleting user!?");
+        $http({
+            method: 'DELETE',
+            url: '/api/users/' + id,
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log(response);
+        });
     };
 }]);
 

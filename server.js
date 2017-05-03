@@ -125,11 +125,9 @@ apiRoutes.post('/authenticate', function(req, res){
 /////////////////////////////////////|
 
 apiRoutes.use(function(req, res, next){
-    console.log('headers: ' + req.headers);
+
     var token = req.body.token || req.query.token || req.headers.authorization;
-    console.log(req.body.token);
-    console.log(req.headers.authorization);
-    console.log(token);
+
     //decode token
     if(token){
         //verifies secret and checks expiration
@@ -145,12 +143,27 @@ apiRoutes.use(function(req, res, next){
         });
     } else {
         //if there is no token, return an Error
-        console.log(req.body.token);
         return res.status(403).send({
             success: false,
             message: 'No token provided.'
         });
     }
+});
+
+/////////////////////////////////////|
+//Routes that need token verification|
+/////////////////////////////////////|
+
+apiRoutes.get('/users', function(req, res){
+    User.find({}, function(err, foundUsers){
+        res.json(foundUsers);
+    });
+});
+
+apiRoutes.get('/:id', function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        res.json(foundUser);
+    });
 });
 
 apiRoutes.put('/:id', function(req, res){
@@ -159,27 +172,16 @@ apiRoutes.put('/:id', function(req, res){
             res.json(err);
         }
         res.json(updatedUser);
-        console.log(updatedUser);
     });
 });
 
-apiRoutes.get('/:id', function(req, res){
-    console.log(req.params);
-    User.findById(req.params.id, function(err, foundUser){
-        res.json(foundUser);
-    });
-});
-
-apiRoutes.get('/users', function(req, res){
-    console.log('inside get users');
-    console.log(req);
-    console.log("================");
-    console.log("================");
-    console.log("================");
-    console.log("================");
-    console.log(req.decoded._doc.username);
-    User.find({}, function(err, foundUsers){
-        res.json(foundUsers);
+apiRoutes.delete('/users/:id', function(req, res){
+    User.findByIdAndUpdate(req.params.id, function(err, deletedUser){
+        if(err){
+            res.json(err);
+        }
+        res.json(deletedUser);
+        console.log("deleted user" + deletedUser);
     });
 });
 
@@ -188,20 +190,20 @@ app.use('/api', apiRoutes);
 //////////////////////////////////////////|
 //----------------sample user data route--|
 //////////////////////////////////////////|
-app.get('/setup', function(req, res){
-    //creating sample user
-    var amanda = new User({
-        username: 'capella',
-        password: 'password',
-        admin: true
-    });
-    //saving sample user
-    amanda.save(function(err){
-        if (err) throw err;
-        console.log('User saved successfully');
-        res.json({ success: true});
-    });
-});
+// app.get('/setup', function(req, res){
+//     //creating sample user
+//     var amanda = new User({
+//         username: 'capella',
+//         password: 'password',
+//         admin: true
+//     });
+//     //saving sample user
+//     amanda.save(function(err){
+//         if (err) throw err;
+//         console.log('User saved successfully');
+//         res.json({ success: true});
+//     });
+// });
 
 //////////////////////////////////////////|
 //---------------------Connecting to Mongo|
