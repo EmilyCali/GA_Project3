@@ -16,17 +16,22 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 
     $scope.$on('isSelectedChange', function(event, data){
-		if(!data.isSelected){
+        console.log(data);
+        if(!data.isSelected){
             controller.isSelected = false;
+            $scope.isSelected = controller.isSelected;
+            console.log($scope.isSelected + "if false");
         } else if(data.isSelected){
             controller.isSelected = true;
-        };
-        console.log(controller.isSelected);
-	});
+            $scope.isSelected = controller.isSelected;
+            console.log($scope.isSelected + "if true");
+        }
+    });
 
     $scope.$watch('isSelected', function(newValue, oldValue){
         console.log(newValue, oldValue)
         this.sendIsSelected = function(){
+            console.log("inside sendIsSelected");
             $scope.$broadcast('isSelectedChange', {
                 isSelected: controller.isSelected
             });
@@ -181,11 +186,27 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
 
     $scope.$watch('isSelected', function(newValue, oldValue){
         console.log(newValue, oldValue);
-        this.sendisSelected = function(){
-            $scope.$emit('isSelected', { isSelected: controller.isSelected});
+        this.sendIsSelected = function(){
+            console.log("sendIsSelected");
+            $scope.$emit('isSelected', {
+                isSelected: controller.isSelected
+            });
         };
-        sendisSelected();
+        sendIsSelected();
     });
+
+    // $scope.$on('isSelectedChange', function(event, data){
+    //     console.log(data);
+    //     if(!data.isSelected){
+    //         controller.isSelected = false;
+    //         $scope.isSelected = controller.isSelected;
+    //         console.log($scope.isSelected "if false");
+    //     } else if(data.isSelected){
+    //         controller.isSelected = true;
+    //         $scope.isSelected = controller.isSelected;
+    //         console.log($scope.isSelected "if true");
+    //     }
+    // });
 
 
     $scope.$on('tokenChange', function(event, data){
@@ -224,7 +245,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         this.getId();
     };
     this.addBeer = function(beerObject, id){
-        this.isSelected = false;
+
         $http({
             method:"POST",
             url: '/api/beers',
@@ -238,6 +259,8 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         }).then(
             function(response) {
                 console.log(response);
+                controller.isSelected = false;
+                $scope.isSelected = controller.isSelected;
 
             }
         );
@@ -280,6 +303,9 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   this.showBookId = "";
   this.selectedBooks = [];
 
+  this.isSelected = true;
+  $scope.isSelected = this.isSelected;
+
 
   $scope.$on('tokenChange', function(event, data){
     if(!data.token){
@@ -290,6 +316,26 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
     //   console.log(controller.token)
   });
 
+  $scope.$on('isSelectedChange', function(event, data){
+      console.log(data);
+      if(!data.isSelected){
+          controller.isSelected = false;
+          $scope.isSelected = controller.isSelected;
+          console.log($scope.isSelected + "if false");
+      } else if(data.isSelected){
+          controller.isSelected = true;
+          $scope.isSelected = controller.isSelected;
+          console.log($scope.isSelected + "if true");
+      }
+  });
+
+  $scope.$watch('isSelected', function(newValue, oldValue){
+      console.log(newValue, oldValue)
+      this.please = function(){
+          console.log("in the please");
+      };
+      sendIsSelected();
+  });
   //function to get the books when a query happens
   this.findBook = function() {
     $http({
@@ -322,40 +368,40 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   };
 
   //call this to add a book to a users collection
-  this.addBook = function(book, id){
-    this.title = "",
-    this.author_name = "",
-    this.publish_date = "",
-    this.publish_year = "",
-    this.first_publish_year = "",
-    this.edition_count = "",
-    $http({
-      method: "POST",
-      url: "/api/books",
-      data: {
-        book: {
-          this.title: book.title,
-          this.author_name: book.author_name[0],
-          this.publish_date: book.publish_date[0],
-          this.publish_year: book.publish_year[0],
-          this.first_publish_year: book.first_publish_year,
-          this.edition_count: book.edition_count,
-          userId: id
-        }
-      },
-      headers: {
-        Authorization: JSON.parse(localStorage.getItem('token'))
-      }
-    }).then(function(response) { //success
-      console.log(response);
-    },
-    function(response) { //failure
-      console.log(response);
-    });
-    //console.log(index);
-    //this.selectedBooks.push(index);
-    //console.log(this.selectedBooks);
-  };
+  // this.addBook = function(book, id){
+  //   this.title = "",
+  //   this.author_name = "",
+  //   this.publish_date = "",
+  //   this.publish_year = "",
+  //   this.first_publish_year = "",
+  //   this.edition_count = "",
+  //   $http({
+  //     method: "POST",
+  //     url: "/api/books",
+  //     data: {
+  //       book: {
+  //         this.title: book.title,
+  //         this.author_name: book.author_name[0],
+  //         this.publish_date: book.publish_date[0],
+  //         this.publish_year: book.publish_year[0],
+  //         this.first_publish_year: book.first_publish_year,
+  //         this.edition_count: book.edition_count,
+  //         userId: id
+  //       }
+  //     },
+  //     headers: {
+  //       Authorization: JSON.parse(localStorage.getItem('token'))
+  //     }
+  //   }).then(function(response) { //success
+  //     console.log(response);
+  //   },
+  //   function(response) { //failure
+  //     console.log(response);
+  //   });
+  //   //console.log(index);
+  //   //this.selectedBooks.push(index);
+  //   //console.log(this.selectedBooks);
+  // };
 
   //this gets us the user id so we can attach it to the book we want to give to the looged in user
   this.getId = function(){

@@ -94,7 +94,6 @@
 
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
-                {{base.id}}
                 <section ng-if="base.isSelected">
                     <form ng-if="base.token" ng-submit="base.find();">
                       <input ng-model="base.searching" type="text" placeholder="Find a Beer" />
