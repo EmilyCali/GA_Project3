@@ -93,7 +93,8 @@ apiRoutes.post('/authenticate', function(req, res){
     console.log(req.body.username);
     //find the user
     User.findOne({
-        username:req.body.username
+        username:req.body.username,
+        id:req.body._id
     }, function(err, foundUser){
         console.log(foundUser);
         if (err) throw err;
@@ -111,7 +112,8 @@ apiRoutes.post('/authenticate', function(req, res){
                     username: foundUser.username,
                     success: true,
                     message: 'Enjoy your token!',
-                    token: token
+                    token: token,
+                    id: foundUser.id
                 });
             }
         };
@@ -125,8 +127,7 @@ apiRoutes.post('/authenticate', function(req, res){
 apiRoutes.use(function(req, res, next){
     console.log('headers: ' + req.headers);
     var token = req.body.token || req.query.token || req.headers.authorization;
-    // var token = localStorage.getItem('token');
-    console.log(token);
+    console.log(req.body.token);
     //decode token
     if(token){
         //verifies secret and checks expiration
@@ -156,12 +157,14 @@ apiRoutes.put('/:id', function(req, res){
             res.json(err);
         }
         res.json(updatedUser);
+        console.log(updatedUser);
     });
 });
 
-apiRoutes.get('/assignBeer', function(){
-    User.findOne({username: req.decode._doc.username}, function(err, foundUser){
-
+apiRoutes.get('/:id', function(req, res){
+    console.log(req.params);
+    User.findById(req.params.id, function(err, foundUser){
+        res.json(foundUser);
     });
 });
 

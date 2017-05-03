@@ -17,11 +17,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         };
         sendToken();
     });
-
-    // this.sendToken = function(){
-    //     $scope.$broadcast('eventName', { someProperty:'someValue'});
-    // };
-
+//*************************sign up
     this.signUp = function(userInfo){
         $http({
             method:'POST',
@@ -31,9 +27,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                     password: userInfo.newPassword
             }
         }).then(function(response){
-
             controller.username = response.data.user.username;
-            // console.log(controller.user);
             localStorage.setItem('token', JSON.stringify(response.data.token));
             //post request to authenticate newly registered user
             $http({
@@ -53,7 +47,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }.bind(this));
         // controller.login(userInfo);
     };
-//loginRoute
+//****************************loginRoute
     this.login = function(userInfo){
         // console.log(userInfo);
         $http({
@@ -66,7 +60,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 // }
             }
         }).then(function(response){
-            console.log("response");
+            controller.id = response.data.id,
+            console.log(controller.id);
             controller.username = response.data.username;
             controller.token = true;
             $scope.token = controller.token;
@@ -79,10 +74,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
     };
-//gets all users
+//***************************** gets all users
     this.getUsers = function(){
         $http({
-            // url: this.url + 'api/users',
             url: '/api/users',
             method: 'GET',
             headers: {
@@ -95,18 +89,30 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 controller.users = response.data;
             }
         }.bind(this));
-
     };
-
-    this.showMyAccount = function(){
+//******************************** my account
+    this.showMyAccount = function(id){
         this.showAccount = true;
+        $http({
+            url: '/api/' + id,
+            method: 'GET',
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log(response);
+            
+            if (response.data.status == 401) {
+                this.error = "Unauthorized";
+            } else {
+                controller.user = response.data;
+            }
+        }.bind(this));
     };
-
-//Updates User
+//********************************* Updates User
     this.showEdit = function(id){
         this.editableUserId = id;
     };
-
     this.update = function(user){
         console.log(user);
         $http({
@@ -146,7 +152,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         } else if(data.token){
             controller.token = true;
         };
-        console.log(controller.token)
+        // console.log(controller.token)
 	});
 
 
@@ -175,7 +181,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
         );
     };
     this.showInfo = function(index){
-        console.log(index);
+        // console.log(index);
         this.showBeerId = index;
     }
 }]);
@@ -202,7 +208,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       } else if(data.token){
           controller.token = true;
       };
-      console.log(controller.token)
+    //   console.log(controller.token)
   });
 
   //function to get the books when a query happens
@@ -220,7 +226,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
       {
           controller.foundBooks.push(response.data.docs[i]);
       }
-      console.log(response);
+    //   console.log(response);
       // let me see what this is
       //console.log(response.data.docs);
       //let me see what the data is
@@ -235,7 +241,7 @@ app.controller("BookController", ["$scope","$http", function($scope, $http) {
   };
   //call this on click to show more information about the books
   this.showBookInfo = function(index){
-      console.log(index);
+    //   console.log(index);
       this.showBookId = index;
   };
 }]);

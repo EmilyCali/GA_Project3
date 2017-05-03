@@ -1,318 +1,8 @@
-/*************************************************************/
-/*/------------------All the things-------------------------/*/
-/*************************************************************/
-html{
-    height: 100%;
-    box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-/*require fonts*/
-
-/*song for jennifer which is a serif*/
-@font-face {
-  font-family: "ASongForJennifer";
-  src: url("../fonts/asongforjennifer.ttf");
-}
-
-/*chalk dust which is a sans serif and looks like handwriting like a bubbly*/
-@font-face {
-  font-family: "ChalkDust";
-  src: url("../fonts/ChalkDust.ttf");
-}
-
-/*grutch which is a outlined block letter looking text, three d looking with scribble shading a little hard to read so only use it in small amounts*/
-@font-face {
-  font-family: "GrutchShaded";
-  src: url("../fonts/GrutchShaded.ttf");
-}
-
-/*return to sender kinda tall and thin, all caps */
-@font-face {
-  font-family: "Return to Sender";
-  src: url("../fonts/Return_To_Sender.ttf");
-}
-
-/*shaded chalk hand lettering, a cursive and a bit difficult to read*/
-@font-face {
-  font-family: "Chalk-hand-lettering-shaded";
-  src: url("../fonts/Chalk-hand-lettering-shaded_demo.ttf");
-}
-
-/*to use the above fonts/typefaces just call font family and name them, please try to also give the call a second option like cursive or sans-serif etc*/
-
-body {
-
-  /*this is a blackboard with scrolling illustrations on the sides*/
-    /*background-image: url('https://images.template.net/wp-content/uploads/2016/04/23093543/Black-Shaded-Chalkboard-Background.jpg');*/
-
-    /*this is a really dark blackboard*/
-    /*background-image: url("https://s-media-cache-ak0.pinimg.com/736x/26/cf/3c/26cf3c80b7b5923f89fba8fe140dd660.jpg");*/
-
-    /*this is a green blackboard and it makes me think of green bottles and green secretary lamps I kinda dig it*/
-    background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");
-
-    background-size: cover;
-    position: relative;
-    min-width: 600px;
-    max-width: 1024px;
-    margin: 0 auto;
-    min-height: 100%;
-    color: white;
-    margin: 0;
-    padding-bottom: 6rem;
-}
-
-ul {
-    list-style: none;
-}
-
-/*************************************************************/
-/*/-----------------------BACKGROUND------------------------/*/
-/*************************************************************/
-.container {
-    width: 80%;
-    margin: 0 auto 80px auto;
-}
-
-/*************************************************************/
-/*/-------------------------HEADER--------------------------/*/
-/*************************************************************/
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.header h1 {
-    font-size: 76px;
-    text-align: center;
-  /*font-family: "ASongForJennifer" ;*/
-  /*font-family: "ChalkDust";*/
-  font-family: "GrutchShaded";
-  /*font-family: "Return to Sender";*/
-  /*font-family: "Chalk-hand-lettering-shaded";*/
-}
-
-/*************************************************************/
-/*/------------------USER SIGN-IN SIGN-UP-------------------/*/
-/*************************************************************/
-
-.users h2 {
-  font-family: "ChalkDust";
-  font-size: 20px;
-
-}
-
-.users {
-    width: 80%;
-    margin: 0 auto;
-
-    background-color: rgba(11,11,11, 0.3);
-    border-style: ridge;
-    border-radius: 3px;
-    padding: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-}
-
-/*************************************************************/
-/*/--------------------------USER ACCOUNT-------------------/*/
-/*************************************************************/
-.user-img {
-    width:250px;
-}
-
-/*----------------------------FOOTER------------------------*/
-/*Used and modified From http://tutorialzine.com/2015/01/freebie-5-responsive-footer-templates/*/
-.footer-distributed{
-    display: flex;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-	box-sizing: border-box;
-	width: 100%;
-	font-size: 12px;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-weight: bold;
-	text-align: left;
-
-	padding: 5px 40px 10px;
-	margin-top: 80px;
-	overflow: hidden;
-}
-
-/* Footer left */
-
-.footer-distributed .footer-left{
-
-}
-
-/* Footer links */
-.footer-distributed .footer-links{
-    font-family: "ASongForJennifer" ;
-	color:  #ffffff;
-	margin: 0 0 10px;
-	padding: 0;
-}
-.footer-distributed .footer-links a{
-	display:inline-block;
-	line-height: 1.8;
-	text-decoration: none;
-	color:  white;
-}
-.footer-distributed .footer-links a:hover{
-	display:inline-block;
-	line-height: 1.8;
-	text-decoration: none;
-	color:  cornsilk;
-}
-.footer-distributed .footer-company-name{
-	color:  #8f9296;
-	font-size: 14px;
-	font-weight: normal;
-	margin: 0;
-}
-/* Footer social icons */
-.footer-distributed .footer-icons{
-	margin-top: 10px;
-}
-.footer-distributed .footer-icons a{
-	display: inline-block;
-	width: 35px;
-	height: 35px;
-	cursor: pointer;
-
-	border-radius: 2px;
-
-	font-size: 20px;
-	color: #ffffff;
-	text-align: center;
-	line-height: 35px;
-
-	margin-right: 3px;
-	margin-bottom: 5px;
-}
-/* Footer Right */
-
-.footer-distributed .footer-right{
-	float: right;
-}
-
-.footer-distributed .footer-right p{
-	display: inline-block;
-	vertical-align: top;
-	margin: 15px 42px 0 0;
-	color: #ffffff;
-}
-
-/* The contact form */
-.footer-distributed form{
-	display: inline-block;
-}
-.footer-distributed form input,
-.footer-distributed form textarea{
-	display: block;
-	border-radius: 3px;
-	box-sizing: border-box;
-	background-color:  #1f2022;
-	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
-	border: none;
-	resize: none;
-
-	font: inherit;
-	font-size: 14px;
-	font-weight: normal;
-	color:  #d1d2d2;
-
-	width: 400px;
-	padding: 18px;
-}
-.footer-distributed ::-webkit-input-placeholder {
-	color:  #5c666b;
-}
-.footer-distributed ::-moz-placeholder {
-	color:  #5c666b;
-	opacity: 1;
-}
-.footer-distributed :-ms-input-placeholder{
-	color:  #5c666b;
-}
-.footer-distributed form input{
-	height: 35px;
-	margin-bottom: 15px;
-}
-.footer-distributed form textarea{
-	height: 100px;
-	margin-bottom: 20px;
-}
-.footer-distributed form button{
-	border-radius: 3px;
-	background-color:  #33383b;
-	color: #ffffff;
-	border: 0;
-	padding: 5px 50px;
-	font-weight: bold;
-	float: right;
-}
-
-/* If you don't want the footer to be responsive, remove these media queries */
-
-@media (max-width: 1000px) {
-	.footer-distributed {
-		font: bold 14px sans-serif;
-	}
-	.footer-distributed .footer-company-name{
-		font-size: 12px;
-	}
-	.footer-distributed form input,
-	.footer-distributed form textarea{
-		width: 250px;
-	}
-	.footer-distributed form button{
-		padding: 10px 35px;
-	}
-
-}
-
-@media (max-width: 800px) {
-	.footer-distributed{
-		padding: 30px;
-	}
-	.footer-distributed .footer-left,
-	.footer-distributed .footer-right{
-		float: none;
-		max-width: 300px;
-		margin: 0 auto;
-	}
-	.footer-distributed .footer-left{
-		margin-bottom: 40px;
-	}
-	.footer-distributed form{
-		margin-top: 30px;
-	}
-	.footer-distributed form{
-		display: block;
-	}
-	.footer-distributed form button{
-		float: none;
-	}
-}
-
-/*Font*/
-/*https://github.com/fontello/fontello/wiki/How-to-use-fontello-fonts-in-your-project*/
-
 @font-face {
   font-family: 'fontello';
-  src: url('../../../font/fontello.eot?52289683');
-  src: url('../../../font/fontello.eot?52289683#iefix') format('embedded-opentype'),
-       url('../../../font/fontello.svg?52289683#fontello') format('svg');
+  src: url('../font/fontello.eot?52289683');
+  src: url('../font/fontello.eot?52289683#iefix') format('embedded-opentype'),
+       url('../font/fontello.svg?52289683#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -331,34 +21,34 @@ ul {
   }
 }
 */
-
+ 
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
   speak: none;
-
+ 
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
-
+ 
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
-
+     
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-
+ 
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
-
+ 
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
-
+ 
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
