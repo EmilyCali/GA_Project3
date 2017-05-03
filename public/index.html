@@ -78,11 +78,26 @@
                         <input type="submit" value="SUBMIT" />
                     </form>
                 <!-- show book results -->
-                    <ul>
-                        <li ng-repeat="book in bookCtrl.foundBooks track by $index">
+                    <ol>
+                        <li ng-repeat="book in bookCtrl.foundBooks track by $index" ng-click="bookCtrl.showBookInfo($index);">
                       {{book.title}}
+                          <ul ng-if="bookCtrl.showBookId === index">
+                            Author:
+                            <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
+                            {{book.author_name}}
+                            <br/><br/>
+                            Published: {{book.first_publish_year}}
+                            <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
+                            <br/><br/>
+                            Places:
+                            <!-- this is an array or publish_place -->
+                            {{book.place}}
+                            <br/><br/>
+                            Editions: {{book.edition_count}}
+
+                          </ul>
                         </li>
-                    </ul>
+                    </ol>
                 </section>
 
             </section>
