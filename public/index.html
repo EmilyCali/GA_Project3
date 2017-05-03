@@ -14,25 +14,24 @@
     <body>
 
         <section ng-controller="MainController as main">
-            <p ng-click="main.getUsers()">click here for the secret stuff</p>
+            <!-- <p ng-click="main.getUsers()">click here for the secret stuff</p>
                 <ul>
                     <li ng-repeat=" user in main.users">
                         {{ user.username}}
                     </li>
                 </ul>
-            </div>
+            </div> -->
             <section class="container">
                 <header class= "header">
                     <h1>BOOKS&amp;BEERS</h1>
                     <div ng-if="main.token" class="logged-in">
-                        <ul>
-                            <li></li>
-                        </ul>
-                        <p ng-if="main.token">Welcome, {{main.username}}! </p>
+                        <p>Welcome, {{main.username}}! </p>
+                        <p><a ng-click="main.logout()">Log Out</a></p>
+                        <p><a ng-click="main.showMyAccount()">My Account</a></p>
                     </div>
                 </header>
-                <section class="users">
-                    <section ng-if="!main.token" class="login">
+                <section ng-if="!main.token" class="users">
+                    <section class="login">
                         <h2>Log In</h2>
                         <form ng-submit="main.login(userInfo)">
                             <input  ng-model="userInfo.username" type="text" placeholder="Username" ><br/>
@@ -41,7 +40,7 @@
                         </form>
                         <p>{{main.message}}</p>
                     </section>
-                    <section ng-if="!main.token" class="new-user">
+                    <section class="new-user">
                         <h2>Registration</h2>
                         <form ng-submit="main.signUp(userInfo)">
                             <input  ng-model="userInfo.newUsername" type="text" placeholder="Username"><br/>
@@ -50,6 +49,26 @@
                         </form>
                     </section>
                 </section>
+
+                <section ng-show="main.showAccount" class="account">
+                    <ul>
+                        <li ng-click='main.showEdit(user._id)'>
+                            <ul >
+                                <li ng-model="main.username">{{main.username}}</li>
+                                <li ng-model="main.image">{{main.image}}</li>
+                                <li ng-model="main.favoriteBook">{{main.favoriteBook}}</li>
+                                <li ng-model="main.favoriteBeer">{{main.favoriteBeer}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form ng-submit="main.update(user)" class="update-user">
+                        <h3>Edit my Account</h3>
+                        <input ng-model="user.image" placeholder="Image"></br>
+                        <input ng-model="user.favortieBook" placeholder="Favorite Book"></br>
+                        <input ng-model="user.favoriteBeer" placeholder="Favorite Beer"></br>
+                    </form>
+                </section>
+
         <!-- beer search -->
             <section ng-controller="baseCtrl as base">
                 <form ng-if="base.token" ng-submit="base.find();">

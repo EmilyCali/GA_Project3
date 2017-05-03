@@ -150,15 +150,19 @@ apiRoutes.use(function(req, res, next){
     }
 });
 
-apiRoutes.get('/', function(req, res){
-    console.log('Hello! ');
-    console.log(req.user);
-    console.log(req.body.user);
-    res.send("yoyoyo");
+apiRoutes.put('/:id', function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, updatedUser){
+        if(err){
+            res.json(err);
+        }
+        res.json(updatedUser);
+    });
 });
 
 apiRoutes.get('/assignBeer', function(){
-    User.findOne({username: req.decode._doc.username}, function(){});
+    User.findOne({username: req.decode._doc.username}, function(err, foundUser){
+
+    });
 });
 
 apiRoutes.get('/users', function(req, res){

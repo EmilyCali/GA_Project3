@@ -14,8 +14,11 @@ var userSchema = Schema({
     pair: {
         beer: String,
         book: String
-    }
-    // img: String,//a url
+    },
+    image: {type:String, default: "https://www.poetryfoundation.org/harriet/wp-content/uploads/2015/07/Beer.png"},
+    favoriteBook: {type:String, default: "I haven't added my favorite book yet."},
+    favoriteBeer: {type:String, default: "I haven't added my favorite beer yet."}
+
     // books: [Book.schema], //incase?
     // beers: [Beer.schema] //incase?
 });

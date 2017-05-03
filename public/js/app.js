@@ -9,9 +9,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.user = {};
     this.token = false;
     $scope.token = this.token;
+    this.showAccount = false;
 
     $scope.$watch('token', function(newValue, oldValue){
-        console.log(newValue, oldValue);
         this.sendToken = function(){
             $scope.$broadcast('tokenChange', { token: controller.token});
         };
@@ -53,7 +53,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }.bind(this));
         // controller.login(userInfo);
     };
-
+//loginRoute
     this.login = function(userInfo){
         // console.log(userInfo);
         $http({
@@ -79,7 +79,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
     };
-
+//gets all users
     this.getUsers = function(){
         $http({
             // url: this.url + 'api/users',
@@ -98,6 +98,31 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
     };
 
+    this.showMyAccount = function(){
+        this.showAccount = true;
+    };
+
+//Updates User
+    this.showEdit = function(id){
+        this.editableUserId = id;
+    };
+
+    this.update = function(user){
+        console.log(user);
+        $http({
+            method:"PUT",
+            url: '/api/' + user._id,
+            data: user,
+            header: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            controller.editableUserId = null;
+            console.log(response);
+        }.bind(this));
+    };
+
+//logs user out
     this.logout = function(){
         localStorage.clear('token');
         location.reload();
@@ -136,9 +161,7 @@ app.controller('baseCtrl', ['$scope','$http', function($scope, $http){
 
                 for(i=0; i< response.data.data.length; i++)
                 {
-
-
-                    // controller.arr.push(response.data.data[i].name);
+                // controller.arr.push(response.data.data[i].name);
                     controller.beers.push(response.data.data[i]);
                 }
 
