@@ -26,6 +26,7 @@
                     <h1>BOOKS&amp;BEERS</h1>
             <!-- login and register area -->
                     <ul ng-if="main.token" class="logged-in">
+                      <!-- think it could be nice to change the default typeface and make the username a different typeface from that but as I was testing I lost the horizontal navbar effect so I stopped -->
                         <li>Welcome, {{main.username}}! </li>
                         <li><a ng-click="main.showMyAccount(main.id)">My Account</a></li>
                         <li><a ng-click="main.logout()">Log Out</a></li>
@@ -34,19 +35,19 @@
                 <section ng-if="!main.token" class="users">
                     <section class="login">
                         <h2>Log In</h2>
-                        <form ng-submit="main.login(userInfo)">
+                        <form class="form" ng-submit="main.login(userInfo)">
                             <input  ng-model="userInfo.username" type="text" placeholder="Username" ><br/>
                             <input  ng-model="userInfo.password"    type="password" placeholder="Password"><br/>
-                            <input type="submit" value="Log In"><br/>
+                            <input class="submit button" type="submit" value="Log In"><br/>
                         </form>
                         <p>{{main.message}}</p>
                     </section>
                     <section class="new-user">
                         <h2>Registration</h2>
-                        <form ng-submit="main.signUp(userInfo)">
+                        <form class="form" ng-submit="main.signUp(userInfo)">
                             <input  ng-model="userInfo.newUsername" type="text" placeholder="Username"><br/>
                             <input  ng-model="userInfo.newPassword"    type="password" placeholder="Password"><br/>
-                            <input type="submit" value="Sign Up"><br/>
+                            <input class="submit button" type="submit" value="Sign Up"><br/>
                         </form>
                     </section>
                 </section>
@@ -61,15 +62,15 @@
                                 <li ng-model="main.user.favoriteBook">Favorite Book: {{main.user.favoriteBook}}</li>
                                 <li ng-model="main.user.favoriteBeer">Favorite Beer: {{main.user.favoriteBeer}}</li>
                             </ul>
-                            <button ng-click="main.showEdit()"></button>
+                            <button class="button" ng-click="main.showEdit()">Edit Your Info</button>
                         </li>
                     </ul>
-                    <button ng-click="main.deleteUser(main.id)">Delete Account</button>
+                    <button class="button" ng-click="main.deleteUser(main.id)">Delete Account</button>
                 </section>
 
                 <!-- edit user info -->
                 <section ng-show="main.showEditForm">
-                    <form ng-submit="main.update(user, main.id)" class="update-user">
+                    <form ng-submit="main.update(user, main.id)" class="form update-user">
                         <h3>Edit my Account</h3>
                         Username:
                         <br/>
@@ -87,7 +88,7 @@
                         <br/>
                         <input ng-model="user.favoriteBeer" placeholder="{{main.user.favoriteBeer}}">
                         <br/>
-                        <input type="submit" value="Edit Account">
+                        <input class="submit button" type="submit" value="Edit Account">
                     </form>
                 </section>
 
@@ -95,19 +96,24 @@
                 <section ng-hide="!main.hideStuff">
                     <div ng-repeat="pair in main.selectedBooksBeers">
                         <ul ng-model="pair.name">
-                            <li>{{pair.name}}
-                                {{pair.title}}
+                            <li>
+                                You have paired
+                                {{pair.name}}
+                                with
+                                {{pair.title}}!
+                                Excellent choice!
                             </li>
                         </ul>
+                        <!-- do we want users to have more than one book and beer at a time? it should work with how we have it we just need an ng repeat i think... also do we want users to see other users pairings? do we want a click to call to the show infos on the controller and let us see more about the things but going back to thier collection and hunting by name? -->
                     </div>
                 </section>
 
         <!-- beer search -->
             <section ng-hide="main.hideStuff">
                 <section ng-if="main.isSelected">
-                    <form ng-if="main.token" ng-submit="main.find();">
+                    <form class="form" ng-if="main.token" ng-submit="main.find();">
                       <input ng-model="main.searching" type="text" placeholder="Find a Beer" />
-                      <input type="submit" value="Submit"/>
+                      <input class="submit button" type="submit" value="Submit"/>
                     </form>
                     <!-- show beers -->
                     <ol>
@@ -117,7 +123,7 @@
                                 ABV: {{beer.abv}}% <br/><br/>
                                 Beer Style: {{beer.style.description}} <br/><br/>
                                 Beer Description: {{beer.description}} <br/><br/>
-                                <button type="button" value="add" ng-click="main.addBeer(beer, main.id)"></button>
+                                <button class="submit button" type="button" value="add" ng-click="main.addBeer(beer, main.id)">Save this Beer</button>
                             </ul>
                         </li>
                     </ol>
@@ -126,14 +132,11 @@
                 </section>
 
               <!-- book search -->
-
                 <section ng-hide="main.hideStuff">
                     <section ng-if="!main.isSelected">
-
-                        <form ng-if="main.token" ng-submit="main.findBook();">
+                        <form class="form" ng-if="main.token" ng-submit="main.findBook();">
                             <input type="text" ng-model="main.searchedBook" placeholder="Find a book" />
-
-                            <input type="submit" value="SUBMIT" />
+                            <input class="submit button" type="submit" value="SUBMIT" />
                         </form>
                     <!-- show book results -->
                         <ol>
@@ -151,7 +154,7 @@
                                 <br/><br/>
                                 Editions: {{book.edition_count}}
                                 <br/><br/>
-                                <button type="button" value="add" ng-click="main.addBook(book, main.id)"></button>
+                                <button class="submit button" type="button" value="add" ng-click="main.addBook(book, main.id)"> Save this Book</button>
                               </ul>
                             </li>
                         </ol>
@@ -171,7 +174,7 @@
                             |
                             <a href="#">About</a>
                         </p>
-                        <p class="footer-company-name">BOOKS&BEERS &copy; 2017</p>
+                        <p class="footer-company-name">BOOKS&amp;BEERS &copy; 2017</p>
                     </div>
                     <div class="footer-right">
                         <div class="footer-icons">

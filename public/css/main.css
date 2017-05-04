@@ -21,7 +21,17 @@ body {
     /*background-image: url("https://s-media-cache-ak0.pinimg.com/736x/26/cf/3c/26cf3c80b7b5923f89fba8fe140dd660.jpg");*/
 
     /*this is a green blackboard and it makes me think of green bottles and green secretary lamps I kinda dig it but it needs to be desaturated a tad*/
-    background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");
+    /*background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");*/
+
+    /*this file is in our assets folder outside of the css folder, the assets folder should be outside of the css folder I will not move anything without approval please just know where this is */
+    /*also this background image has been altered to be 40 inches in hieght but will still pull a repeat if we go too far down the page with data*/
+    background-image: url("../assets/chalkboard-wallpaper-5large.jpg");
+
+
+     /*this one is too small to be useful*/
+    /*background-image: url("../assets/thinblackboard.jpg");*/
+
+
 
     background-size: cover;
     position: relative;
@@ -31,6 +41,7 @@ body {
     min-height: 100%;
     color: white;
     padding-bottom: 6rem;
+    /*opacity: 30%;*/
 }
 
 ul {
@@ -68,6 +79,7 @@ ul {
     font-family: "GrutchShaded";
   /*font-family: "Return to Sender";*/
   /*font-family: "Chalk-hand-lettering-shaded";*/
+  opacity: 70%;
 }
 
 .logged-in {
@@ -110,6 +122,32 @@ ul {
 .user-img {
     width:250px;
 }
+
+
+/*************************************************************/
+/*/--------------------------Searching Things--------------/*/
+/*************************************************************/
+
+section .form input {
+  font-family: "ASongForJennifer";
+  /*font-family: "ChalkDust";*/
+  /*font-family: "GrutchShaded";*/
+  /*font-family: "Return to Sender";*/
+  /*font-family: "Chalk-hand-lettering-shaded";*/
+}
+/*this styles all the input submits and buttons tagged with the class .button*/
+.button {
+  color: white !important;
+  background-color: none !important;
+}
+/*this makes them change when hovered on*/
+.button:hover {
+  color: black !important;
+  background-color: white;
+  opacity: 40%;
+}
+
+
 
 /*************************************************************/
 /*/--------------------------Footer-------------------------/*/
@@ -289,7 +327,9 @@ ul {
 	}
 }
 
-/*FONTS*/
+/*************************************************************/
+/*/--------------------------FONTS--------------------------/*/
+/*************************************************************/
 
 
 /*https://github.com/fontello/fontello/wiki/How-to-use-fontello-fonts-in-your-project*/

@@ -213,7 +213,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
               //set the empty array for results to go in from the api call
                 controller.beers = [];
                 //loop through the results to have the ng-repeat work in the html
-                for(i=0; i< response.data.data.length; i++)
+                for(i=0; i< 10;
+                  //response.data.data.length;
+                  i++)
                 {
                 // controller.arr.push(response.data.data[i].name);
                 //push the result beers into the emptry beer array
