@@ -50,21 +50,97 @@ Amanda please explain the struggles you had in third person
 <br/>
 Joe please explain the struggles you had in third person
 <br/>
-Emily's struggle in third person
+Emily cam across many frustations when the project began, almost every commit she had to deal with merge errors and her team was also coming accross an exciting WHAT?! github error. It was never discovered what the real problem was and the team hope to never experience it again. Emily managed this overwhelming communication error between her local files and the remote ones by seeking help from the internet and persons of experience. After getting both a diagram and list from a trusted individual and reading numerous guides online Emily installed a mergetool for terminal and has become quite confident in her handling of git issues.
+Emily began her work on the book api early with various googling. She settled on the open library search api to allow users to search for books by title, however, accessing this data became an issue when it was discovered that not every search result had the same keys, and many of the keys were paired with arrays. This meant that an item was an object containing some strings, some numbers and some arrays of strings that were variable lengths. She approached this prospect cautiously and was able to grab data but was having trouble sending it to the collection it needed to be in. Upon consultation with both Karolin and Dan (the instructor and the teaching assistant) she somehow, as she was trying to show that something was wrong, made it work.
 
 <h2>Styling Decisions</h2>
 <br/>
 PROBABLY SHOULD ACTUALLY DRAW WIRE FRAMES, WE SPOKE TO EACH OTHER PRETTY WELL ABOUT IT BUT DON'T ACTUALLY HAVE IMAGES TO BACK UP OUR IDEAS
 I can do this in the morning and load them up/ talk about them with you all before we load them
 =========================================================================
-<h2>Functionality</h2>
-HOW OUR APP BEHAVES WHAT CRUD ROUTES DOES IT DO DOES IT USE ALL OF MEAN STACK WHAT NPMS DID WE DO AND WHY WHY ARE OUR MODELS THE WAY THEY ARE etc
-API DOCUMENTATION LINKS MAYBE
-=========================================================================
+<h2>Functionality</h2
+<br/>
+<h5>User Stories</h5>
+<br/>
+The user should be able to create an account.
+The user should be able to log in with an account they created.
+ONCE THE USER IS LOGGED IN
+The user should be able to search for a beer.
+The user should be able to see more information about that beer.
+The user should be able to save that beer.
+The user should be able to search for a book.
+The user should be able to see more information about that book.
+The user should be able to save that book.
+The user should be able to confirm the beer and book pairing that they have made.
+The user should be able to see the current books and beers for themselves and other users in a community page.
+The user should be able to create multiple pairings of beers and books.
+The user should be able to look at their profile.
+The user should be able to edit their profile.
+The user should be able to log out of their account.
+<br/>
+<h5>The 3rd Party APIs</h5>
+<br/>
+Brewery DB
+
+
+<bold>Open library<bold>
+Open Library is an API that contains a vast amount of data about books. There are several APIs that can be used for free by the public through Open Library. The main API is the Open Library Book API which can be queried using parameters such as ISBNs and other codes. For the purposes of this project the Open Library Search API was used as it is able to take titles and author names as queries, which is more user friendly. The data returned on a query to this Search API looks as follows but may or may not contain all the keys below:
+
+bookObject: {
+  author_key: [],
+  author_name: [], <i>this may or may not actually contain the author name</i>
+  cover_edition_key: String,
+  cover_i: Number,
+  ebook_count_i: Number,
+  edition_count: Number,
+  edition_key: [],
+  first_publish_year: YearDate, <i>this is usually mimicked in the publish_date and publish_year but not every book has every one of these</i>
+  first_sentence: [],
+  has_fulltext: Boolean,
+  ia: [],
+  ia_box_id: [],
+  ia_collection_s: String,
+  id_goodreads: [],
+  id_librarything: [],
+  isbn: [],
+  key: String,
+  language: [],
+  last_modified_i: Number,
+  lccn: [],
+  person: [],
+  place: [], <i>may refer to the place the book is about or the place the book was created</i>
+  publish_date: [],
+  publish_place: [],
+  publish_year: [],
+  publisher: [],
+  seed: [],
+  subject: [],
+  text: [],
+  time: [],
+  title: String,
+  title_suggest: String,
+  type: String
+}
+
+Almost every book returned had some variation of place, date and author, because of this those were the keys that the team decided to keep, show and put into the book collection when needed.
+
+<br/>
 
 
 <h2>Special Thanks</h2>
-we an thank the class and maybe link to extra notes and stack overflow documents that helped us
+<br/>
+Emily, Amanda and Joe would like to thank the General Assembly team for allowing them the opportunity to work as a team and the support provided by the instructors (Matt Huntington, Karolin Rafalski, Kristyn Bryan and Thom Page) and the TAs (Abi Klein, Kaylie Weable and Dan Lawrence).
+
+Emily would also like to thank Sergio Martins for the github tutorials and sometimes looking at the code.
 
 <h2>Meet the Team</h2>
-WHO WE ARE AND WHY WE KICK BUTT
+<br/>
+Amanda - who are you and why do you kick butt
+
+
+
+Joe- who are you and why do you kick butt
+
+
+
+Emily is a Booz Allen Employee who was offered the opportunity to develop her skills by taking the General Assembly Web Development Immersive Remote program in the spring of 2017. She holds a bachelor's degree in Biomedical Photographic Communications and, prior to this class, she was working on her own time to improve upon her css and html knowledge. She is very eager to put all that she is learning to work in her next position. She likes to make quilts and imagine css animations in her free time.
