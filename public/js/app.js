@@ -284,7 +284,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     $http({
       method: "GET",
       //use the open library search api
-      url: "http://openlibrary.org/search.json?q=" + this.searchedBook
+      url: "https://openlibrary.org/search.json?q=" + this.searchedBook
       //may or may not need to specify data
       //data: this
     }).then(function(response) {//success
