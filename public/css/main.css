@@ -62,7 +62,6 @@ a:hover {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: space-around;
     width: 80%;
     margin: 0 auto 80px auto;
 }
@@ -180,10 +179,10 @@ section .form input {
 
 section .search {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     width: 800px;
     margin-left: 5%;
+    text-align: justify;
 }
 
 .search-bar{
@@ -197,9 +196,34 @@ section .search {
 /*************************************************************/
 .beer{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: flex-start;
+    text-align: justify;
+}
+
+#find{
+    display:inline-block;
+    font-family: "ASongForJennifer" ;
+    /*font-family: "ChalkDust";*/
+    /*font-family: "GrutchShaded";*/
+    /*font-family: "Return to Sender";*/
+    /*font-family: "Chalk-hand-lettering-shaded";*/
+}
+#your{
+    display:inline-block;
+    /*font-family: "ASongForJennifer" ;*/
+    /*font-family: "ChalkDust";*/
+    /*font-family: "GrutchShaded";*/
+    /*font-family: "Return to Sender";*/
+    font-family: "Chalk-hand-lettering-shaded";
+
+}
+#beer{
+    display:inline-block;
+    /*font-family: "ASongForJennifer" ;*/
+    /*font-family: "ChalkDust";*/
+    /*font-family: "GrutchShaded";*/
+    font-family: "Return to Sender";
+    /*font-family: "Chalk-hand-lettering-shaded";*/
+
 }
 /*************************************************************/
 /*/--------------------------Footer-------------------------/*/
