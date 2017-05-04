@@ -102,18 +102,21 @@ a:hover {
 /*************************************************************/
 /*/----------------------NAVIGATION-------------------------/*/
 /*************************************************************/
-nav{
+.nav{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 10%;
 }
 
 
-nav-left{
+#nav-left{
 
 }
 
-nav-right{
+#nav-right{
 
 }
 
@@ -176,15 +179,16 @@ section .form input {
 }
 
 section .search {
+    margin-top: 15%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: 800px;
-    margin-left: 8%;
+    margin-left: 5%;
 }
 
 .search-bar{
-    width: 300px;
+    width: 100px;
     padding: 30px;
     margin: 10px;
 }
