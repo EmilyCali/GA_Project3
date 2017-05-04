@@ -48,6 +48,14 @@ ul {
     list-style: none;
 }
 
+a {
+    color: white;
+}
+
+a:hover {
+    color:cornsilk;
+}
+
 /*************************************************************/
 /*/-----------------------BACKGROUND------------------------/*/
 /*************************************************************/
@@ -92,6 +100,24 @@ ul {
 }
 
 /*************************************************************/
+/*/----------------------NAVIGATION-------------------------/*/
+/*************************************************************/
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+nav-left{
+
+}
+
+nav-right{
+
+}
+
+/*************************************************************/
 /*/------------------USER SIGN-IN SIGN-UP-------------------/*/
 /*************************************************************/
 
@@ -130,6 +156,7 @@ ul {
 
 section .form input {
   font-family: "ASongForJennifer";
+
   /*font-family: "ChalkDust";*/
   /*font-family: "GrutchShaded";*/
   /*font-family: "Return to Sender";*/
@@ -139,12 +166,27 @@ section .form input {
 .button {
   color: white !important;
   background-color: none !important;
+
 }
 /*this makes them change when hovered on*/
 .button:hover {
   color: black !important;
   background-color: white;
   opacity: 40%;
+}
+
+section .search {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 800px;
+    margin-left: 8%;
+}
+
+.search-bar{
+    width: 300px;
+    padding: 30px;
+    margin: 10px;
 }
 
 
@@ -166,7 +208,7 @@ section .form input {
 	text-align: left;
 
 	padding: 5px 40px 10px;
-	margin-top: 80px;
+	margin-top: 40px;
 	overflow: hidden;
 }
 

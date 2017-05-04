@@ -14,6 +14,26 @@
     <body>
 
         <section ng-controller="MainController as main">
+            <div class="nav">
+                <ul ng-if="main.token" class="logged-in" id="nav-left">
+                  <!-- think it could be nice to change the default typeface and make the username a different typeface from that but as I was testing I lost the horizontal navbar effect so I stopped -->
+                  <li>
+                      <a href="#">About</a>
+                  </li>
+                    <li>
+                        Welcome, {{main.username}}!
+                    </li>
+                    <li>
+                        <a href="#">Create a new pair</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul ng-if="main.token" class=logged-in id-"nav-right">
+                    <li><a ng-click="main.showMyAccount(main.id)">My Account</a></li>
+                    <li><a ng-click="main.logout()">Log Out</a></li>
+                </ul>
+            </div>
             <!-- <p ng-click="main.getUsers()">click here for the secret stuff</p>
                 <ul>
                     <li ng-repeat=" user in main.users">
@@ -25,12 +45,6 @@
                 <header class= "header">
                     <h1>BOOKS&amp;BEERS</h1>
             <!-- login and register area -->
-                    <ul ng-if="main.token" class="logged-in">
-                      <!-- think it could be nice to change the default typeface and make the username a different typeface from that but as I was testing I lost the horizontal navbar effect so I stopped -->
-                        <li>Welcome, {{main.username}}! </li>
-                        <li><a ng-click="main.showMyAccount(main.id)">My Account</a></li>
-                        <li><a ng-click="main.logout()">Log Out</a></li>
-                    </ul>
                 </header>
                 <section ng-if="!main.token" class="users">
                     <section class="login">
@@ -58,7 +72,7 @@
                         <li>
                             <ul>
                                 <li ng-model="main.user.username">Username: {{main.user.username}}</li>
-                                <li ng-model="main.user.image"><img class="user-img" src="{{main.user.image}}" alt="profile image"></li>
+                                <li ng-model="main.user.image"><img class="user-img" src="{{main.user.image}}" alt="profile image"/></li>
                                 <li ng-model="main.user.favoriteBook">Favorite Book: {{main.user.favoriteBook}}</li>
                                 <li ng-model="main.user.favoriteBeer">Favorite Beer: {{main.user.favoriteBeer}}</li>
                             </ul>
@@ -111,7 +125,7 @@
 
         <!-- beer search -->
             <section ng-hide="main.hideStuff">
-                <section ng-if="main.isSelected">
+                <section class="search" ng-if="main.isSelected">
                     <form class="form" ng-if="main.token" ng-submit="main.find();">
                       <input ng-model="main.searching" type="text" placeholder="Find a Beer" />
                       <input class="submit button" type="submit" value="Submit"/>
@@ -130,13 +144,13 @@
                     </ol>
                 </section>
 
-                </section>
+            </section>
 
               <!-- book search -->
-                <section ng-hide="main.hideStuff">
-                    <section ng-if="!main.isSelected">
+                <section  ng-hide="main.hideStuff">
+                    <section class="search" ng-if="!main.isSelected">
                         <form class="form" ng-if="main.token" ng-submit="main.findBook();">
-                            <input type="text" ng-model="main.searchedBook" placeholder="Find a book" />
+                            <input class="search-bar" type="text" ng-model="main.searchedBook" placeholder="Find a book" />
                             <input class="submit button" type="submit" value="SUBMIT" />
                         </form>
                     <!-- show book results -->
