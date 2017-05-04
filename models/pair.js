@@ -9,7 +9,8 @@ var Schema = mongoose.Schema;
 
 var pairSchema = Schema({
     beer: String,
-    book: String
+    book: String,
+    userId: String
 });
 
 

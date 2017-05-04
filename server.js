@@ -170,6 +170,20 @@ apiRoutes.get('/pairs', function(req, res){
     });
 });
 
+apiRoutes.post('/pairs', function(req, res){
+    Pair.create(req.body, function(error, createdPair){
+        if (error) {
+            res.json(error);
+        }
+        res.json({
+            createdPair: createdPair,
+            //give the beer the user id so it can be matched to the user
+            id: req.decoded._doc._id
+        });
+        console.log(createdPair);
+    });
+});
+
 //get all the users
 apiRoutes.get('/users', function(req, res){
     User.find({}, function(err, foundUsers){

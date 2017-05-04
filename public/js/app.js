@@ -213,6 +213,26 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             console.log(response);
         })
     }
+    this.addPair = function(beerName, bookName, id){
+        $http({
+            method:"POST",
+            url: '/api/pairs',
+            data: {
+                beer: beerName,
+                book: bookName,
+                userId: id,
+            },
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(
+            function(response) {
+                console.log(response);
+
+            }
+        );
+
+    };
 
 //////////////////////////////////////////|
 //----------------Joe's code--------------|
