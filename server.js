@@ -156,7 +156,7 @@ apiRoutes.use(function(req, res, next){
 /////////////////////////////////////|
 
 apiRoutes.put('/pair', function(req, res){
-    User.findByIdandUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
+    User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
         res.json(updatedUser);
     });
 });
