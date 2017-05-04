@@ -240,13 +240,14 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
     };
 
-    // this.returnToSearch = function(){
-    //     this.hideStuff = false;
-    //     this.showAllTheLikes = false;
-    //     this.showUsers = false;
-    //     controller.isSelected = true;
-    //
-    // }
+    this.returnToSearch = function(){
+        this.hideStuff = false;
+        this.showAllTheLikes = false;
+        this.showUsers = true;
+        this.isSelected = true;
+        this.getUsers();
+
+    }
 
 //////////////////////////////////////////|
 //----------------Joe's code--------------|
@@ -305,6 +306,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             function(response) {
                 controller.beerName = response.config.data.beerObject.name;
                 controller.isSelected = false;
+                console.log(controller.isSelected);
             }
         );
         this.selectedBooksBeers.push(beerObject);

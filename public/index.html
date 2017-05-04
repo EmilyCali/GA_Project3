@@ -24,7 +24,7 @@
                       <a href="#">About</a>
                   </li>
                     <li>
-                        <a href="#">Create a new pair</a>
+                        <a ng-click="main.returnToSearch()" href="#">Create a new pair</a>
                     </li>
                 </ul>
                 <ul ng-if="main.token" class=logged-in id-"nav-right">
@@ -144,9 +144,10 @@
 
 
         <!-- beer search -->
-            <section class="beer" ng-hide="main.hideStuff">
 
-                <section class="search" ng-if="main.isSelected">
+            <section class="beer" ng-if="main.isSelected" ng-hide="main.hideStuff">
+                <section class="search">
+
                     <form class="form" ng-if="main.token" ng-submit="main.find();">
                         <h2 id="find">find</h2>
                         <h2 id="your"> your</h2>
