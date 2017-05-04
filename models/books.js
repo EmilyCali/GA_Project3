@@ -12,6 +12,7 @@ var bookSchema = mongoose.Schema({
   userId: String
 
 //HAD THE ABOVE AS ARRAYS LIKE IN API FORMAT BUUUUT IT WAS NOT FILLING THEM UPON CREATE
+//might need to set the author_name and publish years as arrays again if we want to read them later, otherwise they will probably be seen as null
 
 
 

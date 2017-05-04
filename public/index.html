@@ -24,7 +24,7 @@
             <section class="container">
                 <header class= "header">
                     <h1>BOOKS&amp;BEERS</h1>
-
+            <!-- login and register area -->
                     <ul ng-if="main.token" class="logged-in">
                         <li>Welcome, {{main.username}}! </li>
                         <li><a ng-click="main.showMyAccount(main.id)">My Account</a></li>
@@ -89,8 +89,9 @@
                         <br/>
                         <input type="submit" value="Edit Account">
                     </form>
-
                 </section>
+
+          <!-- this shows the paired beer and book by name and title -->
                 <section ng-hide="!main.hideStuff">
                     <div ng-repeat="pair in main.selectedBooksBeers">
                         <ul ng-model="pair.name">
@@ -113,13 +114,10 @@
                         <li ng-repeat="beer in main.beers track by $index" ng-click="main.showInfo($index)">
                             {{beer.name}}
                             <ul ng-if="main.showBeerId === $index">
-
                                 ABV: {{beer.abv}}% <br/><br/>
                                 Beer Style: {{beer.style.description}} <br/><br/>
                                 Beer Description: {{beer.description}} <br/><br/>
                                 <button type="button" value="add" ng-click="main.addBeer(beer, main.id)"></button>
-
-
                             </ul>
                         </li>
                     </ol>
@@ -142,28 +140,26 @@
                             <li ng-repeat="book in main.foundBooks track by $index" ng-click="main.showBookInfo($index);">
                           {{book.title}}
                               <ul ng-if="main.showBookId === $index">
+                                <!-- author places and publish dates are all in arrays, used array indexes to prevent nested ng repeats -->
                                 Author:
-                                <!-- this is hidden inside an array, use a loop to get it out? or an ng repeat?  if we do another repeat we can't nest it.. maybe we need to extrac this in the get-->
                                 {{book.author_name[0]}}
                                 <br/><br/>
                                 Published: {{book.first_publish_year}} {{book.publish_year[0]}} {{book.publish_date[0]}}
-                                <!-- or this could be the publish_date or publish_year which are arrays but usually if it is these they hold  the same value or one had month and day-->
                                 <br/><br/>
                                 Places:
-                                <!-- this is an array or publish_place -->
                                 {{book.publish_place[0]}} {{book.place[0]}} {{book.place[1]}} {{book.place[2]}} {{book.place[3]}}
                                 <br/><br/>
                                 Editions: {{book.edition_count}}
                                 <br/><br/>
                                 <button type="button" value="add" ng-click="main.addBook(book, main.id)"></button>
-
-
                               </ul>
                             </li>
                         </ol>
                     </section>
 
                 </section>
+
+            <!-- footer area -->
                 <footer class="footer-distributed">
                     <div class="footer-left">
                         <p class="footer-links">
