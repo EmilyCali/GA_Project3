@@ -38,6 +38,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.selectedBooks = [];
     this.hideStuff = false;
     this.showAllTheLikes = false;
+    this.showUsers = false;
 
 
 //*************************sign up
@@ -94,6 +95,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             //toggle the token
             controller.token = true;
             $scope.token = controller.token;
+
+            // controller.getUsers();
 
             //if there is not a success
             if(!response.data.success){
@@ -198,6 +201,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             console.log(response);
             console.log("pair working?");
             controller.showAllTheLikes = true;
+            controller.showUsers = false;
             console.log(this.showAllTheLikes);
         });
     };
@@ -228,6 +232,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }).then(
             function(response) {
                 console.log(response);
+                controller.getUsers();
+
 
             }
         );

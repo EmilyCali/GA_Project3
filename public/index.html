@@ -52,6 +52,17 @@
                     </section>
                 </section>
 
+                <!-- Community Page -->
+                <section ng-if="!main.showUsers">
+                    <div>
+                        <div ng-repeat="user in main.users">
+                                <h5>Username: {{user.username}}</h5><br/>
+                                Currently Reading: {{user.pair[0].book}}<br/>
+                                Currently Drinking: {{user.pair[0].beer}}<br/>
+                        </div>
+                    </div>
+                </section>
+
               <!-- user profile -->
                 <section ng-show="main.showAccount" class="account">
                     <ul>
