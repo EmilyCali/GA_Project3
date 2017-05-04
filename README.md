@@ -60,7 +60,7 @@ I can do this in the morning and load them up/ talk about them with you all befo
 =========================================================================
 <h2>Functionality</h2
 <br/>
-<h5>User Stories</h5>
+<h4>User Stories</h4>
 <br/>
 The user should be able to create an account.
 The user should be able to log in with an account they created.
@@ -78,53 +78,70 @@ The user should be able to look at their profile.
 The user should be able to edit their profile.
 The user should be able to log out of their account.
 <br/>
-<h5>The 3rd Party APIs</h5>
+
+<h4>The 3rd Party APIs</h4>
 <br/>
-Brewery DB
+<bold>Brewery DB</bold>
 
 
 <bold>Open library<bold>
 Open Library is an API that contains a vast amount of data about books. There are several APIs that can be used for free by the public through Open Library. The main API is the Open Library Book API which can be queried using parameters such as ISBNs and other codes. For the purposes of this project the Open Library Search API was used as it is able to take titles and author names as queries, which is more user friendly. The data returned on a query to this Search API looks as follows but may or may not contain all the keys below:
 
-bookObject: {
-  author_key: [],
-  author_name: [], <i>this may or may not actually contain the author name</i>
-  cover_edition_key: String,
-  cover_i: Number,
-  ebook_count_i: Number,
-  edition_count: Number,
-  edition_key: [],
-  first_publish_year: YearDate, <i>this is usually mimicked in the publish_date and publish_year but not every book has every one of these</i>
-  first_sentence: [],
-  has_fulltext: Boolean,
-  ia: [],
-  ia_box_id: [],
-  ia_collection_s: String,
-  id_goodreads: [],
-  id_librarything: [],
-  isbn: [],
-  key: String,
-  language: [],
-  last_modified_i: Number,
-  lccn: [],
-  person: [],
-  place: [], <i>may refer to the place the book is about or the place the book was created</i>
-  publish_date: [],
-  publish_place: [],
-  publish_year: [],
-  publisher: [],
-  seed: [],
-  subject: [],
-  text: [],
-  time: [],
-  title: String,
-  title_suggest: String,
-  type: String
+bookObject: {<br/>
+  author_key: [],<br/>
+  author_name: [], <i>this may or may not actually contain the author name</i><br/>
+  cover_edition_key: String,<br/>
+  cover_i: Number,<br/>
+  ebook_count_i: Number,<br/>
+  edition_count: Number,<br/>
+  edition_key: [],<br/>
+  first_publish_year: YearDate, <i>this is usually mimicked in the publish_date and publish_year but not every book has every one of these</i><br/>
+  first_sentence: [],<br/>
+  has_fulltext: Boolean,<br/>
+  ia: [],<br/>
+  ia_box_id: [],<br/>
+  ia_collection_s: String,<br/>
+  id_goodreads: [],<br/>
+  id_librarything: [],<br/>
+  isbn: [],<br/>
+  key: String,<br/>
+  language: [],<br/>
+  last_modified_i: Number,<br/>
+  lccn: [],<br/>
+  person: [],<br/>
+  place: [], <i>may refer to the place the book is about or the place the book was created</i><br/>
+  publish_date: [],<br/>
+  publish_place: [],<br/>
+  publish_year: [],<br/>
+  publisher: [],<br/>
+  seed: [],<br/>
+  subject: [],<br/>
+  text: [],<br/>
+  time: [],<br/>
+  title: String,<br/.
+  title_suggest: String,<br/>
+  type: String<br/>
 }
 
 Almost every book returned had some variation of place, date and author, because of this those were the keys that the team decided to keep, show and put into the book collection when needed.
 
+<h4>NPMS</h4>
 <br/>
+<bold>MEAN Stack</bold>
+<bold>JSON Web Tokens</bold>
+<bold>Body Parser</bold>
+<bold>Morgan</bold>
+<bold>Bycrypt</bold>
+
+
+
+
+<br/>
+
+<h2>Working as a Team</h2>
+<br/>
+Emily
+
 
 
 <h2>Special Thanks</h2>
