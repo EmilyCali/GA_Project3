@@ -202,6 +202,18 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         });
     };
 
+    this.getPairs = function(){
+        $http({
+            method:'GET',
+            url:'/api/pairs',
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log(response);
+        })
+    }
+
 //////////////////////////////////////////|
 //----------------Joe's code--------------|
 //////////////////////////////////////////|

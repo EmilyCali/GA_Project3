@@ -14,6 +14,7 @@ var config     = require('./config/database.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model user
 var Book       = require('./models/books.js');// get mongoose model book
 var Beer       = require('./models/beers.js');//get mongoose model beer
+var Pair       = require('./models/pair.js');//get mongoose model pair
 
 
 //////////////////////////////////////////|
@@ -160,6 +161,12 @@ apiRoutes.use(function(req, res, next){
 apiRoutes.put('/pair', function(req, res){
     User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
         res.json(updatedUser);
+    });
+});
+
+apiRoutes.get('/pairs', function(req, res){
+    Pair.findById(req.params.id, function(err, foundId){
+        res.json(foundId);
     });
 });
 
