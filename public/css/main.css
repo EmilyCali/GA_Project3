@@ -27,7 +27,6 @@ body {
     /*also this background image has been altered to be 40 inches in hieght but will still pull a repeat if we go too far down the page with data*/
     background-image: url("../assets/chalkboard-wallpaper-5large.jpg");
 
-
      /*this one is too small to be useful*/
     /*background-image: url("../assets/thinblackboard.jpg");*/
 
@@ -71,11 +70,12 @@ a:hover {
 /*/-------------------------HEADER--------------------------/*/
 /*************************************************************/
 .header {
+    /*height: 30%;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    /*background-image: url("../assets/booksandbeerslogo.png");*/
 }
 
 .header h1 {
@@ -88,6 +88,7 @@ a:hover {
   /*font-family: "Return to Sender";*/
   /*font-family: "Chalk-hand-lettering-shaded";*/
   opacity: 70%;
+
 }
 
 .logged-in {
