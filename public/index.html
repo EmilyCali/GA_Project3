@@ -144,8 +144,8 @@
 
 
         <!-- beer search -->
-            <section class="beer" ng-hide="main.hideStuff">
-                <section class="search" ng-if="main.isSelected">
+            <section class="beer" ng-if="main.isSelected" ng-hide="main.hideStuff">
+                <section class="search">
                     <form class="form" ng-if="main.token" ng-submit="main.find();">
                       <input ng-model="main.searching" type="text" placeholder="Find a Beer" />
                       <input class="submit button" type="submit" value="Submit"/>

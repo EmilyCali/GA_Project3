@@ -306,6 +306,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             function(response) {
                 controller.beerName = response.config.data.beerObject.name;
                 controller.isSelected = false;
+                console.log(controller.isSelected);
             }
         );
         this.selectedBooksBeers.push(beerObject);
