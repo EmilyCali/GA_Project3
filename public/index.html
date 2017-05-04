@@ -144,13 +144,15 @@
 
 
         <!-- beer search -->
-            <section ng-hide="main.hideStuff">
+            <section class="beer" ng-hide="main.hideStuff">
                 <section class="search" ng-if="main.isSelected">
                     <form class="form" ng-if="main.token" ng-submit="main.find();">
                       <input ng-model="main.searching" type="text" placeholder="Find a Beer" />
                       <input class="submit button" type="submit" value="Submit"/>
                     </form>
+                </section>
                     <!-- show beers -->
+                <section class="show-beers">
                     <ol>
                         <li ng-repeat="beer in main.beers track by $index" ng-click="main.showInfo($index)">
                             {{beer.name}}

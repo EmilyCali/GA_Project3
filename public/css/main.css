@@ -179,7 +179,6 @@ section .form input {
 }
 
 section .search {
-    margin-top: 15%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -193,8 +192,15 @@ section .search {
     margin: 10px;
 }
 
-
-
+/*************************************************************/
+/*/--------------------------BEEEER-------------------------/*/
+/*************************************************************/
+.beer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: flex-start;
+}
 /*************************************************************/
 /*/--------------------------Footer-------------------------/*/
 /*************************************************************/
@@ -212,7 +218,7 @@ section .search {
 	text-align: left;
 
 	padding: 5px 40px 10px;
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 	overflow: hidden;
 }
 
