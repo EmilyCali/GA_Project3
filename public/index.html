@@ -24,7 +24,7 @@
                         Welcome, {{main.username}}!
                     </li>
                     <li>
-                        <a href="#">Create a new pair</a>
+                        <a ng-click="main.returnToSearch()" href="#">Create a new pair</a>
                     </li>
                 </ul>
                 <ul ng-if="main.token" class=logged-in id-"nav-right">

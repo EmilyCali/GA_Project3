@@ -240,13 +240,14 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
     };
 
-    // this.returnToSearch = function(){
-    //     this.hideStuff = false;
-    //     this.showAllTheLikes = false;
-    //     this.showUsers = false;
-    //     controller.isSelected = true;
-    //
-    // }
+    this.returnToSearch = function(){
+        this.hideStuff = false;
+        this.showAllTheLikes = false;
+        this.showUsers = true;
+        this.isSelected = true;
+        this.getUsers();
+
+    }
 
 //////////////////////////////////////////|
 //----------------Joe's code--------------|
