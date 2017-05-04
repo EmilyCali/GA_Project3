@@ -16,7 +16,6 @@
         <section ng-controller="MainController as main">
             <div class="nav">
                 <ul ng-if="main.token" class="logged-in" id="nav-left">
-                  <!-- think it could be nice to change the default typeface and make the username a different typeface from that but as I was testing I lost the horizontal navbar effect so I stopped -->
                   <li>
                       <a href="#">About</a>
                   </li>
@@ -27,7 +26,7 @@
                         <a ng-click="main.returnToSearch()" href="#">Create a new pair</a>
                     </li>
                 </ul>
-                <ul ng-if="main.token" class=logged-in id-"nav-right">
+                <ul ng-if="main.token" class="logged-in" id="nav-right">
                     <li><a ng-click="main.showMyAccount(main.id)">My Account</a></li>
                     <li><a ng-click="main.logout()">Log Out</a></li>
                 </ul>
@@ -43,7 +42,7 @@
                 <header class= "header">
                     <!-- <h1>BOOKS&amp;BEERS</h1>
                     <h1>BEERS&amp;BOOKS</h1> -->
-                    <img id="main-logo"src="/assets/booksandbeerslogo.png"/>
+                    <img id="main-logo" src="/assets/booksandbeerslogo.png"/>
             <!-- login and register area -->
                 </header>
                 <section ng-if="!main.token" class="users">
@@ -136,10 +135,9 @@
                           <button ng-click="main.pair(main.selectedBooksBeers[0].name, main.selectedBooksBeers[1].title); main.addPair(main.selectedBooksBeers[0].name, main.selectedBooksBeers[1].title, main.id);" type="button" class="button" name="button">Confirm Selection</button>
 
 
-                      </li>
+                      <!-- </li> -->
                   </ul>
                   Excellent choice! <br/>
-                  <!-- do we want users to have more than one book and beer at a time? it should work with how we have it we just need an ng repeat i think... also do we want users to see other users pairings? do we want a click to call to the show infos on the controller and let us see more about the things but going back to thier collection and hunting by name? -->
               </div>
           </section>
 
