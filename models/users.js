@@ -11,10 +11,10 @@ var userSchema = Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     admin: {type: Boolean, default: false},
-    pair: {
+    pair: [{
         beer: String,
         book: String
-    },
+    }],
     image: {type:String, default: "https://www.poetryfoundation.org/harriet/wp-content/uploads/2015/07/Beer.png"},
     favoriteBook: {type:String, default: "I haven't added my favorite book yet."},
     favoriteBeer: {type:String, default: "I haven't added my favorite beer yet."}
