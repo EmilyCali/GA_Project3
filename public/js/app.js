@@ -37,6 +37,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.showBookId = "";
     this.selectedBooks = [];
     this.hideStuff = false;
+    this.showAllTheLikes = false;
 
 
 //*************************sign up
@@ -195,7 +196,42 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             console.log(response);
+            console.log("pair working?");
+            controller.showAllTheLikes = true;
+            console.log(this.showAllTheLikes);
         });
+    };
+
+    this.getPairs = function(){
+        $http({
+            method:'GET',
+            url:'/api/pairs',
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log(response);
+        })
+    }
+    this.addPair = function(beerName, bookName, id){
+        $http({
+            method:"POST",
+            url: '/api/pairs',
+            data: {
+                beer: beerName,
+                book: bookName,
+                userId: id,
+            },
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(
+            function(response) {
+                console.log(response);
+
+            }
+        );
+
     };
 
 //////////////////////////////////////////|
@@ -258,7 +294,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         );
         this.selectedBooksBeers.push(beerObject);
-        console.log(this.selectedBeers);
+        console.log(this.selectedBooksBeers);
     };
 
 
@@ -327,10 +363,13 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     },
     function(response) { //failure
       console.log(response);
+
     });
     //console.log(index);
     //this.selectedBooks.push(index);
     //console.log(this.selectedBooks);
+    this.selectedBooksBeers.push(bookObject);
+    console.log(this.selectedBooksBeers);
   };
 
   //this gets us the user id so we can attach it to the book we want to give to the looged in user
@@ -349,13 +388,13 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         function(response) {//failure
           console.log(response);
         });
-    this.selectedBooksBeers.push(bookObject);
 
     //console.log(index);
     //this.selectedBooks.push(index);
     //console.log(this.selectedBooks);
-  };
 
+
+  };
 
 
 

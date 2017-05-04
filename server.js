@@ -14,6 +14,7 @@ var config     = require('./config/database.js');//get config.js
 var User       = require('./models/users.js');//get mongoose model user
 var Book       = require('./models/books.js');// get mongoose model book
 var Beer       = require('./models/beers.js');//get mongoose model beer
+var Pair       = require('./models/pair.js');//get mongoose model pair
 
 
 //////////////////////////////////////////|
@@ -158,8 +159,28 @@ apiRoutes.use(function(req, res, next){
 
 //create a pair that includes the users selected beer and book
 apiRoutes.put('/pair', function(req, res){
-    User.findByIdandUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
+    User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
         res.json(updatedUser);
+    });
+});
+
+apiRoutes.get('/pairs', function(req, res){
+    Pair.findById(req.params.id, function(err, foundId){
+        res.json(foundId);
+    });
+});
+
+apiRoutes.post('/pairs', function(req, res){
+    Pair.create(req.body, function(error, createdPair){
+        if (error) {
+            res.json(error);
+        }
+        res.json({
+            createdPair: createdPair,
+            //give the beer the user id so it can be matched to the user
+            id: req.decoded._doc._id
+        });
+        console.log(createdPair);
     });
 });
 
