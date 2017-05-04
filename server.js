@@ -161,6 +161,8 @@ apiRoutes.use(function(req, res, next){
 apiRoutes.put('/pair', function(req, res){
     User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
         res.json(updatedUser);
+        console.log('==========================================');
+        console.log("this is the updated user info:" + updatedUser);
     });
 });
 
@@ -169,6 +171,14 @@ apiRoutes.get('/pairs', function(req, res){
         res.json(foundId);
     });
 });
+
+apiRoutes.get('/getUser', function(req, res){
+    User.findById(req.decoded._doc._id, function(err, foundUser){
+        res.json(foundUser);
+        console.log("this is the get user route found user:" + foundUser);
+    });
+});
+
 
 apiRoutes.post('/pairs', function(req, res){
     Pair.create(req.body, function(error, createdPair){
@@ -181,6 +191,18 @@ apiRoutes.post('/pairs', function(req, res){
             id: req.decoded._doc._id
         });
         console.log(createdPair);
+    });
+});
+
+
+apiRoutes.put('/pairupdate', function(req, res){
+    console.log("inside server pair put route");
+    console.log(req);
+    Pair.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true},
+    function(err, updatedPair){
+        console.log(res);
+        res.json(updatedPair);
+        console.log(updatedPair);
     });
 });
 

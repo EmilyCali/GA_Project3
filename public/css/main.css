@@ -23,15 +23,12 @@ body {
     /*this is a green blackboard and it makes me think of green bottles and green secretary lamps I kinda dig it but it needs to be desaturated a tad*/
     /*background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");*/
 
-    /*this file is in our assets folder outside of the css folder, the assets folder should be outside of the css folder I will not move anything without approval please just know where this is */
-    /*also this background image has been altered to be 40 inches in hieght but will still pull a repeat if we go too far down the page with data*/
-    background-image: url("../assets/chalkboard-wallpaper-5large.jpg");
-
-     /*this one is too small to be useful*/
-    /*background-image: url("../assets/thinblackboard.jpg");*/
-
-
-
+    /*background-image: url("../assets/chalkboard-wallpaper-5large.jpg");*/
+    /*this one is the same size as the above but with a gradient to deal with any repeating when the page gets long*/
+    /*background-image: url("../assets/chalkboard-wallpaper-5stretch.png");*/
+    /*this one is the same as the above but is 72ppx which is ideal for web*/
+    /*background-image: url("../assets/chalkboard-wallpaper-572ppx.png");*/
+    background-image: url("../assets/chalkboardtwogrades.png");
     background-size: cover;
     position: relative;
     min-width: 600px;

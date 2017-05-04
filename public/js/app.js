@@ -185,6 +185,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 //time to make a pair of beer and books
     this.pair = function(beerName, bookName){
+        console.log("beer name = " + beerName);
+        console.log("book name = " + bookName);
         $http({
             method:'PUT',
             url: '/api/pair',
@@ -198,11 +200,23 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){
-            console.log(response);
+            console.log("pair put response:" + response);
             console.log("pair working?");
             controller.showAllTheLikes = true;
             controller.showUsers = false;
-            console.log(this.showAllTheLikes);
+            controller.getPairs();
+        });
+    };
+
+    this.getUser = function(){
+        $http({
+            method:'GET',
+            url:'/api/getUser',
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log("this is my getUser response:" + response);
         });
     };
 
@@ -222,9 +236,10 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             method:"POST",
             url: '/api/pairs',
             data: {
-                beer: beerName,
-                book: bookName,
-                userId: id,
+                pair: {
+                    beer: beerName,
+                    book: bookName,
+                }
             },
             headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
@@ -240,12 +255,16 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
     };
 
+
+
     this.returnToSearch = function(){
+
         this.hideStuff = false;
         this.showAllTheLikes = false;
         this.showUsers = true;
         this.isSelected = true;
         this.getUsers();
+        this.selectedBooksBeers = [];
 
     }
 
@@ -305,8 +324,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }).then(
             function(response) {
                 controller.beerName = response.config.data.beerObject.name;
+                console.log(controller.beerName);
                 controller.isSelected = false;
-                console.log(controller.isSelected);
+                // console.log(controller.isSelected);
             }
         );
         this.selectedBooksBeers.push(beerObject);
