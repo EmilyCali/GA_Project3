@@ -197,7 +197,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         }).then(function(response){
             console.log(response);
             console.log("pair working?");
-            this.showAllTheLikes = true;
+            controller.showAllTheLikes = true;
             console.log(this.showAllTheLikes);
         });
     };
