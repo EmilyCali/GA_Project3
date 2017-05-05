@@ -48,7 +48,7 @@ Super Awesome Team
 <br/>
   Amanda please explain the struggles you had in third person
 <br/>
-  Joe please explain the struggles you had in third person
+  Joe had plenty of struggles throughout the project. One thing that continued to frustrate him was the constant github What!? error that would show up every now and then. This prevented him from doing any activity on github and the only fix was to completely shutdown everything he was working on. Another struggle was figuring out how three controllers interacted with each other. Eventually the team went nuclear and enacted only one controller which made things much easier.
 <br/>
   Emily cam across many frustrations when the project began, almost every commit she had to deal with merge errors and her team was also coming across an exciting WHAT?! github error. It was never discovered what the real problem was and the team hope to never experience it again. Emily managed this overwhelming communication error between her local files and the remote ones by seeking help from the internet and persons of experience. After getting both a diagram and list from a trusted individual and reading numerous guides online Emily installed a mergetool for terminal and has become quite confident in her handling of git issues.
 
@@ -91,6 +91,7 @@ Super Awesome Team
 <br/>
   <strong>Brewery DB</strong>
 <br/>
+  Brewery DB is an API that contains brewery and beer information. For this projects purposes only the beer information was used. The API allows a user to query using paramaters such as beer style or name. As a user experience, the user can search for any beer they would like to pair with a book and then select that beer to save for future reference.
 <br/>
   <strong>Open library</strong>
 <br/>
@@ -183,7 +184,7 @@ Super Awesome Team
 
 
 
-  Joe- who are you and why do you kick butt
+  Joe is a Booz Allen Hamilton Engineer who was enrolled in this class to learn a new skill and become an awesome web developer. He has a BA in Mechanical Engineering with a focus on Biomedical Engineering. Prior to this class Joe has worked on small geospatial imaging projects. He enjoys books and beers in no particular order.
 
 
 
