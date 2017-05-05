@@ -180,7 +180,7 @@ Super Awesome Team
 
 <h2>Special Thanks</h2>
 <br/>
-  Emily, Amanda and Joe would like to thank the General Assembly team for allowing them the opportunity to work as a team and the support provided by the instructors (Matt Huntington, Karolin Rafalski, Kristyn Bryan and Thom Page) and the TAs (Abi Klein, Kaylie Weable and Dan Lawrence).
+  Emily, Amanda and Joe would like to thank the General Assembly team for giving them the opportunity to work as a team and the support provided by the instructors (Matt Huntington, Karolin Rafalski, Kristyn Bryan and Thom Page) and the TAs (Abi Klein, Kaylie Weable and Dan Lawrence).
 
   Emily would also like to thank Sergio Martins for the github tutorials and sometimes looking at the code.
 
