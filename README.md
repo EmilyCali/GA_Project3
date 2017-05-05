@@ -31,7 +31,7 @@ Super Awesome Team
 <br/>
   Visit the <a href="https://trello.com/b/u98Uxw2X">Trello</a>, you may need to be logged in and add yourself to view this board.
 <br/>
-  This project was started with a repo created by Jow Ciampi, all three members then cloned the repo to their computers and created branches as needed to develop different portions of the code.
+  This project was started with a repo created by Joe Ciampi, all three members then cloned the repo to their computers and created branches as needed to develop different portions of the code.
 <br/>
   Amanda began with the user model and sessions, she created this functionality with multiple npms and validators as well as authentication and encrypting with both json web tokens and bycrypt.
 <br/>
@@ -46,7 +46,7 @@ Super Awesome Team
 
 <h2>The Hiccups</h2>
 <br/>
-  Amanda please explain the struggles you had in third person
+  For Amanda, developing code is about struggles and overcoming them. This project presented plenty learning opportunities. How do I communicate between sibling controllers? How do I create a token? I can use a token to access user id?! Ever hour was a kne console log with new insights. Github presented the biggest complications for our group--
 <br/>
   Joe had plenty of struggles throughout the project. One thing that continued to frustrate him was the constant github What!? error that would show up every now and then. This prevented him from doing any activity on github and the only fix was to completely shutdown everything he was working on. Another struggle was figuring out how three controllers interacted with each other. Eventually the team went nuclear and enacted only one controller which made things much easier.
 <br/>
@@ -55,14 +55,17 @@ Super Awesome Team
   Emily began her work on the book api early with various googling. She settled on the open library search api to allow users to search for books by title, however, accessing this data became an issue when it was discovered that not every search result had the same keys, and many of the keys were paired with arrays. This meant that an item was an object containing some strings, some numbers and some arrays of strings that were variable lengths. She approached this prospect cautiously and was able to grab data but was having trouble sending it to the collection it needed to be in. Upon consultation with both Karolin and Dan (the instructor and the teaching assistant) she somehow, as she was trying to show that something was wrong, made it work.
 
 <h2>Styling Decisions</h2>
+
 <br/>
   <h4>Wireframes</h4>
 <br/>
 <br/>
   <h4>Theme</h4>
+  Most Bars these days offer chalkboard menus AND chalkboards are associated with books, so we chose to use a chalkboard theme for displaying information.
 <br/>
 <br/>
   <h4>Resources</h4>
+  Dafont.com for fonts. Font Awesome for social icons. Generaly Assembly notes for reference. Googe. All day Google. Lots of Angular documentation.
 <br/>
 
 <br/>
@@ -180,7 +183,7 @@ Super Awesome Team
 
 <h2>Meet the Team</h2>
 <br/>
-  Amanda - who are you and why do you kick butt
+  Amanda loves challenges. Projects and puzzles and the journeys that lead to their resolution are what she lives form. Books and beers happen to be a part of this processs fairly often.
 
 
 
