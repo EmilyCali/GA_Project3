@@ -39,6 +39,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     //----------------signUp------------------|
     //****************************************|
     this.signUp = function(userInfo){
+        console.log(userInfo);
         $http({
             method:'POST',
             url: "/api/signup",
@@ -48,8 +49,11 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                     password: userInfo.newPassword
             }
         }).then(function(response){//success
+            console.log(response.data.msg);
+            controller.error = response.data.msg;
           //the username is the data from the page username
             controller.username = response.data.user.username;
+            console.log(response.data.user.username);
             //set the token to the user
             localStorage.setItem('token', JSON.stringify(response.data.token));
             //post request to authenticate newly registered user
@@ -57,13 +61,12 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 method:'POST',
                 url: "/api/authenticate",
                 data: {
-                        username: response.data.username,
-                        password: response.data.password
+                        username: response.data.user.username,
+                        password: response.data.user.password
                 }
             }).then(function(response){//success
               //toggle that the user does have a token
                 controller.token = true;
-                $scope.token = controller.token;
             });
         }.bind(this));
     };
@@ -192,8 +195,22 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             console.log(response + "delete");
-            controller.getPairs();
+            controller.logout();
         });
+    };
+    //****************************************|
+    //----------------communityShow-----------|
+    //****************************************|
+    this.communityShow = function(){
+        console.log("yo");
+        this.showAccount = false;
+        this.showEditForm= false;
+        this.hideStuff = true;
+        this.showAllTheLikes = false;
+        this.showUsers = false;
+        this.isSelected = true;
+        this.getUsers();
+
     };
 
 //time to make a pair of beer and books
