@@ -158,13 +158,6 @@ apiRoutes.use(function(req, res, next){
 /////////////////////////////////////|
 
 //create a pair that includes the users selected beer and book, this is only in the user and it is an update to the pair key in the user model
-apiRoutes.put('/pair', function(req, res){
-    User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
-        res.json(updatedUser);
-        //console.log('==========================================');
-        //console.log("this is the updated user info:" + updatedUser);
-    });
-});
 
 //get the pairs from the pairs collection
 apiRoutes.get('/pairs', function(req, res){
@@ -178,6 +171,19 @@ apiRoutes.get('/getUser', function(req, res){
     User.findById(req.decoded._doc._id, function(err, foundUser){
         res.json(foundUser);
         //console.log("this is the get user route found user:" + foundUser);
+    });
+});
+//get all the users
+apiRoutes.get('/users', function(req, res){
+    User.find({}, function(err, foundUsers){
+        res.json(foundUsers);
+    });
+});
+
+//get the user that is logged in and look at their info
+apiRoutes.get('/:id', function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        res.json(foundUser);
     });
 });
 
@@ -207,20 +213,15 @@ apiRoutes.put('/pairupdate', function(req, res){
         //console.log(updatedPair);
     });
 });
-
-//get all the users
-apiRoutes.get('/users', function(req, res){
-    User.find({}, function(err, foundUsers){
-        res.json(foundUsers);
+apiRoutes.put('/pair', function(req, res){
+    User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
+        res.json(updatedUser);
+        //console.log('==========================================');
+        //console.log("this is the updated user info:" + updatedUser);
     });
 });
 
-//get the user that is logged in and look at their info
-apiRoutes.get('/:id', function(req, res){
-    User.findById(req.params.id, function(err, foundUser){
-        res.json(foundUser);
-    });
-});
+
 
 //update the user profile and thus the user in the database
 apiRoutes.put('/:id', function(req, res){
@@ -233,8 +234,9 @@ apiRoutes.put('/:id', function(req, res){
 });
 
 //delete the user
-apiRoutes.delete('/users/:id', function(req, res){
-    User.findByIdAndUpdate(req.params.id, function(err, deletedUser){
+apiRoutes.delete('/delete/:id', function(req, res){
+    console.log(req.params.id + "delete route");
+    User.findByIdAndRemove(req.params.id, function(err, deletedUser){
         if(err){
             res.json(err);
         }

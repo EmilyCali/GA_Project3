@@ -4,6 +4,12 @@
 html{
     height: 100%;
     box-sizing: border-box;
+    background-image: url('https://stockholmabout.files.wordpress.com/2011/10/buecher_alt.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
 
 *,
@@ -13,6 +19,21 @@ html{
 }
 
 body {
+    background: url("../assets/chalkboardtwogrades.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Open Sans', serif !important;
+  /*this is a blackboard with scrolling illustrations on the sides*/
+    /*background-image: url('https://images.template.net/wp-content/uploads/2016/04/23093543/Black-Shaded-Chalkboard-Background.jpg');*/
+
+    /*this is a really dark blackboard*/
+    /*background-image: url("https://s-media-cache-ak0.pinimg.com/736x/26/cf/3c/26cf3c80b7b5923f89fba8fe140dd660.jpg");*/
+
+    /*this is a green blackboard and it makes me think of green bottles and green secretary lamps I kinda dig it but it needs to be desaturated a tad*/
+    /*background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");*/
+
     /*background-image: url("../assets/chalkboard-wallpaper-5large.jpg");*/
     /*this one is the same size as the above but with a gradient to deal with any repeating when the page gets long*/
     /*background-image: url("../assets/chalkboard-wallpaper-5stretch.png");*/
@@ -48,9 +69,9 @@ a:hover {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: space-around;
     width: 80%;
     margin: 0 auto 80px auto;
+
 }
 
 /*************************************************************/
@@ -65,18 +86,17 @@ a:hover {
     /*background-image: url("../assets/booksandbeerslogo.png");*/
 }
 
-
-/*there is currently no text in the header since we went with an image*/
 .header h1 {
     font-size: 86px;
     text-align: center;
     border-bottom-style:dashed;
   /*font-family: "ASongForJennifer" ;*/
   /*font-family: "ChalkDust";*/
-    /*font-family: "GrutchShaded";*/
+    font-family: "GrutchShaded";
   /*font-family: "Return to Sender";*/
   /*font-family: "Chalk-hand-lettering-shaded";*/
-  /*opacity: 70%;*/
+  opacity: 70%;
+
 }
 
 .logged-in {
@@ -84,15 +104,20 @@ a:hover {
     flex-direction: row;
     justify-content: space-around;
 }
-
 .logged-in li{
     margin: 0 10px;
+}
+
+#main-logo{
+    width: 100%;
+    height: auto;
 }
 
 /*************************************************************/
 /*/----------------------NAVIGATION-------------------------/*/
 /*************************************************************/
 .nav{
+    font-family: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,12 +127,8 @@ a:hover {
 }
 
 
-#nav-left{
-
-}
-
-#nav-right{
-
+.nav li {
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*************************************************************/
@@ -125,7 +146,8 @@ a:hover {
     width: 80%;
     margin: 40px auto 0 auto;
 
-    background-color: rgba(11,11,11, 0.3);
+    background-color: rgba(11,11,11, 0.5);
+    box-shadow: 15px 15px 50px black;
     border-style: ridge;
     border-radius: 3px;
     padding: 5%;
@@ -133,6 +155,14 @@ a:hover {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
+}
+
+#demo {
+    text-align: center;
+    margin-left:10%;
+    /*background-color: black;*/
+    width: 80%;
+
 }
 
 /*************************************************************/
@@ -149,11 +179,17 @@ a:hover {
 
 section .form input {
   font-family: "ASongForJennifer";
+
+  /*font-family: "ChalkDust";*/
+  /*font-family: "GrutchShaded";*/
+  /*font-family: "Return to Sender";*/
+  /*font-family: "Chalk-hand-lettering-shaded";*/
 }
 /*this styles all the input submits and buttons tagged with the class .button*/
 .button {
   color: white !important;
   background-color: none !important;
+
 }
 /*this makes them change when hovered on*/
 .button:hover {
@@ -162,78 +198,66 @@ section .form input {
   opacity: 40%;
 }
 
-/*this goes hand in hand with the .beer below, makes the search area center on the page and puts the beers below it but left justified which coincides with the footer having a heavier left, if we get the info to display right it could be balanced and cool*/
-section .search, .select {
+section .search {
     display: flex;
-    justify-content: left;
-    align-content: center;
-    align-items: center;
     flex-direction: column;
-    /*width: 800px;*/
-    /*margin-left: 5%;*/
+    width: 800px;
+    margin-left: 5%;
+    margin-top: 5%;
+    text-align: justify;
 }
 
-.search-bar {
-    width: 300px;
+.search-bar{
+    width: 100px;
     padding: 30px;
     margin: 10px;
 }
 
-.results {
-}
-
-p {
-  font-family: "ASongForJennifer";
-}
 /*************************************************************/
 /*/--------------------------BEEEER-------------------------/*/
 /*************************************************************/
-
-/*I COMMENTED THIS OUT TO GET THE BEERS AND BOOKS RESULTS TO SHOW BELOW THE SEARCH, THIS WAY WE CAN TRY TO STYLE IT TO DISPLAY MORE INFO TO THE RIGHT LIKE IN THE WORLD BANK
-*/
-
-.beerbookpair {
-    /*display: flex;*/
-    /*flex-direction: row;
-    justify-content: space-around;
-    align-content: flex-start;*/
-    margin: 0 auto;
+.beer{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
 }
 
-
-#community {
-  display: flex !important;
-  flex-flow: row wrap !important;
-  align-content: center;
-  justify-content: space-between;
-  padding: 10px;
+#find{
+    display:inline-block;
+    font-family: "ASongForJennifer" ;
+    /*font-family: "ChalkDust";*/
+    /*font-family: "GrutchShaded";*/
+    /*font-family: "Return to Sender";*/
+    /*font-family: "Chalk-hand-lettering-shaded";*/
 }
+#your{
+    display:inline-block;
+    /*font-family: "ASongForJennifer" ;*/
+    /*font-family: "ChalkDust";*/
+    /*font-family: "GrutchShaded";*/
+    /*font-family: "Return to Sender";*/
+    font-family: "Chalk-hand-lettering-shaded";
 
-.userPairs {
-  display: inline-block;
-  padding: 5px;
 }
+#beer{
+    display:inline-block;
+    /*font-family: "ASongForJennifer" ;*/
+    /*font-family: "ChalkDust";*/
+    /*font-family: "GrutchShaded";*/
+    font-family: "Return to Sender";
+    /*font-family: "Chalk-hand-lettering-shaded";*/
 
-h5 {
-  font-family: "ChalkDust";
-}
-
-/*attempt to make the colors less harsh did not work*/
-section ol li ul .info {
-  color: #B3B6BF;
 }
 
 
 /*************************************************************/
 /*/--------------------------Footer-------------------------/*/
 /*************************************************************/
-
 /*Used and modified From http://tutorialzine.com/2015/01/freebie-5-responsive-footer-templates/*/
-
 .footer-distributed{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;

@@ -1,34 +1,31 @@
 var app = angular.module('BBApp', []);
 
 //////////////////////////////////////////|
-//----------------Amanda's controller-----|
+//----------------MAIN CONTROLLER---------|
 //////////////////////////////////////////|
 app.controller('MainController', ['$scope', '$http', function($scope, $http){
-  //name the controller so you can use it in call backs
-    var controller = this;
-    //the local host connection
-    this.url = 'http://locallhost:3000/';
-    //empty object for user
-    this.user = {};
-    //token to be used for validation, setting that it doesn't have one at the moment
-    this.token = false;
-    $scope.token = this.token;
-    this.showAccount = false;
-
-    //////////JOE VARIABLES/////////
+    var controller    = this;
+    this.url          = 'http://locallhost:3000/';
+    this.user         = {};//empty object for user
+    /////////////////////////////////
+    //for showing and hiding sections
+    /////////////////////////////////
+    this.token           = false;
+    this.showAccount     = false;
+    this.isSelected      = true;
+    this.hideStuff       = false;
+    this.showAllTheLikes = false;
+    this.showUsers       = false;
+    /////////////////////////////////
+    //empty VARIABLES
+    /////////////////////////////////
     //the show beer id
-    this.showBeerId = '';
+    this.showBeerId   = '';
     //the empty string for the searched input
-    this.searching = '';
+    this.searching    = '';
     //empty array that the beer results from the search go into
-    this.beers = [];
-
+    this.beers        = [];
     this.selectedBooksBeers = [];
-
-    this.isSelected = true;
-    // $scope.isSelected = this.isSelected;
-
-    ///////////EMILY VARIABLES////////////
     //this is the string that takes what is search in the input on html
     this.searchedBook = "";
     //these are the books you get
@@ -36,13 +33,11 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     //call this to get id when showing more info
     this.showBookId = "";
     this.selectedBooks = [];
-    this.hideStuff = false;
-    //toggle value set for community page showing pairings
-    this.showAllTheLikes = false;
-    this.showUsers = false;
 
 
-//*************************sign up
+    //****************************************|
+    //----------------signUp------------------|
+    //****************************************|
     this.signUp = function(userInfo){
         $http({
             method:'POST',
@@ -62,43 +57,34 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 method:'POST',
                 url: "/api/authenticate",
                 data: {
-                    // user: {
                         username: response.data.username,
                         password: response.data.password
-                    // }
                 }
             }).then(function(response){//success
               //toggle that the user does have a token
                 controller.token = true;
                 $scope.token = controller.token;
             });
-
         }.bind(this));
-        // controller.login(userInfo);
     };
-//****************************loginRoute
+    //****************************************|
+    //----------------login-------------------|
+    //****************************************|
     this.login = function(userInfo){
-        // console.log(userInfo);
         $http({
             method:'POST',
             url: "/api/authenticate",
             data: {
-                // user: {
                     username: userInfo.username,
                     password: userInfo.password
-                // }
             }
         }).then(function(response){//success
           //set the controller stuff to the data response
             controller.id = response.data.id,
-            //console.log(controller.id);
             controller.username = response.data.username;
             //toggle the token
             controller.token = true;
             $scope.token = controller.token;
-
-            // controller.getUsers();
-
             //if there is not a success
             if(!response.data.success){
               //toggle the token to false
@@ -109,7 +95,11 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             localStorage.setItem('token', JSON.stringify(response.data.token));
         }.bind(this));
     };
-//***************************** gets all users
+    //****************************************|
+    //----------------getUsers----------------|
+    //this gets all the users and makes them--|
+    //---------------available----------------|
+    //****************************************|
     this.getUsers = function(){
         $http({
             url: '/api/users',
@@ -127,9 +117,12 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }.bind(this));
     };
-//******************************** my account
+    //****************************************|
+    //-----------showMyAccount----------------|
+    //****************************************|
     this.showMyAccount = function(id){
         this.showAccount = true;
+        this.showUsers = true;
         $http({
             url: '/api/' + id,
             method: 'GET',
@@ -137,7 +130,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){//success
-            console.log(response);
             //can't let user in
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
@@ -147,21 +139,21 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }.bind(this));
     };
-//********************************* Updates User
-//this is called to get the edit form to show
+    //****************************************|
+    //----------------showEdit----------------|
+    //****************************************|
+    //this is called to get the edit form to show
     this.showEdit = function(){
-      //check that this is clicked by logging that the user clicked
-        console.log('clicked');
+     //check that this is clicked by logging that the user clicked
         //toggle show the edit part of the html
         this.showEditForm = true;
         //toggle to hide the account
         this.showAccount = false;
     };
-
-//update function to let user change their user data
+    //****************************************|
+    //----------------update------------------|
+    //****************************************|
     this.update = function(user, id){
-        console.log(user);
-        console.log(id);
         $http({
             method:"PUT",
             url: '/api/' + id,
@@ -176,23 +168,37 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             this.showAccount = true;
             controller.editableUserId = null;
             this.showMyAccount(response.data._id);
-            console.log(response);
         }.bind(this));
-
     };
-//logs user out
+    //****************************************|
+    //----------------logout------------------|
+    //****************************************|
     this.logout = function(){
       //removes the token
         localStorage.clear('token');
         //reloads the page which sends user back to login register page
         location.reload();
     };
+    //****************************************|
+    //--------------deleteAccount-------------|
+    //****************************************|
+    this.deleteAccount = function(id){
+        console.log('delete clicked');
+        $http({
+            method: 'DELETE',
+            url:'/api/delete/' + id,
+            headers: {
+                Authorization: JSON.parse(localStorage.getItem('token'))
+            }
+        }).then(function(response){
+            console.log(response + "delete");
+            controller.getPairs();
+        });
+    };
 
 //time to make a pair of beer and books
 //pass in the name of the beer and the name of the book (book title)
     this.pair = function(beerName, bookName){
-        //console.log("beer name = " + beerName);
-        //console.log("book name = " + bookName);
         $http({
             method:'PUT',
             url: '/api/pair',
@@ -206,9 +212,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){//success
-            //console.log("pair put response:" + response);
-            //console.log("pair working?");
-
             //toggle to let user see the other users pairings
             controller.showAllTheLikes = true;
             //toggle
@@ -227,7 +230,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){//success
-            console.log("this is my getUser response:" + response);
+
         });
     };
 
@@ -240,7 +243,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){
-            console.log(response);
         });
     };
 
@@ -260,31 +262,27 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(
             function(response) {
-                console.log(response);
                 controller.getUsers();
-
-
             }
         );
-
     };
-
 
 //go back to the search area without logging out
     this.returnToSearch = function(){
       //toggle things for hide and show
+        this.showAccount = false;
         this.hideStuff = false;
         this.showAllTheLikes = false;
         this.showUsers = true;
         this.isSelected = true;
         this.getUsers();
+        this.beers = [];
         //empty the selected array to make sure it only every give you new values
         this.selectedBooksBeers = [];
+        this.searching = '';
+        this.searchedBook = "";
+        this.foundBooks = [];
     };
-
-//////////////////////////////////////////|
-//----------------Joe's code--------------|
-//////////////////////////////////////////|
 
 //find the beers from the api (brewerydb)
     this.find = function(){
@@ -304,8 +302,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 //push the result beers into the emptry beer array
                     controller.beers.push(response.data.data[i]);
                 }
-                console.log('success');
-                console.log(controller.beers);
             },
             function(error){ //fail callback
                 console.log('fail');
@@ -319,11 +315,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         // console.log(index);
         this.showBeerId = index;
       };
-
     //add a beer to the beers collection and the user
     this.addBeer = function(beerObject, id){
-        console.log(beerObject);
-        console.log(id);
         $http({
             method:"POST",
             url: '/api/beers',
@@ -348,22 +341,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         //console.log(this.selectedBooksBeers);
     };
 
-
-//////////////////////////////////////////|
-//-----------------EMILY'S CODE-----------|
-//////////////////////////////////////////|
-
-
-//MAY WANT TO MOVE THIS UP TO THE OTHER VARIABLE SECTION
-
-  //this is the string that takes what is search in the input on html
-  this.searchedBook = "";
-  //these are the books you get
-  this.foundBooks = [];
-  //call this to get id when showing more info
-  this.showBookId = "";
-  this.selectedBooks = [];
-
   //function to get the books when a query happens
   this.findBook = function() {
     $http({
@@ -382,7 +359,6 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
       //   console.log(response);
     },
     function(response) { //failure
-      console.log(response);
     });
   };
 
@@ -407,22 +383,13 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         Authorization: JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) { //success
-      console.log(response);
       controller.hideStuff = true;
-      console.log(bookObject);
-
     },
     function(response) { //failure
       console.log(response);
-
     });
-    //console.log(index);
-    //this.selectedBooks.push(index);
-    //console.log(this.selectedBooks);
-
     //push the book into the temporary selected array so it can be accessed in the pairing functions
     this.selectedBooksBeers.push(bookObject);
-    console.log(this.selectedBooksBeers);
   };
 
   //this gets us the user id so we can attach it to the book we want to give to the looged in user
@@ -436,19 +403,17 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
       }).then(function(response){//success
         //this also might be a set to the userid so we probably can get rid of one or the other
               controller.id = response.data.id;
-              console.log(response.data.id);
           },
         function(response) {//failure
           console.log(response);
         });
-
-    //console.log(index);
-    //this.selectedBooks.push(index);
-    //console.log(this.selectedBooks);
-
-
   };
-
-
+  //****************************************|
+  //****************************************|
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+  //------------------fin-------------------|
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+  //****************************************|
+  //****************************************|
 
 }]);
