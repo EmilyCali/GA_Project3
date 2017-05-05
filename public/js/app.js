@@ -54,9 +54,12 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
           //the username is the data from the page username
             controller.username = response.data.user.username;
             console.log(response.data.user.username);
+            controller.password = response.data.user.password
+
+
             //set the token to the user
             localStorage.setItem('token', JSON.stringify(response.data.token));
-            //post request to authenticate newly registered user
+            // post request to authenticate newly registered user
             $http({
                 method:'POST',
                 url: "/api/authenticate",
@@ -67,6 +70,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }).then(function(response){//success
               //toggle that the user does have a token
                 controller.token = true;
+                controller.getUser();
             });
         }.bind(this));
     };
@@ -126,6 +130,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.showMyAccount = function(id){
         this.showAccount = true;
         this.showUsers = true;
+        this.hideStuff = false;
+        this.hide = true;
         $http({
             url: '/api/' + id,
             method: 'GET',
@@ -133,6 +139,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){//success
+            console.log(response);
             //can't let user in
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
