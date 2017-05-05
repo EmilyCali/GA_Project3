@@ -68,7 +68,7 @@ apiRoutes.post('/signup', function(req, res) {
             password: req.body.password
         });
         //give this new user a token
-        var token = jwt.sign(newUser, app.get('superSecret'));
+        // var token = jwt.sign(newUser, app.get('superSecret'));
 
         //console.log(newUser);
         //console.log(token);
@@ -81,7 +81,7 @@ apiRoutes.post('/signup', function(req, res) {
                 success: true,
                 msg: 'Successful created new user.',
                 user: newUser,
-                token: token
+                // token: token
                 }
             );
         });
@@ -170,7 +170,7 @@ apiRoutes.get('/pairs', function(req, res){
 apiRoutes.get('/getUser', function(req, res){
     User.findById(req.decoded._doc._id, function(err, foundUser){
         res.json(foundUser);
-        //console.log("this is the get user route found user:" + foundUser);
+        console.log("this is the get user route found user:" + foundUser);
     });
 });
 //get all the users

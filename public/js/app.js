@@ -16,6 +16,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.hideStuff       = false;
     this.showAllTheLikes = false;
     this.showUsers       = false;
+    this.isOnAccountPage = false;
     /////////////////////////////////
     //empty VARIABLES
     /////////////////////////////////
@@ -39,6 +40,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     //----------------signUp------------------|
     //****************************************|
     this.signUp = function(userInfo){
+        console.log(userInfo);
         $http({
             method:'POST',
             url: "/api/signup",
@@ -48,28 +50,42 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                     password: userInfo.newPassword
             }
         }).then(function(response){//success
+            console.log(response.data.msg);
+            controller.error = response.data.msg;
           //the username is the data from the page username
             controller.username = response.data.user.username;
-            //set the token to the user
-            localStorage.setItem('token', JSON.stringify(response.data.token));
-            //post request to authenticate newly registered user
-            $http({
-                method:'POST',
-                url: "/api/authenticate",
-                data: {
-                        username: response.data.username,
-                        password: response.data.password
-                }
-            }).then(function(response){//success
-              //toggle that the user does have a token
-                controller.token = true;
-                $scope.token = controller.token;
-            });
+            console.log(response.data.user.password);
+            controller.password = response.data.user.password;
+            controller.newUserLogin(controller.username, userInfo.newPassword);
         }.bind(this));
     };
     //****************************************|
     //----------------login-------------------|
     //****************************************|
+    this.newUserLogin = function(username, password){
+        $http({
+            method:'POST',
+            url: "/api/authenticate",
+            data: {
+                    username: username,
+                    password: password
+            }
+        }).then(function(response){//success
+            controller.id = response.data.id,
+            controller.username = response.data.username;
+            //toggle the token
+            controller.token = true;
+            $scope.token = controller.token;
+            //if there is not a success
+            if(!response.data.success){
+              //toggle the token to false
+                controller.token = false;
+                $scope.token = controller.token;
+                controller.message = response.data.message;
+            }
+            localStorage.setItem('token', JSON.stringify(response.data.token));
+        });
+    };
     this.login = function(userInfo){
         $http({
             method:'POST',
@@ -123,6 +139,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.showMyAccount = function(id){
         this.showAccount = true;
         this.showUsers = true;
+
+        this.isOnAccountPage = true;
+
         $http({
             url: '/api/' + id,
             method: 'GET',
@@ -130,6 +149,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
         }).then(function(response){//success
+            console.log(response);
             //can't let user in
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
@@ -192,8 +212,22 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             console.log(response + "delete");
-            controller.getPairs();
+            controller.logout();
         });
+    };
+    //****************************************|
+    //----------------communityShow-----------|
+    //****************************************|
+    this.communityShow = function(){
+        console.log("yo");
+        this.showAccount = false;
+        this.showEditForm= false;
+        this.hideStuff = true;
+        this.showAllTheLikes = false;
+        this.showUsers = false;
+        this.isSelected = true;
+        this.getUsers();
+
     };
 
 //time to make a pair of beer and books
@@ -282,6 +316,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         this.searching = '';
         this.searchedBook = "";
         this.foundBooks = [];
+        this.isOnAccountPage = false;
     };
 
 //find the beers from the api (brewerydb)
