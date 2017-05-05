@@ -59,7 +59,7 @@ Super Awesome Team
 <br/>
   <h4>Wireframes</h4>
 <br/>
-    <img href=""/>
+    <img src="https://raw.githubusercontent.com/Ciampije/GA_Project3/master/public/assets/project3wireframes.jpg"/>
 <br/>
   <h4>Theme</h4>
 <br/>
