@@ -140,32 +140,34 @@
 
 
     <!-- beer search -->
-            <section class="beerbookpair" ng-if="main.isSelected" ng-hide="main.hideStuff">
-                <section class="search select">
-                  <!-- if we use class container for the whole thing and class one-half column for the sections inside this looks nicer buuut doesn't get you the centered search bar on start -->
-                    <form class="form" ng-if="main.token" ng-submit="main.find();">
-                      <input class="search-bar" ng-model="main.searching" type="text" placeholder="Find a Beer" />
+<section ng-if="!main.isOnAccountPage">
+    <section class="beerbookpair" ng-if="main.isSelected" ng-hide="main.hideStuff">
+        <section class="search select">
+          <!-- if we use class container for the whole thing and class one-half column for the sections inside this looks nicer buuut doesn't get you the centered search bar on start -->
+            <form class="form" ng-if="main.token" ng-submit="main.find();">
+              <input class="search-bar" ng-model="main.searching" type="text" placeholder="Find a Beer" />
 
-                      <input class="submit button" type="submit" value="Submit"/>
-                    </form>
+              <input class="submit button" type="submit" value="Submit"/>
+            </form>
 
-                </section>
-      <!-- show beers -->
-                <section class="show-beers">
-                    <ol>
-                        <li class="results" ng-repeat="beer in main.beers track by $index" ng-click="main.showInfo($index)">
-                            {{beer.name}}
-                            <ul class="info" ng-if="main.showBeerId === $index">
-                                ABV: {{beer.abv}}% <br/><br/>
-                                Beer Style: {{beer.style.description}} <br/><br/>
-                                Beer Description: {{beer.description}} <br/><br/>
-                                <button class="submit button" type="button" value="add" ng-click="main.addBeer(beer, main.id)">Save this Beer</button>
-                            </ul>
-                        </li>
-                    </ol>
-                </section>
+        </section>
+<!-- show beers -->
+        <section class="show-beers">
+            <ol>
+                <li class="results" ng-repeat="beer in main.beers track by $index" ng-click="main.showInfo($index)">
+                    {{beer.name}}
+                    <ul class="info" ng-if="main.showBeerId === $index">
+                        ABV: {{beer.abv}}% <br/><br/>
+                        Beer Style: {{beer.style.description}} <br/><br/>
+                        Beer Description: {{beer.description}} <br/><br/>
+                        <button class="submit button" type="button" value="add" ng-click="main.addBeer(beer, main.id)">Save this Beer</button>
+                    </ul>
+                </li>
+            </ol>
+        </section>
 
-            </section>
+    </section>
+</section>
 
     <!-- book search -->
                 <section  class="beerbookpair" ng-hide="main.hideStuff"  >

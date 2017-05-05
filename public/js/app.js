@@ -16,6 +16,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.hideStuff       = false;
     this.showAllTheLikes = false;
     this.showUsers       = false;
+    this.isOnAccountPage = false;
     /////////////////////////////////
     //empty VARIABLES
     /////////////////////////////////
@@ -130,8 +131,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.showMyAccount = function(id){
         this.showAccount = true;
         this.showUsers = true;
-        this.hideStuff = false;
-        this.hide = true;
+
+        this.isOnAccountPage = true;
+
         $http({
             url: '/api/' + id,
             method: 'GET',
@@ -306,6 +308,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         this.searching = '';
         this.searchedBook = "";
         this.foundBooks = [];
+        this.isOnAccountPage = false;
     };
 
 //find the beers from the api (brewerydb)

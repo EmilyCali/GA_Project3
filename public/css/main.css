@@ -219,13 +219,26 @@ section .search {
   align-content: center;
   justify-content: space-between;
   padding: 10px;
+
 }
 
 .userPairs {
   display: inline-block;
   padding: 5px;
+
+
 }
 
+.user-pairs {
+    background-color: rgba(11,11,11, 0.5);
+    border-radius: 3px;
+    width: 250px;
+    height:250px;
+    border-style: ridge;
+    margin-bottom: 10px;
+    padding: 10px;
+    
+}
 h5 {
   font-family: "ChalkDust";
 }
