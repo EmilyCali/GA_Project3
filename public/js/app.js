@@ -37,6 +37,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     this.showBookId = "";
     this.selectedBooks = [];
     this.hideStuff = false;
+    //toggle value set for community page showing pairings
     this.showAllTheLikes = false;
     this.showUsers = false;
 
@@ -51,7 +52,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                     username: userInfo.newUsername,
                     password: userInfo.newPassword
             }
-        }).then(function(response){
+        }).then(function(response){//success
           //the username is the data from the page username
             controller.username = response.data.user.username;
             //set the token to the user
@@ -66,7 +67,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                         password: response.data.password
                     // }
                 }
-            }).then(function(response){
+            }).then(function(response){//success
               //toggle that the user does have a token
                 controller.token = true;
                 $scope.token = controller.token;
@@ -87,7 +88,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                     password: userInfo.password
                 // }
             }
-        }).then(function(response){
+        }).then(function(response){//success
           //set the controller stuff to the data response
             controller.id = response.data.id,
             //console.log(controller.id);
@@ -116,7 +117,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
-        }).then(function(response){
+        }).then(function(response){//success
           //unauthorized so user can't go anywhere
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
@@ -135,18 +136,19 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
-        }).then(function(response){
+        }).then(function(response){//success
             console.log(response);
             //can't let user in
             if (response.data.status == 401) {
                 this.error = "Unauthorized";
             } else {
-              //user can see stuff
+              //user can see thier own account info
                 controller.user = response.data;
             }
         }.bind(this));
     };
 //********************************* Updates User
+//this is called to get the edit form to show
     this.showEdit = function(){
       //check that this is clicked by logging that the user clicked
         console.log('clicked');
@@ -155,6 +157,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
         //toggle to hide the account
         this.showAccount = false;
     };
+
 //update function to let user change their user data
     this.update = function(user, id){
         console.log(user);
@@ -166,7 +169,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
-        }).then(function(response){
+        }).then(function(response){//success
           //toggles
             controller.editableUserId = null;
             this.showEditForm = false;
@@ -179,18 +182,21 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     };
 //logs user out
     this.logout = function(){
+      //removes the token
         localStorage.clear('token');
+        //reloads the page which sends user back to login register page
         location.reload();
     };
 
 //time to make a pair of beer and books
+//pass in the name of the beer and the name of the book (book title)
     this.pair = function(beerName, bookName){
-        console.log("beer name = " + beerName);
-        console.log("book name = " + bookName);
+        //console.log("beer name = " + beerName);
+        //console.log("book name = " + bookName);
         $http({
             method:'PUT',
             url: '/api/pair',
-            data: {
+            data: { //immitate the object to be made
                 pair: {
                     beer: beerName,
                     book: bookName,
@@ -199,15 +205,20 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
-        }).then(function(response){
-            console.log("pair put response:" + response);
-            console.log("pair working?");
+        }).then(function(response){//success
+            //console.log("pair put response:" + response);
+            //console.log("pair working?");
+
+            //toggle to let user see the other users pairings
             controller.showAllTheLikes = true;
+            //toggle
             controller.showUsers = false;
+            //get the pairs
             controller.getPairs();
         });
     };
 
+//get one user, the one that is logged in
     this.getUser = function(){
         $http({
             method:'GET',
@@ -215,11 +226,12 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             headers: {
                 Authorization: JSON.parse(localStorage.getItem('token'))
             }
-        }).then(function(response){
+        }).then(function(response){//success
             console.log("this is my getUser response:" + response);
         });
     };
 
+//get the pairs from the pairs collection
     this.getPairs = function(){
         $http({
             method:'GET',
@@ -229,8 +241,10 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             }
         }).then(function(response){
             console.log(response);
-        })
-    }
+        });
+    };
+
+    //add the pair to the pairs collection so there is an archive
     this.addPair = function(beerName, bookName, id){
         $http({
             method:"POST",
@@ -256,17 +270,17 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     };
 
 
-
+//go back to the search area without logging out
     this.returnToSearch = function(){
-
+      //toggle things for hide and show
         this.hideStuff = false;
         this.showAllTheLikes = false;
         this.showUsers = true;
         this.isSelected = true;
         this.getUsers();
+        //empty the selected array to make sure it only every give you new values
         this.selectedBooksBeers = [];
-
-    }
+    };
 
 //////////////////////////////////////////|
 //----------------Joe's code--------------|
@@ -274,8 +288,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
 
 //find the beers from the api (brewerydb)
     this.find = function(){
-        $http(
-            {
+        $http({
                 method:'GET',
                 url: 'https://api.brewerydb.com/v2/search?q=' + this.searching + '&type=beer&key=3553963f6fa0d83f188f21fcc4ac9343&format=json'
             }).then(
@@ -316,6 +329,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             url: '/api/beers',
             data: {
                 beerObject: beerObject,
+                //give it the user id so it can be matched
                 userId: id
             },
             headers: {
@@ -329,8 +343,9 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
                 // console.log(controller.isSelected);
             }
         );
+        //put this beer into the selected array, temporarily
         this.selectedBooksBeers.push(beerObject);
-        console.log(this.selectedBooksBeers);
+        //console.log(this.selectedBooksBeers);
     };
 
 
@@ -360,7 +375,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     }).then(function(response) {//success
       controller.foundBooks = [];
       // this limits the results to ten
-      for(i=0; i< 10; i++) {
+      for(i = 0; i < 10; i++) {
         // and pushes those found books into an array
         controller.foundBooks.push(response.data.docs[i]);
       }
@@ -381,7 +396,7 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
   this.addBook = function(bookObject, id){
 //set the userId key in the bookObject to the user id before creating the book in our db
     bookObject.userId = id;
-    console.log(bookObject);
+    //console.log(bookObject);
     $http({
       method: "POST",
       url: "/api/books",
@@ -404,6 +419,8 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
     //console.log(index);
     //this.selectedBooks.push(index);
     //console.log(this.selectedBooks);
+
+    //push the book into the temporary selected array so it can be accessed in the pairing functions
     this.selectedBooksBeers.push(bookObject);
     console.log(this.selectedBooksBeers);
   };

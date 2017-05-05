@@ -81,10 +81,11 @@ The user should be able to log out of their account.
 
 <h4>The 3rd Party APIs</h4>
 <br/>
-<bold>Brewery DB</bold>
+<strong>Brewery DB</strong>
 
 
-<bold>Open library<bold>
+<strong>Open library<strong>
+<br/>
 Open Library is an API that contains a vast amount of data about books. There are several APIs that can be used for free by the public through Open Library. The main API is the Open Library Book API which can be queried using parameters such as ISBNs and other codes. For the purposes of this project the Open Library Search API was used as it is able to take titles and author names as queries, which is more user friendly. The data returned on a query to this Search API looks as follows but may or may not contain all the keys below:
 
 bookObject: {<br/>
@@ -127,11 +128,15 @@ Almost every book returned had some variation of place, date and author, because
 
 <h4>NPMS</h4>
 <br/>
-<bold>MEAN Stack</bold>
-<bold>JSON Web Tokens</bold>
-<bold>Body Parser</bold>
-<bold>Morgan</bold>
-<bold>Bycrypt</bold>
+<strong>MEAN Stack</strong>
+<br/>
+<strong>JSON Web Tokens</strong>
+<br/>
+<strong>Body Parser</strong>
+<br/>
+<strong>Morgan</strong>
+<br/>
+<strong>Bycrypt</strong>
 
 
 
@@ -140,7 +145,19 @@ Almost every book returned had some variation of place, date and author, because
 
 <h2>Working as a Team</h2>
 <br/>
-Emily
+Emily believes that working as a group was an exercise in communication and trust. In her opinion the group came together well while coding along and explaining the happening of their ideas but the largest struggle was that when not on camera it was not always clearly conveyed what was being done by others. This sort of radio silence caused several cases of people working in similar things and multiple merge conflicts. It was difficult for Emily to feel included in some processes when there were parts of the day that team members would use to take on tasks without discussion and jarring to pull from the master and see so many changes had occurred. She does understand that she is guilty of this as well with her commenting of code that was uncommented and her read me additions. Emily would say that the most important tool to this team was zoom, being able to be online and available for collaboration via zoom was invaluable. The most surprising thing about working in a group to Emily was the intensity and that she did not feel as overwhelmed by some of the lack of control as she has in group projects that she experienced throughout college and high school.
+<br/>
+
+
+<h2>Next Steps</h2>
+<br/>
+With the github errors and controller revamp that the team did they were unable to get to all the features that they would have liked. If they are able, they would like to progress with this project by:<br/>
+making the styling more cohesive<br/>
+adding an about page that is viewable without being logged in <br/>
+showing all the pairings of beers and books that users have by matching their id <br/>
+letting users like and comment on pairings <br/>
+pairings having more information that just the beer name and title <br/>
+
 
 
 
@@ -160,4 +177,4 @@ Joe- who are you and why do you kick butt
 
 
 
-Emily is a Booz Allen Employee who was offered the opportunity to develop her skills by taking the General Assembly Web Development Immersive Remote program in the spring of 2017. She holds a bachelor's degree in Biomedical Photographic Communications and, prior to this class, she was working on her own time to improve upon her css and html knowledge. She is very eager to put all that she is learning to work in her next position. She likes to make quilts and imagine css animations in her free time.
+Emily is a Booz Allen Hamilton Employee who was offered the opportunity to develop her skills by taking the General Assembly Web Development Immersive Remote program in the spring of 2017. She holds a bachelor's degree in Biomedical Photographic Communications and, prior to this class, she was working on her own time to improve upon her css and html knowledge. She is very eager to put all that she is learning to work in her next position. She likes to make quilts and imagine css animations in her free time.

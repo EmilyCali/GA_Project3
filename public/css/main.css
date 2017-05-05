@@ -13,16 +13,6 @@ html{
 }
 
 body {
-
-  /*this is a blackboard with scrolling illustrations on the sides*/
-    /*background-image: url('https://images.template.net/wp-content/uploads/2016/04/23093543/Black-Shaded-Chalkboard-Background.jpg');*/
-
-    /*this is a really dark blackboard*/
-    /*background-image: url("https://s-media-cache-ak0.pinimg.com/736x/26/cf/3c/26cf3c80b7b5923f89fba8fe140dd660.jpg");*/
-
-    /*this is a green blackboard and it makes me think of green bottles and green secretary lamps I kinda dig it but it needs to be desaturated a tad*/
-    /*background-image: url("http://media.istockphoto.com/photos/green-chalkboard-background-picture-id486794506?k=6&m=486794506&s=612x612&w=0&h=78shoIoZzaQKwqw6lI_zNBW82mIah8a_jt9SgPM3YtM=");*/
-
     /*background-image: url("../assets/chalkboard-wallpaper-5large.jpg");*/
     /*this one is the same size as the above but with a gradient to deal with any repeating when the page gets long*/
     /*background-image: url("../assets/chalkboard-wallpaper-5stretch.png");*/
@@ -75,17 +65,18 @@ a:hover {
     /*background-image: url("../assets/booksandbeerslogo.png");*/
 }
 
+
+/*there is currently no text in the header since we went with an image*/
 .header h1 {
     font-size: 86px;
     text-align: center;
     border-bottom-style:dashed;
   /*font-family: "ASongForJennifer" ;*/
   /*font-family: "ChalkDust";*/
-    font-family: "GrutchShaded";
+    /*font-family: "GrutchShaded";*/
   /*font-family: "Return to Sender";*/
   /*font-family: "Chalk-hand-lettering-shaded";*/
-  opacity: 70%;
-
+  /*opacity: 70%;*/
 }
 
 .logged-in {
@@ -93,6 +84,7 @@ a:hover {
     flex-direction: row;
     justify-content: space-around;
 }
+
 .logged-in li{
     margin: 0 10px;
 }
