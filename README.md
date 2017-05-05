@@ -92,7 +92,7 @@ Super Awesome Team
   <strong>Brewery DB</strong>
 <br/>
 <br/>
-  <strong>Open library<strong>
+  <strong>Open library</strong>
 <br/>
     Open Library is an API that contains a vast amount of data about books. There are several APIs that can be used for free by the public through Open Library. The main API is the Open Library Book API which can be queried using parameters such as ISBNs and other codes. For the purposes of this project the Open Library Search API was used as it is able to take titles and author names as queries, which is more user friendly. The data returned on a query to this Search API looks as follows but may or may not contain all the keys below:
 
@@ -137,7 +137,7 @@ Super Awesome Team
 
 <h4>NPMS</h4>
 <br/>
-  <strong>MEAN Stack</strong> 
+  <strong>MEAN Stack</strong>
 <br/>
   <strong>JSON Web Tokens</strong>
 <br/>
