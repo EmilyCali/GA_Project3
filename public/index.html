@@ -22,10 +22,10 @@
                       Welcome, {{main.username}}!
                   </li>
                   <li>
-                      <a href="#">About</a>
+                      <a ng-click="main.communityShow()">Community</a>
                   </li>
                     <li>
-                        <a ng-click="main.returnToSearch()" href="#">Create a new pair</a>
+                        <a ng-click="main.returnToSearch()" >Create a new pair</a>
                     </li>
                 </ul>
                 <ul ng-if="main.token" class="logged-in" id="nav-right">
@@ -50,6 +50,7 @@
                             <input class="submit button" type="submit" value="Log In"><br/>
                         </form>
                         <p>{{main.message}}</p>
+                        <p>{{main.error}}</p>
                     </section>
                     <section class="new-user">
                         <h2>Registration</h2>
@@ -71,7 +72,6 @@
                                 Currently Reading: <p class="chosen">{{user.pair[0].book}}</p><br/>
                                 Currently Drinking: <p class="chosen"> {{user.pair[0].beer}}</p><br/>
                         </div>
-                        <!-- <button ng-click="main.returnToSearch()" class="button" type="button" name="button"></button> -->
                     </div>
                 </section>
 

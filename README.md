@@ -43,15 +43,14 @@ Super Awesome Team
 <br/>
   To mitigate this problem the team reorganized and turned their three controllers into one. Combining their code allowed them to call their data much more easily and set the pairing up simply.
 <br/>
-  Several Members also took action and nuked thier local repos to attempt to eradicate the merge errors and WHAT?! github situation.
 
 <h2>The Hiccups</h2>
 <br/>
   Amanda please explain the struggles you had in third person
 <br/>
-  Joe please explain the struggles you had in third person
+  Joe had plenty of struggles throughout the project. One thing that continued to frustrate him was the constant github What!? error that would show up every now and then. This prevented him from doing any activity on github and the only fix was to completely shutdown everything he was working on. Another struggle was figuring out how three controllers interacted with each other. Eventually the team went nuclear and enacted only one controller which made things much easier.
 <br/>
-  Emily came across many frustrations when the project began, almost every commit she had to deal with merge errors and her team was also coming across an exciting WHAT?! github error. It was never discovered what the real problem was and the team hope to never experience it again. Emily managed this overwhelming communication error between her local files and the remote ones by seeking help from the internet and persons of experience. After getting both a diagram and list from a trusted individual and reading numerous guides online Emily installed a mergetool for terminal and has become quite confident in her handling of git issues.
+  Emily cam across many frustrations when the project began, almost every commit she had to deal with merge errors and her team was also coming across an exciting WHAT?! github error. It was never discovered what the real problem was and the team hope to never experience it again. Emily managed this overwhelming communication error between her local files and the remote ones by seeking help from the internet and persons of experience. After getting both a diagram and list from a trusted individual and reading numerous guides online Emily installed a mergetool for terminal and has become quite confident in her handling of git issues.
 
   Emily began her work on the book api early with various googling. She settled on the open library search api to allow users to search for books by title, however, accessing this data became an issue when it was discovered that not every search result had the same keys, and many of the keys were paired with arrays. This meant that an item was an object containing some strings, some numbers and some arrays of strings that were variable lengths. She approached this prospect cautiously and was able to grab data but was having trouble sending it to the collection it needed to be in. Upon consultation with both Karolin and Dan (the instructor and the teaching assistant) she somehow, as she was trying to show that something was wrong, made it work.
 
@@ -59,18 +58,12 @@ Super Awesome Team
 <br/>
   <h4>Wireframes</h4>
 <br/>
-    <img src="https://raw.githubusercontent.com/Ciampije/GA_Project3/master/public/assets/project3wireframes.jpg"/>
 <br/>
   <h4>Theme</h4>
 <br/>
-  The thematic look of this app is based on chalkboards and typography.
 <br/>
   <h4>Resources</h4>
 <br/>
- dafont.com
- <br/>
- google fonts
- <br/>
 
 <br/>
 <h2>Functionality</h2
@@ -98,6 +91,7 @@ Super Awesome Team
 <br/>
   <strong>Brewery DB</strong>
 <br/>
+  Brewery DB is an API that contains brewery and beer information. For this projects purposes only the beer information was used. The API allows a user to query using paramaters such as beer style or name. As a user experience, the user can search for any beer they would like to pair with a book and then select that beer to save for future reference.
 <br/>
   <strong>Open library</strong>
 <br/>
@@ -180,7 +174,7 @@ Super Awesome Team
 
 <h2>Special Thanks</h2>
 <br/>
-  Emily, Amanda and Joe would like to thank the General Assembly team for giving them the opportunity to work as a team and the support provided by the instructors (Matt Huntington, Karolin Rafalski, Kristyn Bryan and Thom Page) and the TAs (Abi Klein, Kaylie Weable and Dan Lawrence).
+  Emily, Amanda and Joe would like to thank the General Assembly team for allowing them the opportunity to work as a team and the support provided by the instructors (Matt Huntington, Karolin Rafalski, Kristyn Bryan and Thom Page) and the TAs (Abi Klein, Kaylie Weable and Dan Lawrence).
 
   Emily would also like to thank Sergio Martins for the github tutorials and sometimes looking at the code.
 
@@ -190,7 +184,7 @@ Super Awesome Team
 
 
 
-  Joe- who are you and why do you kick butt
+  Joe is a Booz Allen Hamilton Engineer who was enrolled in this class to learn a new skill and become an awesome web developer. He has a BA in Mechanical Engineering with a focus on Biomedical Engineering. Prior to this class Joe has worked on small geospatial imaging projects. He enjoys books and beers in no particular order.
 
 
 
