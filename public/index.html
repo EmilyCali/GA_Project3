@@ -38,9 +38,9 @@
             <section class="container">
                 <header class= "header">
                     <img id="main-logo" src="/assets/booksandbeerslogo.png"/>
-
-            <!-- login and register area -->
                 </header>
+            <!-- login and register area -->
+
                 <section ng-if="!main.token" class="users">
                     <section class="login">
                         <h2>Log In</h2>
@@ -59,7 +59,9 @@
                             <input class="submit button" type="submit" value="Sign Up"><br/>
                         </form>
                     </section>
-                </section>
+
+                </section >
+                <p ng-if="!main.token" id="demo" style="color : cornflowerblue">For demonstration, please feel free to use: Username: guest | Password: guest</p>
 
     <!-- Community Page that shows all the users and their current books and beers -->
                 <section class="beerbookpair" ng-if="!main.showUsers">
@@ -86,7 +88,7 @@
                             <button class="button" ng-click="main.showEdit()">Edit Your Info</button>
                         </li>
                     </ul>
-                    <button class="button" ng-click="main.deleteUser(main.id)">Delete Account</button>
+                    <button class="button" ng-click="main.deleteAccount(main.id)">Delete Account</button>
                 </section>
 
       <!-- edit user info -->
