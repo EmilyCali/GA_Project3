@@ -54,30 +54,38 @@ app.controller('MainController', ['$scope', '$http', function($scope, $http){
             controller.error = response.data.msg;
           //the username is the data from the page username
             controller.username = response.data.user.username;
-            console.log(response.data.user.username);
-            controller.password = response.data.user.password
-
-
-            //set the token to the user
-            localStorage.setItem('token', JSON.stringify(response.data.token));
-            // post request to authenticate newly registered user
-            $http({
-                method:'POST',
-                url: "/api/authenticate",
-                data: {
-                        username: response.data.user.username,
-                        password: response.data.user.password
-                }
-            }).then(function(response){//success
-              //toggle that the user does have a token
-                controller.token = true;
-                controller.getUser();
-            });
+            console.log(response.data.user.password);
+            controller.password = response.data.user.password;
+            controller.newUserLogin(controller.username, userInfo.newPassword);
         }.bind(this));
     };
     //****************************************|
     //----------------login-------------------|
     //****************************************|
+    this.newUserLogin = function(username, password){
+        $http({
+            method:'POST',
+            url: "/api/authenticate",
+            data: {
+                    username: username,
+                    password: password
+            }
+        }).then(function(response){//success
+            controller.id = response.data.id,
+            controller.username = response.data.username;
+            //toggle the token
+            controller.token = true;
+            $scope.token = controller.token;
+            //if there is not a success
+            if(!response.data.success){
+              //toggle the token to false
+                controller.token = false;
+                $scope.token = controller.token;
+                controller.message = response.data.message;
+            }
+            localStorage.setItem('token', JSON.stringify(response.data.token));
+        });
+    };
     this.login = function(userInfo){
         $http({
             method:'POST',
