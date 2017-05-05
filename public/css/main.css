@@ -149,17 +149,11 @@ a:hover {
 
 section .form input {
   font-family: "ASongForJennifer";
-
-  /*font-family: "ChalkDust";*/
-  /*font-family: "GrutchShaded";*/
-  /*font-family: "Return to Sender";*/
-  /*font-family: "Chalk-hand-lettering-shaded";*/
 }
 /*this styles all the input submits and buttons tagged with the class .button*/
 .button {
   color: white !important;
   background-color: none !important;
-
 }
 /*this makes them change when hovered on*/
 .button:hover {
@@ -168,37 +162,78 @@ section .form input {
   opacity: 40%;
 }
 
-section .search {
+/*this goes hand in hand with the .beer below, makes the search area center on the page and puts the beers below it but left justified which coincides with the footer having a heavier left, if we get the info to display right it could be balanced and cool*/
+section .search, .select {
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    align-content: center;
+    align-items: center;
     flex-direction: column;
-    width: 800px;
-    margin-left: 5%;
+    /*width: 800px;*/
+    /*margin-left: 5%;*/
 }
 
-.search-bar{
-    width: 100px;
+.search-bar {
+    width: 300px;
     padding: 30px;
     margin: 10px;
 }
 
+.results {
+}
+
+p {
+  font-family: "ASongForJennifer";
+}
 /*************************************************************/
 /*/--------------------------BEEEER-------------------------/*/
 /*************************************************************/
-.beer{
-    display: flex;
-    flex-direction: row;
+
+/*I COMMENTED THIS OUT TO GET THE BEERS AND BOOKS RESULTS TO SHOW BELOW THE SEARCH, THIS WAY WE CAN TRY TO STYLE IT TO DISPLAY MORE INFO TO THE RIGHT LIKE IN THE WORLD BANK
+*/
+
+.beerbookpair {
+    /*display: flex;*/
+    /*flex-direction: row;
     justify-content: space-around;
-    align-content: flex-start;
+    align-content: flex-start;*/
+    margin: 0 auto;
 }
+
+
+#community {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-content: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.userPairs {
+  display: inline-block;
+  padding: 5px;
+}
+
+h5 {
+  font-family: "ChalkDust";
+}
+
+/*attempt to make the colors less harsh did not work*/
+section ol li ul .info {
+  color: #B3B6BF;
+}
+
+
 /*************************************************************/
 /*/--------------------------Footer-------------------------/*/
 /*************************************************************/
+
 /*Used and modified From http://tutorialzine.com/2015/01/freebie-5-responsive-footer-templates/*/
+
 .footer-distributed{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
