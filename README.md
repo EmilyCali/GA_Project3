@@ -43,6 +43,7 @@ Super Awesome Team
 <br/>
   To mitigate this problem the team reorganized and turned their three controllers into one. Combining their code allowed them to call their data much more easily and set the pairing up simply.
 <br/>
+  Several Members also took action and nuked thier local repos to attempt to eradicate the merge errors and WHAT?! github situation.
 
 <h2>The Hiccups</h2>
 <br/>
@@ -58,12 +59,18 @@ Super Awesome Team
 <br/>
   <h4>Wireframes</h4>
 <br/>
+    <img href=""/>
 <br/>
   <h4>Theme</h4>
 <br/>
+  The thematic look of this app is based on chalkboards and typography.
 <br/>
   <h4>Resources</h4>
 <br/>
+ dafont.com
+ <br/>
+ google fonts
+ <br/>
 
 <br/>
 <h2>Functionality</h2
