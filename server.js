@@ -45,15 +45,15 @@ var apiRoutes = express.Router();
 
 apiRoutes.get('/', function(req, res){
     console.log('Hello! ');
-    console.log(req.user);
-    console.log(req.body.user);
+    //console.log(req.user);
+    //console.log(req.body.user);
     res.send("yoyoyo");
 });
 
 // create a new user account (POST http://localhost:3000/api/signup) and have them be logged in upon creating their account
 apiRoutes.post('/signup', function(req, res) {
     //MAY WANT TO REMOVE THIS CONSOLE LOG
-    console.log(req.body.password);
+    //console.log(req.body.password);
     //if there is no user name or password respond with a message
     if (!req.body.username || !req.body.password) {
         res.json({success: false, msg: 'Please enter username and password.'});
@@ -70,8 +70,8 @@ apiRoutes.post('/signup', function(req, res) {
         //give this new user a token
         var token = jwt.sign(newUser, app.get('superSecret'));
 
-        console.log(newUser);
-        console.log(token);
+        //console.log(newUser);
+        //console.log(token);
         // save the user
         newUser.save(function(err) {
             if (err) {
@@ -93,13 +93,13 @@ app.use('/api', apiRoutes);
 
 //route to authenticate the user(POST: http://localhost:3000/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res){
-    console.log(req.body.username);
+    //console.log(req.body.username);
     //find the user
     User.findOne({
         username:req.body.username,
         id:req.body._id
     }, function(err, foundUser){
-        console.log(foundUser);
+        //console.log(foundUser);
         if (err) throw err;
         if(!foundUser){
             res.json({success: false, message: 'Authenication failed. User not found.'});
@@ -119,7 +119,7 @@ apiRoutes.post('/authenticate', function(req, res){
                     id: foundUser.id
                 });
             }
-        };
+        }
     });
 });
 
@@ -157,29 +157,31 @@ apiRoutes.use(function(req, res, next){
 //Routes that need token verification|
 /////////////////////////////////////|
 
-//create a pair that includes the users selected beer and book
+//create a pair that includes the users selected beer and book, this is only in the user and it is an update to the pair key in the user model
 apiRoutes.put('/pair', function(req, res){
     User.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true}, function(err, updatedUser){
         res.json(updatedUser);
-        console.log('==========================================');
-        console.log("this is the updated user info:" + updatedUser);
+        //console.log('==========================================');
+        //console.log("this is the updated user info:" + updatedUser);
     });
 });
 
+//get the pairs from the pairs collection
 apiRoutes.get('/pairs', function(req, res){
     Pair.findById(req.params.id, function(err, foundId){
         res.json(foundId);
     });
 });
 
+//get the user
 apiRoutes.get('/getUser', function(req, res){
     User.findById(req.decoded._doc._id, function(err, foundUser){
         res.json(foundUser);
-        console.log("this is the get user route found user:" + foundUser);
+        //console.log("this is the get user route found user:" + foundUser);
     });
 });
 
-
+//add the pair to the pair collection so there can be a matched archive of a users pairings
 apiRoutes.post('/pairs', function(req, res){
     Pair.create(req.body, function(error, createdPair){
         if (error) {
@@ -190,19 +192,19 @@ apiRoutes.post('/pairs', function(req, res){
             //give the beer the user id so it can be matched to the user
             id: req.decoded._doc._id
         });
-        console.log(createdPair);
+        //console.log(createdPair);
     });
 });
 
-
+//update the user pair
 apiRoutes.put('/pairupdate', function(req, res){
-    console.log("inside server pair put route");
-    console.log(req);
+    //console.log("inside server pair put route");
+    //console.log(req);
     Pair.findByIdAndUpdate(req.decoded._doc._id, req.body, {new:true},
     function(err, updatedPair){
-        console.log(res);
+        //console.log(res);
         res.json(updatedPair);
-        console.log(updatedPair);
+        //console.log(updatedPair);
     });
 });
 
@@ -256,7 +258,7 @@ apiRoutes.post('/beers', function(req, res){
             //give the beer the user id so it can be matched to the user
             id: req.decoded._doc._id
         });
-        console.log(createdBeer);
+        //console.log(createdBeer);
     });
 });
 
@@ -269,9 +271,9 @@ apiRoutes.get('/beers', function(req, res){
 
 //find and post up the user id so it can be grabbed and added to the beer object
 apiRoutes.post('/userId', function(req, res){
-    console.log('==========================================================');
-    console.log(req);
-    console.log('==========================================================');
+    //console.log('==========================================================');
+    //console.log(req);
+    //console.log('==========================================================');
 
     User.findById(req.decoded._doc._id, function(err, createdUser){
         res.json({
@@ -295,7 +297,7 @@ apiRoutes.post('/books', function(req, res){
             //give the book the same user id as the user creating it
             id: req.decoded._doc._id
         });
-        console.log(createdBook);
+        //console.log(createdBook);
     });
 });
 
